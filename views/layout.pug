@@ -5,4 +5,7 @@ html
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    nav 
+      form(action="/logout" method="post") 
+        button(id="logout") Logout
     block content

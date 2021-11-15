@@ -48,8 +48,40 @@ router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
   })
 }))
 
-router.get('/signup', function(req, res, next) {
-  res.send('respond with a signup page');
+router.get('/signup',csrfProtection,restoreUser, async function(req, res, next) {
+  if (res.locals && res.locals.authenticated) {
+    return res.redirect('/');
+  }
+  res.render("signup",{
+    csrfToken:req.csrfToken()
+  });
 });
+
+router.post('/signup',csrfProtection, async function(req,res){
+  const {password,confirmPassword,email,username} = req.body
+ 
+ try{
+   const hashedPass = await bcrypt.hash(password,10);
+    const user = await User.create({
+      email,
+      username,
+      password: hashedPass
+    })
+    loginUser(req,user);
+    res.redirect('/');
+ }catch(e){
+    //render errors on the page
+    console.log('invalid input')
+    res.render('signup',{csrfToken:req.csrfToken()});
+ }
+});
+
+router.post('/logout', (req,res) => {
+  
+  req.session.destroy(() => {
+    res.redirect('/');
+  })
+  
+})
 
 module.exports = router;
