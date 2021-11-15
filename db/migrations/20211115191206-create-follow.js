@@ -11,12 +11,12 @@ module.exports = {
       userId: {
         allowNull:false,
         type: Sequelize.INTEGER,
-        references:{models:"Users"}
+        references: { model: "Users" },
       },
       followerId: {
         allowNull:false,
         type: Sequelize.INTEGER,
-        references:{models:"Users"}
+        references: { model: "Users" },
       },
       createdAt: {
         allowNull: false,
