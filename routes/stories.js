@@ -4,7 +4,7 @@ const showdown = require("showdown");
 const { check } = require("express-validator");
 
 const { requireAuth } = require("../auth");
-const { Post } = require("../db/models");
+const { Post, User } = require("../db/models");
 const {
   asyncHandler,
   csrfProtection,
@@ -75,7 +75,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const { storyId } = req.params;
 
-    const story = await Post.findByPk(storyId);
+    const story = await Post.findByPk(storyId, {
+      include: [User],
+    });
 
     if (!story) {
       throw createError(404);
@@ -89,6 +91,7 @@ router.get(
         subText: story.subText,
         headerImage: story.headerImage,
         mainText: storyHtml,
+        user: story.User,
       },
     });
   })
