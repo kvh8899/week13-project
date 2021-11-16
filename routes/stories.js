@@ -1,3 +1,4 @@
+const createError = require("http-errors");
 const express = require("express");
 const showdown = require("showdown");
 
@@ -41,6 +42,10 @@ router.get(
     const { storyId } = req.params;
 
     const story = await Post.findByPk(storyId);
+
+    if (!story) {
+      throw createError(404);
+    }
 
     const storyHtml = converter.makeHtml(story.mainText);
 
