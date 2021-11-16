@@ -26,6 +26,7 @@ router.get("/new", requireAuth, csrfProtection, (req, res) => {
 const storyValidators = [
   check("heading")
     .exists({ checkFalsey: true })
+    .isLength({ min: 1 })
     .withMessage("Please provide a Title."),
 
   check("headerImage")
@@ -35,6 +36,7 @@ const storyValidators = [
 
   check("mainText")
     .exists({ checkFalsey: true })
+    .isLength({ min: 1 })
     .withMessage("The story's body cannot be empty."),
 ];
 
