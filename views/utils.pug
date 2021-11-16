@@ -1,7 +1,7 @@
 mixin validationErrorSummary(errors)
   if errors
     div(role='alert')
-      p The following error(s) occurred:
+      p The following error#{errors.length > 1 ? 's' : ''} occurred:
       ul
         each error in errors
           li= error
