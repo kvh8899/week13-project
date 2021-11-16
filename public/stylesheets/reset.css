@@ -13,7 +13,6 @@ a {
 
 h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
 body, header, nav {
-  font-size: 1rem;
   color: inherit;
   background-color: transparent;
   margin: 0;
@@ -24,13 +23,4 @@ body, header, nav {
 
 h1 {
   font-size: 2rem;
-}
-.edit{
-  padding:10px;
-  max-width:700px;
-  border: 1px solid black;
-  margin:auto;
-}
-[contenteditable] {
-  outline: 0px solid transparent;
 }

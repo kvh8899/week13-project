@@ -23,111 +23,33 @@ block content
     div(id="openingText")
       h1= title
       p It's easy and free to post your thinking on any topic and connect with millions of readers.
-      button(id="startWriting") Start Writing
+      div(id="startWriting")
+        a( href="/login") Start Writing
   div(class="mid-content")
     p(class="mid-content-title") Trending on Codex!
     div(class="story-grid")
-      div(class='story-grid-story')
-        div(class="inner-story")
-          p(class='num') 01
-          div(class='author')
-            div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-            h2 Please Come And Be Fat 
-            p(class='meta-data') Nov 13 - 6 min read
-      div(class='story-grid-story')
-        div(class="inner-story")
-            p(class='num') 02
+      each posts,i in post
+        div(class='story-grid-story')
+          div(class="inner-story")
+            p(class='num')= '0' + (i+1)
             div(class='author')
               div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') Ryan JOHNSON
-              h2 I’m A Twenty Year Truck Driver, I Will Tell You Why America’s...
-              p(class='meta-data') Nov 13 - 6 min read
-      div(class='story-grid-story')
-        div(class="inner-story")
-            p(class='num') 03
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') Matt Charnock
-              h2 Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-      div(class='story-grid-story')
-        div(class="inner-story")
-            p(class='num') 04
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2 Please Come And Be Fat 
-              p(class='meta-data') Nov 13 - 6 min read
-      div(class='story-grid-story')
-        div(class="inner-story")
-            p(class='num') 05
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2 Please Come And Be Fat 
-              p(class='meta-data') Nov 13 - 6 min read
-      div(class='story-grid-story')
-        div(class="inner-story")
-            p(class='num') 06
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2 Please Come And Be Fat 
-              p(class='meta-data') Nov 13 - 6 min read
+                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                  p(class='auth-name')=posts.User.username
+              a(href='/posts/' + posts.id)=posts.heading
+              p(class='meta-data')= posts.createdAt.toDateString()
   div(class='end-content')
     div
-      div(class='story-grid-story')
-          div(class="inner-story")
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2(id='aa') Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-          img(src="../images/placeholder.gif" class='listimg' alt="404")
-      div(class='story-grid-story')
-          div(class="inner-story")
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2(id='aa') Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-          img(src="../images/placeholder.gif" class='listimg' alt="404")
-      div(class='story-grid-story')
-          div(class="inner-story")
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2(id='aa') Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-          img(src="../images/placeholder.gif" class='listimg' alt="404")
-      div(class='story-grid-story')
-          div(class="inner-story")
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2(id='aa') Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-          img(src="../images/placeholder.gif" class='listimg' alt="404")
-      div(class='story-grid-story')
-          div(class="inner-story")
-            div(class='author')
-              div(class="profile")
-                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                p(class='auth-name') S.BearBergman
-              h2(id='aa') Ivy Getty’s San Francisco Wedding Is Why We Need a Wealth Tax
-              p(class='meta-data') Nov 13 - 6 min read
-          img(src="../images/placeholder.gif" class='listimg' alt="404")
+      each posts in post
+        div(class='story-grid-story')
+            div(class="inner-story")
+              div(class='author')
+                div(class="profile")
+                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                  p(class='auth-name')=posts.User.username
+                a(id='aa' href='/posts/' + posts.id)=posts.heading
+                p(class='meta-data')=posts.createdAt.toDateString()
+            img(src=posts.headerImage class='listimg' alt="404")
     div(class='eop')
       p Discover The Realm of Computer Science Topics!
       div(class='tag-grid')
