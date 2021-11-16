@@ -24,13 +24,7 @@ const validateEmailAndPass = [
 
   check("password")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a password")
-    .isLength({ min: 8 })
-    .withMessage("Password must be more than 8 characters long")
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
-    .withMessage(
-      'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'
-    ),
+    .withMessage("Please provide a password"),
 ];
 
 const signupValidator = [
@@ -39,6 +33,14 @@ const signupValidator = [
     .withMessage("Please provide an username.")
     .isLength({ max: 50 })
     .withMessage("Username must be less than or equal to 50 characters."),
+
+  check("password")
+    .isLength({ min: 8 })
+    .withMessage("Password must be more than 8 characters long")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "g")
+    .withMessage(
+      'Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'
+    ),
 
   check("confirmPassword")
     .exists({ checkFalsy: true })
