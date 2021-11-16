@@ -7,21 +7,82 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
+  div(class="topbar")
+    img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
+    nav()
+    ul(id="navbar")
+      li()
+        a(href="") Our story 
+      li()
+        a(href="") Write 
+      li() 
+        a(href="/login") Sign In
+      li()
+        a(href="/signup" id="login") Get Started
   div(class="background")
-    div(class="topbar")
-          img(src="" id="logo" alt="LOGO" )
-          nav()
-          ul(id="navbar")
-            li()
-              a(href="") Our story 
-            li()
-              a(href="") Write 
-            li() 
-              a(href="/login") Sign In
-            li()
-              a(href="/signup" id="login") Get Started
     div(id="openingText")
       h1= title
       p It's easy and free to post your thinking on any topic and connect with millions of readers.
-      button(id="startWriting") Start Writing
+      div(id="startWriting")
+        a( href="/login") Start Writing
+  div(class="mid-content")
+    p(class="mid-content-title") Trending on Codex!
+    div(class="story-grid")
+      each posts,i in post
+        div(class='story-grid-story')
+          div(class="inner-story")
+            p(class='num')= '0' + (i+1)
+            div(class='author')
+              div(class="profile")
+                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                  p(class='auth-name')=posts.User.username
+              a(href='/posts/' + posts.id)=posts.heading
+              p(class='meta-data')= posts.createdAt.toDateString()
+  div(class='end-content')
+    div
+      each posts in post
+        div(class='story-grid-story')
+            div(class="inner-story")
+              div(class='author')
+                div(class="profile")
+                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                  p(class='auth-name')=posts.User.username
+                a(id='aa' href='/posts/' + posts.id)=posts.heading
+                p(class='meta-data')=posts.subText
+                p(class='date')=posts.createdAt.toDateString()
+            img(src=posts.headerImage class='listimg' alt="404")
+    div(class='eop')
+      p Discover The Realm of Computer Science Topics!
+      div(class='tag-grid')
+        button(class='tag-button') Programming
+        button(class='tag-button') Python
+        button(class='tag-button') java
+        button(class='tag-button') C
+        button(class='tag-button') Game programming
+        button(class='tag-button') Data Science
+        button(class='tag-button') Machine Learning
+        button(class='tag-button') Bootcamp
+        button(class='tag-button') arm
+      ul(class='footer-links')
+        li
+          a(href="") Help
+        li
+          a(href="") Status
+        li
+          a(href="") Writers 
+        li
+          a(href="") Blog 
+        li
+          a(href="") Careers
+        li
+          a(href="") Privacy
+        li
+          a(href="") Terms 
+        li
+          a(href="") About
+
+    
+
+  
+
 
