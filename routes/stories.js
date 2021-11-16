@@ -64,8 +64,8 @@ router.post(
     const story = await Post.create({
       userId: res.locals.user.id,
       heading,
-      subText,
-      headerImage,
+      subText: subText || null,
+      headerImage: headerImage || null,
       mainText,
     });
     res.redirect(`/stories/${story.id}`);
