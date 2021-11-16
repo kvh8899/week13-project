@@ -5,7 +5,11 @@ const { Op } = require("sequelize");
 
 const { loginUser, restoreUser } = require("../auth");
 const { User } = require("../db/models");
-const { asyncHandler, csrfProtection } = require("./utils");
+const {
+  asyncHandler,
+  csrfProtection,
+  handleValidationErrors,
+} = require("./utils");
 
 const router = express.Router();
 
@@ -68,12 +72,28 @@ router.get("/login", csrfProtection, restoreUser, function (req, res) {
   res.render("login", { csrfToken: req.csrfToken() });
 });
 
+const failedLogin = (req, res) => {
+  const { email } = req.body;
+
+  console.log(res.locals.errors);
+
+  res.render("login", {
+    csrfToken: req.csrfToken(),
+    user: { email },
+  });
+};
+
 router.post(
   "/login",
   csrfProtection,
   validateEmailAndPass,
+  handleValidationErrors,
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+
+    if (res.locals.errors) {
+      return failedLogin(req, res);
+    }
 
     const user = await User.findOne({
       where: {
@@ -82,10 +102,8 @@ router.post(
     });
 
     if (!user) {
-      res.render("login", {
-        csrfToken: req.csrfToken(),
-        errors: ["Email or Password is incorrect."],
-      });
+      res.locals.errors = ["Email or Password is incorrect."];
+      return failedLogin(req, res);
     }
 
     const matches = await bcrypt.compare(password, user.password.toString());
@@ -95,35 +113,38 @@ router.post(
       res.redirect("/");
       return;
     }
-
-    res.render("login", {
-      csrfToken: req.csrfToken(),
-      errors: ["Email or Password is incorrect."],
-    });
+    res.locals.errors = ["Email or Password is incorrect."];
+    return failedLogin(req, res);
   })
 );
 
-router.get(
-  "/signup",
-  csrfProtection,
-  restoreUser,
-  async function (req, res, next) {
-    if (res.locals && res.locals.authenticated) {
-      return res.redirect("/");
-    }
-    res.render("signup", {
-      csrfToken: req.csrfToken(),
-    });
+router.get("/signup", csrfProtection, restoreUser, async function (req, res) {
+  if (res.locals && res.locals.authenticated) {
+    return res.redirect("/");
   }
-);
+  res.render("signup", {
+    csrfToken: req.csrfToken(),
+  });
+});
 
 router.post(
   "/signup",
   csrfProtection,
   validateEmailAndPass,
   signupValidator,
-  async function (req, res) {
-    const { password, confirmPassword, email, username } = req.body;
+  handleValidationErrors,
+  async function (req, res, next) {
+    const { password, email, username } = req.body;
+
+    if (res.locals.errors) {
+      res.render("signup", {
+        csrfToken: req.csrfToken(),
+        user: {
+          email,
+          username,
+        },
+      });
+    }
 
     try {
       const hashedPass = await bcrypt.hash(password, 10);
@@ -134,10 +155,8 @@ router.post(
       });
       loginUser(req, user);
       res.redirect("/");
-    } catch (e) {
-      //render errors on the page
-      console.log("invalid input");
-      res.render("signup", { csrfToken: req.csrfToken() });
+    } catch (error) {
+      next(error);
     }
   }
 );
