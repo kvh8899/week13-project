@@ -8,6 +8,7 @@ append head
   script(src="/javascripts/story-editor.js" type="module" defer)
 
 block content
+  +validationErrorSummary(locals.errors)
   form(method="post" action="/stories/new")
     input(type="hidden" name="_csrf" value=csrfToken)
 

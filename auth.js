@@ -34,7 +34,17 @@ const loginUser = (req, user) => {
   req.session.auth = { userId: user.id };
 };
 
+const redirectUnauthedToLogin = async (req, res, next) => {
+  if (res.locals.authenticated && res.locals.user) {
+    return next();
+  }
+  return res.redirect("/login");
+};
+
+const requireAuth = [restoreUser, redirectUnauthedToLogin];
+
 module.exports = {
   loginUser,
+  requireAuth,
   restoreUser,
 };
