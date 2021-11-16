@@ -6,25 +6,28 @@ append head
 
 block content 
     
+    div(id= "form") 
+
+        h2 Sign up with email
+        h4 Enter your email address to create an account.
+
         form(action="/signup" method="post")
-            h2 Sign up with email
-                h4 Enter your email address to create an account
-                div(id= "signup") 
-                    input(type="hidden" name="_csrf" value=csrfToken)
-                    label(for="email") Email:
-                    br
-                    input(type="text" name="email" required)
-                    br
-                    label(for="username") Username:
-                    br
-                    input(type="text" name="username" required)
-                    br
-                    label(for="password") Password: 
-                    br
-                    input(type="password" name="password" required)
-                    br
-                    label(for="confirmPassword") Confirm Password: 
-                    br
-                    input(type="password" name="confirmPassword" required)
-                    br
-                    button Submit
+            
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(for="email") Your email:
+            br
+            input(type="text" name="email" required)
+            br
+            label(for="username") Your username:
+            br
+            input(type="text" name="username" required)
+            br
+            label(for="password") Enter your password: 
+            br
+            input(type="password" name="password" required)
+            br
+            label(for="confirmPassword") Confirm your password: 
+            br
+            input(type="password" name="confirmPassword" required)
+            br
+            button Continue
