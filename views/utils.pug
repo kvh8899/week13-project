@@ -1,3 +1,11 @@
+mixin validationErrorSummary(errors)
+  if errors
+    div(role='alert')
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error
+
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', required = false, placeholder = null)
   div
     label(for=fieldName)= labelText
