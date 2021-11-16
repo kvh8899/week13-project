@@ -1,0 +1,94 @@
+#form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding-bottom: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 8px;
+    padding: 44px 56px;
+
+}
+
+h2 {
+    font-size: 28px;
+    color: rgba(8, 8, 8, 1);
+    font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+
+}
+
+h4 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(41, 41, 41, 1);
+    font-weight: 400;
+    text-align: center;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 30px;
+}
+
+form {
+    margin-top: 62px;
+    margin-bottom: 28px;
+}
+
+
+
+button {
+    padding: 7px 16px 9px;
+    color:white;
+    font: 14px;
+    font-weight: 400;
+    border-color: #191919;
+    border-radius: 99em;
+    background-color: #191919;
+    font-size: 15px;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    width: 226px;
+    margin-top: 12px;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    border-color: rgba(41, 41, 41, 1);
+    background: rgba(8, 8, 8, 1);
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+input {
+  text-align: center;
+  width: 270px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: thin solid rgba(41, 41, 41, 1);
+}
+
+label, input {
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
