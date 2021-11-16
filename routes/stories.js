@@ -1,7 +1,11 @@
 const express = require("express");
+const showdown = require("showdown");
 
 const { Post } = require("../db/models");
 const { asyncHandler, csrfProtection } = require("./utils");
+
+const converter = new showdown.Converter();
+converter.setOption("noHeaderId", true);
 
 const router = express.Router();
 
@@ -28,6 +32,26 @@ router.post(
       mainText,
     });
     res.redirect(`/stories/${story.id}`);
+  })
+);
+
+router.get(
+  "/:storyId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const { storyId } = req.params;
+
+    const story = await Post.findByPk(storyId);
+
+    const storyHtml = converter.makeHtml(story.mainText);
+
+    res.render("story", {
+      story: {
+        heading: story.heading,
+        subText: story.subText,
+        headerImage: story.headerImage,
+        mainText: storyHtml,
+      },
+    });
   })
 );
 
