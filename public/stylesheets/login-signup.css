@@ -1,0 +1,65 @@
+#signup {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding-bottom: 20px;
+   
+
+    
+
+}
+
+h2 {
+    font-size: 28px;
+    color: rgba(8, 8, 8, 1);
+    font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-weight: 400;
+    text-align: center;
+
+
+}
+
+h4 {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(41, 41, 41, 1);
+    font-weight: 400;
+    text-align: center;
+}
+
+
+
+button {
+    padding: 7px 16px 9px;
+    color:white;
+    font: 14px;
+    font-weight: 400;
+    border-color: #191919;
+    border-radius: 99em;
+    background-color: #191919;
+    font-size: 15px;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    width: 226px;
+}
+
+button:hover {
+    border-color: rgba(41, 41, 41, 1);
+    background: rgba(8, 8, 8, 1);
+    cursor: pointer;
+}
+
+input {
+  text-align: center;
+  width: 270px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: thin solid rgba(41, 41, 41, 1);
+  
+
+    
+
+}

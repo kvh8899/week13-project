@@ -1,13 +1,30 @@
 extends layout.pug 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/login-signup.css")
+  //- add page specific js
+
 block content 
-    form(action="/signup" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="email") Email:
-        input(type="text" name="email" required)
-        label(for="username") Username:
-        input(type="text" name="username" required)
-        label(for="password") Password: 
-        input(type="password" name="password" required)
-        label(for="confirmPassword") Confirm Password: 
-        input(type="password" name="confirmPassword" required)
-        button Submit
+    
+        form(action="/signup" method="post")
+            h2 Sign up with email
+                h4 Enter your email address to create an account
+                div(id= "signup") 
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    label(for="email") Email:
+                    br
+                    input(type="text" name="email" required)
+                    br
+                    label(for="username") Username:
+                    br
+                    input(type="text" name="username" required)
+                    br
+                    label(for="password") Password: 
+                    br
+                    input(type="password" name="password" required)
+                    br
+                    label(for="confirmPassword") Confirm Password: 
+                    br
+                    input(type="password" name="confirmPassword" required)
+                    br
+                    button Submit
