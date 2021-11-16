@@ -7,5 +7,21 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to your Project Skeleton
+  div(class="background")
+    div(class="topbar")
+          img(src="" id="logo" alt="LOGO" )
+          nav()
+          ul(id="navbar")
+            li()
+              a(href="") Our story 
+            li()
+              a(href="") Write 
+            li() 
+              a(href="/login") Sign In
+            li()
+              a(href="/signup" id="login") Get Started
+    div(id="openingText")
+      h1= title
+      p It's easy and free to post your thinking on any topic and connect with millions of readers.
+      button(id="startWriting") Start Writing
+

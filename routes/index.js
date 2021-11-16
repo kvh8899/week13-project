@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  console.log(req.session)
+  res.render('index', { title: 'CodeX is a place to write, read, and connect' });
 });
 
 module.exports = router;
