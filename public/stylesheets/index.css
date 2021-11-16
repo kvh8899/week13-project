@@ -127,9 +127,13 @@ h1 {
   .profile{
       display:flex;
   }
-  .meta-data{
+  .date{
       font-size:12px;
       color:rgb(141, 141, 141);
+  }
+  .meta-data{
+      font-size:15px;
+      color:rgb(141,141,141);
   }
   .profpic{
       border-radius:100%;

@@ -48,7 +48,8 @@ block content
                   img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                   p(class='auth-name')=posts.User.username
                 a(id='aa' href='/posts/' + posts.id)=posts.heading
-                p(class='meta-data')=posts.createdAt.toDateString()
+                p(class='meta-data')=posts.subText
+                p(class='date')=posts.createdAt.toDateString()
             img(src=posts.headerImage class='listimg' alt="404")
     div(class='eop')
       p Discover The Realm of Computer Science Topics!
