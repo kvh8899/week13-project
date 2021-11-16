@@ -5,6 +5,7 @@ include utils.pug
 append head
   //- add page specific styles by appending to the head
   //- add page specific js
+  script(src="/javascripts/story-editor.js" type="module" defer)
 
 block content
   form(method="post" action="/stories/new")
