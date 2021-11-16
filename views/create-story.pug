@@ -1,0 +1,24 @@
+extends layout
+
+include utils.pug
+
+append head
+  //- add page specific styles by appending to the head
+  //- add page specific js
+
+block content
+  form(method="post" action="/stories/new")
+    input(type="hidden" name="_csrf" value=csrfToken)
+
+    +field("Title", "heading", story.heading, "text", true)
+    +field("Subtitle", "subText", story.subText)
+    +field("Story Image Url", "headerImage", story.headerImage)
+    div
+      label(for="mainText") Story Body
+      p
+        | This input supports 
+        a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
+        | .
+      textarea(id="mainText", name="mainText" required)= story.mainText
+
+    button Create Story
