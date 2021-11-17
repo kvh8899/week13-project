@@ -2,18 +2,28 @@ extends layout
 
 append head
   //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/login.css")
+  link(rel="stylesheet" href="/stylesheets/login-signup.css")
   //- add page specific js
 
 block content
-  form(method="post" action="/login")
 
-    input(type="hidden" name="_csrf" value=csrfToken)
+  div(id= "form") 
 
-    label(for="email") Email:
-    input(required type="email" id="email" name="email")
+    h2 Sign in
+    h4 Enter the email address and password associated with your account.
 
-    label(for="password") Password:
-    input(required type="password" id="password" name="password")
+    form(method="post" action="/login")
 
-    button Submit
+      input(type="hidden" name="_csrf" value=csrfToken)
+
+      label(for="email") Your email:
+      br
+      input(required type="email" id="email" name="email")
+      br
+
+      label(for="password") Your password:
+      br
+      input(required type="password" id="password" name="password")
+      br
+
+      button Continue
