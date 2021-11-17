@@ -3,8 +3,15 @@ const express = require("express");
 const showdown = require("showdown");
 const { check } = require("express-validator");
 
-const { requireAuth } = require("../auth");
-const { Comment, CommentLike, Post, PostLike, User } = require("../db/models");
+const { requireAuth, restoreUser } = require("../auth");
+const {
+  Comment,
+  CommentLike,
+  Follow,
+  Post,
+  PostLike,
+  User,
+} = require("../db/models");
 const {
   asyncHandler,
   csrfProtection,
@@ -74,6 +81,7 @@ router.post(
 
 router.get(
   "/:storyId(\\d+)",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const { storyId } = req.params;
 
@@ -87,6 +95,16 @@ router.get(
 
     if (!story) {
       throw createError(404);
+    }
+
+    let userFollow;
+    if (res.locals.authenticated && res.locals.user) {
+      userFollow = await Follow.findOne({
+        where: {
+          userId: story.User.id,
+          followerId: res.locals.user.id,
+        },
+      });
     }
 
     const storyHtml = converter.makeHtml(story.mainText);
@@ -105,6 +123,7 @@ router.get(
       },
       comments: story.Comments,
       likes: story.PostLikes,
+      userFollow: userFollow || {},
     });
   })
 );

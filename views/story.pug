@@ -4,6 +4,7 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/story.css")
   //- add page specific js
+  script(src="/javascripts/story.js" type="module" defer)
 
 block content
   header
@@ -12,7 +13,8 @@ block content
         div.navbar-left
           .name #{story.user.username}
           .followers #{story.user.Followers.length} Followers
-          button.button.contained.rounded Follow
+          button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+            | #{userFollow.id ? "Unfollow" : "Follow"}
         nav.navbar-right
           if locals.authenticated
             //- TODO authenticated nav
