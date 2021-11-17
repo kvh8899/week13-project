@@ -1,0 +1,16 @@
+extends layout
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/story.css")
+  //- add page specific js
+
+block content
+  h1.title=story.heading
+  if story.subText
+    p.subtitle=story.subText
+  p=story.user.username
+  if story.headerImage
+    img.story-image(src=story.headerImage)
+  div#story-body
+    | !{story.mainText}
