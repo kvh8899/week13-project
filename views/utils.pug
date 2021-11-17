@@ -1,7 +1,15 @@
 mixin validationErrorSummary(errors)
   if errors
     div(role='alert')
-      p The following error(s) occurred:
+      p The following error#{errors.length > 1 ? 's' : ''} occurred:
       ul
         each error in errors
           li= error
+
+mixin field(labelText, fieldName, fieldValue, fieldType = 'text', required = false, placeholder = null)
+  div
+    label(for=fieldName)= labelText
+    if fieldType === 'textarea'
+      textarea(id=fieldName name=fieldName rows='5' required=required)= fieldValue
+    else
+      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder required=required)
