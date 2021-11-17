@@ -147,6 +147,41 @@ pre code {
   font-size: 100%;
 }
 
+.story-footer {
+  padding-bottom: 8px;
+}
+
+.story-footer .left {
+  color: #292929;
+  display: flex;
+}
+
+.story-footer a {
+  cursor: pointer;
+}
+
+.story-footer .left i:hover {
+  color: #757575;
+}
+
+.story-footer .likes,
+.story-footer .comments {
+  font-size: 14px;
+  line-height: 20px;
+  padding-right: 32px;
+}
+
+.story-footer .likes i {
+  font-size: 25px;
+  padding-right: 8px;
+}
+
+.story-footer .comments i {
+  font-size: 25px;
+  padding-left: 8px;
+  transform: scale(-1, 1);
+}
+
 footer {
   background-color: rgba(0, 0, 0, 0.9);
   color: rgba(255, 255, 255, 0.98);

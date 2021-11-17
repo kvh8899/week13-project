@@ -11,8 +11,7 @@ block content
       .navbar.sans-serif
         div.navbar-left
           .name #{story.user.username}
-          //- TODO: Add dynamic follow count
-          .followers #{10} Followers
+          .followers #{story.user.Followers.length} Followers
           button.button.contained.rounded Follow
         nav.navbar-right
           if locals.authenticated
@@ -36,6 +35,16 @@ block content
           .story-date=story.createdAt
         div#story-body
           | !{story.mainText}
+        div.story-footer
+          div.left
+            div.likes
+              a#like
+                i.fa-solid.fa-hands-clapping
+              a#view-likes #{likes.length}
+            div.comments
+              a#comment
+                i.fa-solid.fa-comment
+                span #{comments.length}
     footer
       .container
         .content-wrapper

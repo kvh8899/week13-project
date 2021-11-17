@@ -4,7 +4,7 @@ const showdown = require("showdown");
 const { check } = require("express-validator");
 
 const { requireAuth } = require("../auth");
-const { Post, User } = require("../db/models");
+const { Comment, CommentLike, Post, PostLike, User } = require("../db/models");
 const {
   asyncHandler,
   csrfProtection,
@@ -78,10 +78,12 @@ router.get(
     const { storyId } = req.params;
 
     const story = await Post.findByPk(storyId, {
-      include: [User],
+      include: [
+        { model: Comment, include: [CommentLike] },
+        PostLike,
+        { model: User, include: [{ model: User, as: "Followers" }] },
+      ],
     });
-
-    console.log(story);
 
     if (!story) {
       throw createError(404);
@@ -101,6 +103,8 @@ router.get(
           day: "numeric",
         }),
       },
+      comments: story.Comments,
+      likes: story.PostLikes,
     });
   })
 );
