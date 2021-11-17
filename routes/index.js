@@ -20,7 +20,6 @@ router.get('/', restoreUser,async function(req, res, next) {
     }
   });
   */
-  console.log(getUsers);
   const sixUsers = await Post.findAll({
     include: User,
     limit:6
