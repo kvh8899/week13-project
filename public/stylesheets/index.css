@@ -265,11 +265,10 @@ h1 {
   }
   .follow-recommend{
       position:relative;
-      border-right: 1px solid grey;
       top:83px;
       width:fit-content;
       height:auto;
-      margin-left:50px;
+      margin:auto;
       padding:25px;
   }
   .sub-navbar{
