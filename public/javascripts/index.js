@@ -41,6 +41,17 @@ document.addEventListener("DOMContentLoaded",() => {
             document.querySelector('.dropdown').style.display = 'block';
         }
     });
+    //TODO
+    // close menu when clicking outside of it
+    document.addEventListener('click',(e) => {
+        const dropdown = document.querySelector('.dropdown').style.display
+        console.log(e.target)
+        if(e.target !== document.querySelector('.metabar-menu') && 
+        dropdown === 'block' && e.target !== document.querySelector('.dropdown') && 
+        e.target !== document.querySelector('.outernamediv')){
+            document.querySelector('.dropdown').style.display = 'none';
+        }
+    })
     /*
         navigation for following and recommended stories
     */
