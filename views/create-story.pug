@@ -35,10 +35,10 @@ block content
       +field("Story Image Url", "headerImage", story.headerImage, "text", true, value="Image URL")
       div
         label(for="mainText") Story Body
+        textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")= story.mainText
         p
           | This input supports 
           a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
           | .
-        textarea(id="mainText", name="mainText" required)= story.mainText
 
       
