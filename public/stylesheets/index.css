@@ -71,13 +71,13 @@ h1 {
     transition: background-color 0.7s;
   }
   .topbarB{
-    background-color:#e6777c;
+    background-color:#c2c0c0;
   }
   .topbarA{
       background-color:white;
   }
   .background{
-      background-color:#e6777c;
+      background-color:#c2c0c0;
       border-bottom: 1px solid black;
       padding-top:70px;
   }
@@ -246,4 +246,10 @@ h1 {
       display:flex;
       align-items:center;
       border-bottom:1px solid grey;
+  }
+  .follow-recommend{
+      border-right: 1px solid grey;
+      width:fit-content;
+      height:fit-content;
+      margin-left:70px;
   }

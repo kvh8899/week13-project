@@ -36,7 +36,7 @@ block content
               div(class="profile")
                   img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                   p(class='auth-name')=posts.User.username
-              a(href='/posts/' + posts.id)=posts.heading
+              a(href='/stories/' + posts.id)=posts.heading
               p(class='meta-data')= posts.createdAt.toDateString()
   div(class='end-content')
     div
@@ -47,7 +47,7 @@ block content
                 div(class="profile")
                   img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                   p(class='auth-name')=posts.User.username
-                a(id='aa' href='/posts/' + posts.id)=posts.heading
+                a(id='aa' href='/stories/' + posts.id)=posts.heading
                 p(class='meta-data')=posts.subText
                 p(class='date')=posts.createdAt.toDateString()
             img(src=posts.headerImage class='listimg' alt="404")
