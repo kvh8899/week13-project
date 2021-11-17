@@ -107,6 +107,16 @@ router.get(
       });
     }
 
+    let userLike;
+    if (res.locals.authenticated && res.locals.user) {
+      userLike = await PostLike.findOne({
+        where: {
+          postId: storyId,
+          userId: res.locals.user.id,
+        },
+      });
+    }
+
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
@@ -124,6 +134,7 @@ router.get(
       comments: story.Comments,
       likes: story.PostLikes,
       userFollow: userFollow || {},
+      userLike: userLike || {},
     });
   })
 );

@@ -40,7 +40,7 @@ block content
         div.story-footer
           div.left
             div.likes
-              a#like
+              a#like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
                 i.fa-solid.fa-hands-clapping
               a#view-likes #{likes.length}
             div.comments
