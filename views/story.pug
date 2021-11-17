@@ -6,15 +6,23 @@ append head
   //- add page specific js
 
 block content
-  main
-    .container
-      if story.headerImage
-        img.story-image(src=story.headerImage)
-      h1.title=story.heading
-      if story.subText
-        h2.subtitle=story.subText
-      div.story-details
-        .story-author=story.user.username
-        .story-date=story.createdAt
-      div#story-body
-        | !{story.mainText}
+  .content-container
+    main
+      .container
+        if story.headerImage
+          img.story-image(src=story.headerImage)
+        h1.title=story.heading
+        if story.subText
+          h2.subtitle=story.subText
+        div.story-details
+          .story-author=story.user.username
+          .story-date=story.createdAt
+        div#story-body
+          | !{story.mainText}
+    footer
+      .container
+        .content-wrapper
+          a.inherit-color.sans-serif(href="/" alt="Home") CodeX
+          nav
+            a.inherit-color.sans-serif(href="/about") About
+            a.inherit-color.sans-serif(href="/stories/new") Write
