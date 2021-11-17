@@ -4,7 +4,6 @@ var {User, Post} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
-  console.log(res.locals.authenticated);
   const sixUsers = await Post.findAll({
     include: User,
     limit:6
@@ -24,7 +23,8 @@ router.get('/', restoreUser,async function(req, res, next) {
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
       username: currUser.username,
-      email:currUser.email
+      email:currUser.email,
+      following:[]
     });
   }
 

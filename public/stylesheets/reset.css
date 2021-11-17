@@ -27,5 +27,6 @@ h1 {
 }
 button{
   background-color:transparent;
+  cursor:pointer;
   border:none;
 }

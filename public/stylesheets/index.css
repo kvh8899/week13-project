@@ -68,6 +68,7 @@ h1 {
     justify-content:space-between;
     position:fixed;
     width:100%;
+    z-index:1;
     transition: background-color 0.7s;
   }
   .topbarB{
@@ -112,7 +113,6 @@ h1 {
     padding:25px;
     padding-top:0px;
     padding-left:0px;
-    margin-left:25px;
   }
   .auth-name{
       font-size:12px;
@@ -121,7 +121,7 @@ h1 {
       font-weight: 500;
   }
   .author{
-      padding: 10px 10px;
+      padding-top:10px;
   }
   h2{
       font-size:15px;
@@ -129,7 +129,7 @@ h1 {
   }
   .num{
       font-size:30px;
-      padding-right:10px;
+      padding-right:20px;
       margin-top:0px;
       color:lightgrey;
       font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -152,10 +152,16 @@ h1 {
       height:20px;
       width:20px;
   }
+  .profpic:hover{
+      cursor:pointer;
+  }
   .end-content{
       display:flex;
       padding: 35px;
       
+  }
+  .e-c-2{
+      margin-left:20px;
   }
   #aa{
       font-size:20px;
@@ -231,9 +237,19 @@ h1 {
       display:none;
   }
   .dselect{
-      padding-top:10px;
-      margin:0px;
-      display:flex;
+    padding-top:10px;
+    margin:0px;
+    text-decoration: none;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    padding-left:0px;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    display:flex;
+  }
+  .dselect:hover{
+    color: rgba(0, 0, 0, 0.5);
   }
   .profname{
       margin:0px;
@@ -248,8 +264,50 @@ h1 {
       border-bottom:1px solid grey;
   }
   .follow-recommend{
+      position:relative;
       border-right: 1px solid grey;
+      top:83px;
       width:fit-content;
-      height:fit-content;
-      margin-left:70px;
+      height:auto;
+      margin-left:50px;
+      padding:25px;
   }
+  .sub-navbar{
+      margin-bottom:20px;
+      width:auto;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      
+  }
+  .snb{
+      font-size:15px;
+      color:black;
+      border-bottom:3px solid black;
+      text-align:left;
+      width:100%;
+  }
+  .snbOff{
+    font-size:15px;
+    color:grey;
+    border-bottom:3px solid grey;
+    text-align:left;
+    width:100%;
+}
+.reco-content{
+    display:none;
+}
+.empty-follow{
+    width:675px;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    align-items:center;
+}
+.browse{
+    color:white;
+    font-weight:500;
+    background-color:rgb(51, 179, 51);
+    justify-content:center;
+    width:250px;
+}
