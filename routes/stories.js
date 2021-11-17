@@ -81,6 +81,8 @@ router.get(
       include: [User],
     });
 
+    console.log(story);
+
     if (!story) {
       throw createError(404);
     }
@@ -94,6 +96,10 @@ router.get(
         headerImage: story.headerImage,
         mainText: storyHtml,
         user: story.User,
+        createdAt: story.createdAt.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        }),
       },
     });
   })

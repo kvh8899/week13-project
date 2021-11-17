@@ -6,11 +6,15 @@ append head
   //- add page specific js
 
 block content
-  h1.title=story.heading
-  if story.subText
-    p.subtitle=story.subText
-  p=story.user.username
-  if story.headerImage
-    img.story-image(src=story.headerImage)
-  div#story-body
-    | !{story.mainText}
+  main
+    .container
+      if story.headerImage
+        img.story-image(src=story.headerImage)
+      h1.title=story.heading
+      if story.subText
+        h2.subtitle=story.subText
+      div.story-details
+        .story-author=story.user.username
+        .story-date=story.createdAt
+      div#story-body
+        | !{story.mainText}
