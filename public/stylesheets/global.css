@@ -1,0 +1,50 @@
+body {
+  font-size: 16px;
+  font-family: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  color: #292929;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #757575;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media (min-width: 904px) {
+  h1 {
+    font-size: 46px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
