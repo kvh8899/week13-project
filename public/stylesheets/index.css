@@ -4,9 +4,14 @@ h1 {
     font-family:'Times New Roman', Times, serif;
 }
 #openingText{
-    padding:20px;
+    padding: 20px 0;
     margin-left: 50px;
     max-width:500px;
+    padding-top:110px;
+    top:90px;
+    height:450px;
+    align-self:flex-start;
+    
 }
 #startWriting{
     font-size:17px;
@@ -80,6 +85,10 @@ h1 {
       background-color:#c2c0c0;
       border-bottom: 1px solid black;
       padding-top:70px;
+      position:absolute;
+      height:450px;
+      width:100vw;
+      z-index:-1;
   }
   li {
     padding:10px;
