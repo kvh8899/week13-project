@@ -4,7 +4,7 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
-  script(src="/javascripts/index.js" type="module" )
+  script(src="/javascripts/index.js" type="module" defer)
 
 block content
   div(class="topbar topbarB")
@@ -20,7 +20,7 @@ block content
       li()
         a(href="/signup" class="login loginA") Get Started
   div(class='content')
-    div(class="background")
+    div(class='background')
     div(id="openingText")
       h1= title
       p It's easy and free to post your thinking on any topic and connect with millions of readers.
@@ -37,7 +37,7 @@ block content
                 div(class="profile")
                     img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                     p(class='auth-name')=posts.User.username
-                a(href='/stories/' + posts.id)=posts.heading
+                a(href='/stories/' + posts.id class='heading')=posts.heading
                 p(class='meta-data')= posts.createdAt.toDateString()
     div(class='mid-divider')
     div(class='end-content')

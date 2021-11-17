@@ -30,11 +30,7 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    const currUser = await User.findOne({
-      where: {
-        id: req.session.auth.userId
-      }
-    })
+    const currUser = res.locals.user;
     res.render('authIndex', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
