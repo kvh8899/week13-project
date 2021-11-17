@@ -5,12 +5,14 @@ h1 {
 }
 #openingText{
     padding: 20px 0;
-    margin-left: 50px;
-    max-width:500px;
+    width:1192px;
     padding-top:110px;
     top:90px;
     height:450px;
     align-self:flex-start;
+}
+.textwrap{
+    max-width:500px;
 }
 #startWriting{
     font-size:17px;
@@ -111,25 +113,29 @@ h1 {
   }
   .heading{
       text-overflow:ellipsis;
-      max-height:40px;
+      height:40px;
       line-height:20px;
+      
       text-overflow: ellipsis;
       display:block;
       overflow: hidden;
   }
   .content{
-      max-width:1192px;
       display:flex;
-      flex-direction:column;
+      
       margin:auto;
-      align-items:center;
+      justify-content:center;
+      background-color: lightgray;
+      border-bottom:1px solid black;
   }
   .mid-content{
-      padding:25px 50px;
+      padding:25px 0;
+      max-width:1192px;
   }
-  .mid-divider{
-    border-bottom:1px solid lightgrey;
-    width:100vw;
+  .mid-content-enclose{
+      border-bottom: 1px solid lightgrey;
+      display:flex;
+      justify-content:center;
   }
   .inner-story{
     display:flex;
