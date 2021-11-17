@@ -118,6 +118,11 @@ footer .content-wrapper {
   justify-content: space-between;
 }
 
+footer .logo {
+  height: 30px;
+  filter: invert(1);
+}
+
 footer a {
   text-decoration: none;
 }
@@ -182,6 +187,10 @@ footer nav > a:last-of-type {
 
   footer .container {
     margin: 0 64px;
+  }
+
+  footer nav {
+    padding: 0;
   }
 
   footer .content-wrapper {
