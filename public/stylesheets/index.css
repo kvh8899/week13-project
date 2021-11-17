@@ -71,13 +71,13 @@ h1 {
     transition: background-color 0.7s;
   }
   .topbarB{
-    background-color:#C4E2FF;
+    background-color:#e6777c;
   }
   .topbarA{
       background-color:white;
   }
   .background{
-      background-color:#C4E2FF;
+      background-color:#e6777c;
       border-bottom: 1px solid black;
       padding-top:70px;
   }
@@ -212,4 +212,38 @@ h1 {
   }
   a:hover{
       color: rgba(0, 0, 0, 0.5);
+  }
+  .dropdown{
+      position:absolute;
+      background-color:white;
+      box-shadow: 3px 3px 3px grey;
+      width:270px;
+      height:500px;
+      border-radius:5px;
+      margin-right:40px;
+      border: 1px solid lightgray;
+      padding:25px;
+      padding-bottom:0px;
+      display:flex;
+      flex-direction:column;
+      top:60px;
+      right:40px;
+      display:none;
+  }
+  .dselect{
+      padding-top:10px;
+      margin:0px;
+      display:flex;
+  }
+  .profname{
+      margin:0px;
+  }
+  .namediv{
+      padding-bottom:10px;
+      padding-left:10px;
+  }
+  .outernamediv{
+      display:flex;
+      align-items:center;
+      border-bottom:1px solid grey;
   }

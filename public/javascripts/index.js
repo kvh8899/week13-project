@@ -22,7 +22,14 @@ document.addEventListener("DOMContentLoaded",() => {
     },{
         threshold:0.25
     })
-    
-    observer.observe(background);
+    if(background) observer.observe(background);
+
+    document.querySelector('.metabar-menu').addEventListener('click',(e) => {
+        const dropdown = document.querySelector('.dropdown').style.display
+        if(dropdown === 'block'){
+            document.querySelector('.dropdown').style.display = 'none';
+        }else{
+            document.querySelector('.dropdown').style.display = 'block';
+        }
+    })
 })
-console.log('observer')
