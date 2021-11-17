@@ -10,7 +10,8 @@ h3,
 h4,
 h5,
 h6,
-.sans-serif {
+.sans-serif,
+.button {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -53,4 +54,39 @@ h6 {
 
 .inherit-color {
   color: inherit;
+}
+
+.button {
+  font-size: 14px;
+  padding: 7px 16px 9px;
+  text-decoration: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button.rounded {
+  border-radius: 99em;
+}
+
+.button.text {
+  color: #1a8917;
+  padding: 0;
+}
+
+.button.outlined {
+  border: 1px solid #1a8917;
+  color: #1a8917;
+}
+
+.button.contained {
+  background-color: #1a8917;
+  border: 1px solid #1a8917;
+  color: #fff;
+}
+
+.button.contained:hover {
+  background-color: #0f730c;
+  border: 1px solid #0f730c;
 }

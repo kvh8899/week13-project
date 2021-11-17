@@ -1,3 +1,54 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -1px 0 rgb(230 230 230);
+  min-height: 115px;
+}
+
+header .container {
+  max-width: 1192px;
+  width: 100%;
+}
+
+header .logo {
+  height: 30px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left > * {
+  margin-right: 12px;
+}
+
+.navbar-right > * {
+  margin-left: 12px;
+}
+
+.navbar-right .logo {
+  margin-left: 22px;
+}
+
+header .name {
+  color: #191919;
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 34px;
+  word-break: break-word;
+  margin-right: 24px;
+}
+
 .content-container {
   min-height: 100vh;
   display: flex;

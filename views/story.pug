@@ -6,6 +6,23 @@ append head
   //- add page specific js
 
 block content
+  header
+    .container
+      .navbar.sans-serif
+        div.navbar-left
+          .name #{story.user.username}
+          //- TODO: Add dynamic follow count
+          .followers #{10} Followers
+          button.button.contained.rounded Follow
+        nav.navbar-right
+          if locals.authenticated
+            //- TODO authenticated nav
+          else
+            a(href="/login" alt="Sign in").button.text Sign in
+            a(href="/signup" alt="Get started").button.outlined.rounded Get started
+          a(href="CodeX Home")
+            img.logo(src="/images/codexLogoShort.png" alt="CodeX")
+
   .content-container
     main
       .container
