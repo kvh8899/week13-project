@@ -1,9 +1,13 @@
 
-
+//do things after DOM has been loaded
 document.addEventListener("DOMContentLoaded",() => {
     const background = document.querySelector('#startWriting');
     const topbar = document.querySelector('.topbar');
     const login = document.querySelector('.login');
+     /*
+        when user has scrolled a certain amount,
+        change styling of nav on unauth home page
+    */
     const observer = new IntersectionObserver((entries,observer) => {
         entries.forEach(entry => {
             if(entry.isIntersecting === false) {
@@ -22,9 +26,13 @@ document.addEventListener("DOMContentLoaded",() => {
     },{
         threshold:0.25
     })
+
+    /*
+        makes sure the element being observed exists
+    */
     if(background) observer.observe(background);
 
-    //click listeners
+    //metabar menu click listener
     document.querySelector('.metabar-menu').addEventListener('click',(e) => {
         const dropdown = document.querySelector('.dropdown').style.display
         if(dropdown === 'block'){
@@ -33,26 +41,29 @@ document.addEventListener("DOMContentLoaded",() => {
             document.querySelector('.dropdown').style.display = 'block';
         }
     });
-    document.querySelector('.snButton1').addEventListener('click',(e) => {
+    /*
+        navigation for following and recommended stories
+    */
+   function changeActiveBtn(e,btnName){
         if(e.target.classList.contains('snbOff')){
             e.target.classList.remove('snbOff');
             e.target.classList.add('snb');
-            document.querySelector('.snButton2').classList.remove('snb');
-            document.querySelector('.snButton2').classList.add('snbOff');
+            document.querySelector(btnName).classList.remove('snb');
+            document.querySelector(btnName).classList.add('snbOff');
         }
+   } 
+    document.querySelector('.snButton1').addEventListener('click',(e) => {
+        changeActiveBtn(e,'.snButton2');
         document.querySelector('.reco-content').style.display = 'none';
         document.querySelector('.follow-content').style.display = 'block';
     });
     document.querySelector('.snButton2').addEventListener('click',(e) => {
-        if(e.target.classList.contains('snbOff')){
-            e.target.classList.remove('snbOff');
-            e.target.classList.add('snb');
-            document.querySelector('.snButton1').classList.remove('snb');
-            document.querySelector('.snButton1').classList.add('snbOff');
-        }
+        changeActiveBtn(e,'.snButton1');
         document.querySelector('.reco-content').style.display = 'block';
         document.querySelector('.follow-content').style.display = 'none';
     });
+
+    
     document.querySelector('.browse').addEventListener('click',(e) => {
         document.querySelector('.snButton1').classList.remove('snb');
         document.querySelector('.snButton1').classList.add('snbOff');
