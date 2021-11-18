@@ -25,8 +25,8 @@ block content
       div(class='textwrap')
         h1= title
         p It's easy and free to post your thinking on any topic and connect with millions of readers.
-        div(id="startWriting")
-          a( href="/login") Start Writing
+        form(action='/login' method='get')
+          button(class='startWriting') Start Writing
       img(src="../images/codexLogo.png" class='biglogo' alt="logo")
   div(class="mid-content-enclose")
     div(class="mid-content")

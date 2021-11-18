@@ -26,18 +26,24 @@ h1 {
     width:500px;
     height:200px;
 }
-#startWriting{
+.startWriting{
     font-size:17px;
     color:black;
     border: 1px solid black;
     padding-top:10px;
     padding-bottom:10px;
     padding-right:20px;
-    max-width:128px;
     padding-left:20px;
     background-color: white;
     border-radius: 25px;
     font-weight:0;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    transition: color 0.7s;
+}
+.startWriting:hover{
+    color:rgba(0, 0, 0, 0.5);
 }
 #navbar{
     display: flex;
