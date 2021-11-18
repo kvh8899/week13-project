@@ -9,14 +9,10 @@ append head
   //- add page specific js
 
 block content
-
   div(id="form")
-
     h2 Sign in
     p.sans-serif Enter the email address and password associated with your account.
-
     form(method="post" action="/login" class='authForm')
-
       input(type="hidden" name="_csrf" value=csrfToken)
 
       +field("Your email", "email", email, "text", true)
