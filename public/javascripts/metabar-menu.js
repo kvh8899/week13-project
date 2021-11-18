@@ -11,7 +11,6 @@ document.querySelector('.metabar-menu').addEventListener('click',(e) => {
     e.stopPropagation();
   })
   document.addEventListener('click',(e) => {
-    console.log(e.target);
     if(e.target !== document.querySelector('.metabar-menu'))
         document.querySelector('.dropdown').style.display = 'none';
   })
