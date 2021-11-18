@@ -7,7 +7,7 @@ mixin validationErrorSummary(errors)
           li= error
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', required = false, placeholder = null, inputClasses)
-  div
+  div.field-group
     label(for=fieldName)= labelText
     if fieldType === 'textarea'
       textarea(id=fieldName name=fieldName rows='5' placeholder=placeholder required=required class=inputClasses)= fieldValue

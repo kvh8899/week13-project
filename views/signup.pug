@@ -4,15 +4,14 @@ include utils.pug
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/global.css")
   link(rel="stylesheet" href="/stylesheets/login-signup.css")
   //- add page specific js
 
 block content 
-    
     div(id= "form") 
-
         h2 Sign up with email
-        h4 Enter your email address to create an account.
+        p.sans-serif Enter your email address to create an account.
 
         form(action="/signup" method="post" class='authForm')
             
@@ -24,4 +23,8 @@ block content
             +field("Confirm your password", "password", '', "password", true)
 
             button Continue
-            a(href='/login') Already have an account?
+
+            div.sans-serif
+              p Already have an account? 
+                span.login-links
+                  a.button.text(href="/login") Sign in

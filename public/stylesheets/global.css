@@ -10,6 +10,7 @@ h3,
 h4,
 h5,
 h6,
+label,
 .h1,
 .h2,
 .h3,
@@ -83,6 +84,7 @@ h6,
 
 .button:hover {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button.rounded {
@@ -94,6 +96,10 @@ h6,
   border: 0;
   color: #1a8917;
   padding: 0;
+}
+
+.button.text:hover {
+  color: #0f730c;
 }
 
 .button.outlined {
