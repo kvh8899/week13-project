@@ -31,9 +31,4 @@ document.addEventListener("DOMContentLoaded",() => {
         makes sure the element being observed exists
     */
     if(background) observer.observe(background);
-
-    //metabar menu click listener
-  
-    
-    
 });
