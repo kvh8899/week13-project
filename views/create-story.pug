@@ -4,23 +4,41 @@ include utils.pug
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  link(rel="stylesheet" href="/stylesheets/create-story.css")
   //- add page specific js
   script(src="/javascripts/story-editor.js" type="module" defer)
 
 block content
+
+  div(class="topbar")
+    img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
+    nav()
+    ul(id="navbar")
+      li()
+        button Create Story
+    //-     a(href="") Our story 
+    //-   li()
+    //-     a(href="") Write 
+    //-   li() 
+    //-     a(href="/login") Sign In
+    //-   li()
+    //-     a(href="/signup" id="login") Get Started
+
   +validationErrorSummary(locals.errors)
-  form(method="post" action="/stories/new")
-    input(type="hidden" name="_csrf" value=csrfToken)
+  div(id="form" class="form")
+    form(method="post" action="/stories/new")
+      input(type="hidden" name="_csrf" value=csrfToken)
 
-    +field("Title", "heading", story.heading, "text", true)
-    +field("Subtitle", "subText", story.subText)
-    +field("Story Image Url", "headerImage", story.headerImage)
-    div
-      label(for="mainText") Story Body
-      p
-        | This input supports 
-        a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
-        | .
-      textarea(id="mainText", name="mainText" required)= story.mainText
+      +field("Title", "heading", story.heading, "text", true, "Title")
+      +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
+      +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
+      div
+        label(for="mainText") Story Body
+        textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")= story.mainText
+        p
+          | This input supports 
+          a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
+          | .
 
-    button Create Story
+      
