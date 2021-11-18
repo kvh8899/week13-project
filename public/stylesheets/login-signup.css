@@ -92,3 +92,18 @@ label, input {
     margin-inline-end: 0px;
 }
 
+.authForm{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+a{
+    color:rgb(45, 154, 221);
+    font-size:13px;
+    text-decoration:none;
+}
+a:hover{
+    cursor: pointer;
+    text-decoration:underline;
+}

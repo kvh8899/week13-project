@@ -6,39 +6,51 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
   link(rel="stylesheet" href="/stylesheets/create-story.css")
+  link(rel="stylesheet" href="/stylesheets/errors.css")
   //- add page specific js
   script(src="/javascripts/story-editor.js" type="module" defer)
-
+  script(src="/javascripts/metabar-menu.js" type="module" defer)
+  
 block content
-
   div(class="topbar")
-    img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
-    nav()
-    ul(id="navbar")
-      li()
-        button Create Story
-    //-     a(href="") Our story 
-    //-   li()
-    //-     a(href="") Write 
-    //-   li() 
-    //-     a(href="/login") Sign In
-    //-   li()
-    //-     a(href="/signup" id="login") Get Started
+    div(class='topcontent')
+      img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
+      nav()
+        ul(id="navbar")
+          li()
+            form(method='post' action='/stories/new')
+              input(type="hidden" name="_csrf" value=csrfToken)
+              button(class='pstBtn' form="storyForm") Create Story
+          li()
+            div(class='dropdown')
+              div(class='outernamediv')
+                button
+                  img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
+                div(class='namediv')
+                  p(class='profname') #{locals.user.username}
+                  p(class='profname') #{locals.user.email}
+              form(method='get' action='/')
+                button(href="/" class='dselect') Stories
+              form(method='post' action='/logout')
+                  button(class='dselect') Sign Out
+          li()
+              a(class="profileMenu")
+                img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
 
-  +validationErrorSummary(locals.errors)
-  div(id="form" class="form")
-    form(method="post" action="/stories/new")
-      input(type="hidden" name="_csrf" value=csrfToken)
+  div(class='write-Content')
+    +validationErrorSummary(locals.errors)
+    div(id="form" class="form")
+      form(method="post" action="/stories/new" id='storyForm')
+        input(type="hidden" name="_csrf" value=csrfToken)
 
-      +field("Title", "heading", story.heading, "text", true, "Title")
-      +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
-      +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
-      div
-        label(for="mainText") Story Body
-        textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")= story.mainText
-        p
-          | This input supports 
-          a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
-          | .
+        +field("Title", "heading", story.heading, "text", true, "Title")
+        +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
+        +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
+        div
+          label(for="mainText") Story Body
+          textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
+          p This input supports 
+            a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
+          | 
 
       

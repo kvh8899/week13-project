@@ -12,10 +12,10 @@ block content
     h2 Sign in
     h4 Enter the email address and password associated with your account.
 
-    form(method="post" action="/login")
+    form(method="post" action="/login" class='authForm')
 
       input(type="hidden" name="_csrf" value=csrfToken)
-
+      br
       label(for="email") Your email:
       br
       input(required type="email" id="email" name="email")
@@ -27,3 +27,5 @@ block content
       br
 
       button Continue
+      a(href="/signup") Don't have an account yet?
+      

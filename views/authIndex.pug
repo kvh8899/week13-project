@@ -3,8 +3,8 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
-  script(src="/javascripts/index.js" type="module" )
-
+  script(src="/javascripts/auth-index.js" type="module" )
+  script(src="/javascripts/metabar-menu.js" type="module")
 block content
   div(class="topbar topbarA")
     div(class='topcontent')
@@ -12,15 +12,18 @@ block content
         nav()
             ul(id="navbar")
                 li() 
-                    a(href="") Write a Story
+                    form(method="get" action="/stories/new")
+                        Button(class='login loginA') Write a Story
+                li()
                     div(class='dropdown')
                         div(class='outernamediv')
                             button
                                 img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
                             div(class='namediv')
-                                p(class='profname') #{username}
-                                p(class='profname') #{email}
-                        a(href="" class='dselect') Stories
+                                p(class='profname') #{locals.user.username}
+                                p(class='profname') #{locals.user.email}
+                        form(method='get' action='/')
+                            button(href="" class='dselect') Stories
                         form(method='post' action='/logout')
                             button(class='dselect') Sign Out
                 li()
