@@ -56,6 +56,7 @@ a {
 #mainText:focus + .input-helper {
   opacity: 1;
   transition: all 0.25s linear 0s;
+  visibility: visible;
 }
 
 .input-helper {
@@ -67,6 +68,7 @@ a {
   margin-top: 4px;
   padding-left: 8px;
   transition: all 0.25s linear 0.5s;
+  visibility: hidden;
 }
 
 input:focus,
