@@ -9,19 +9,20 @@ append head
   //- add page specific js
 
 block content 
-  div(id="form")
-    h2 Sign up with email
-    p.sans-serif Enter your email address to create an account.
-    form(action="/signup" method="post" class='authForm')
-      input(type="hidden" name="_csrf" value=csrfToken)
+  .form-container-wrapper
+    .form-container
+      h2 Sign up with email
+      p.sans-serif Enter your email address to create an account.
+      form(action="/signup" method="post" class='authForm')
+        input(type="hidden" name="_csrf" value=csrfToken)
 
-      +field("Your email", "email", user.email, "text", true)
-      +field("Your username", "username", user.username, "text", true)
-      +field("Your password", "password", '', "password", true)
-      +field("Confirm your password", "password", '', "password", true)
+        +field("Your email", "email", user.email, "text", true)
+        +field("Your username", "username", user.username, "text", true)
+        +field("Your password", "password", '', "password", true)
+        +field("Confirm your password", "password", '', "password", true)
 
-      button Continue
-      div.sans-serif
-        p Already have an account? 
-          span.login-links
-            a.button.text(href="/login") Sign in
+        button Continue
+        div.sans-serif
+          p Already have an account? 
+            span.login-links
+              a.button.text(href="/login") Sign in

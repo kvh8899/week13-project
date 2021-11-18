@@ -9,20 +9,21 @@ append head
   //- add page specific js
 
 block content
-  div(id="form")
-    h2 Sign in
-    p.sans-serif Enter the email address and password associated with your account.
-    form(method="post" action="/login" class='authForm')
-      input(type="hidden" name="_csrf" value=csrfToken)
+  .form-container-wrapper
+    .form-container
+      h2 Sign in
+      p.sans-serif Enter the email address and password associated with your account.
+      form(method="post" action="/login" class='authForm')
+        input(type="hidden" name="_csrf" value=csrfToken)
 
-      +field("Your email", "email", email, "text", true)
-      +field("Your password", "password", '', "password", true)
+        +field("Your email", "email", email, "text", true)
+        +field("Your password", "password", '', "password", true)
 
-      button Continue
-      div.sans-serif
-        p Don't have an account yet? 
-        span.login-links
-          a.button.text(href="/signup") Create one
-          |  or 
-          a.button.text(href="/login/demo") Login as demo
+        button Continue
+        div.sans-serif
+          p Don't have an account yet? 
+          span.login-links
+            a.button.text(href="/signup") Create one
+            |  or 
+            a.button.text(href="/login/demo") Login as demo
       
