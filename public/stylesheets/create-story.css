@@ -7,8 +7,6 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman",
-    Times, serif;
   left: 50%;
   padding-bottom: 20px;
   padding: 44px 56px;
@@ -29,43 +27,48 @@ input,
 textarea {
   background: transparent;
   border: 0;
-  font-family: medium-content-title-font, Georgia, Cambria, "Times New Roman",
-    Times, serif;
   outline: 0;
   text-align: left;
   width: 700px;
 }
 
-#heading {
-  font-size: 42px;
-}
-
 #subText,
 #headerImage,
 #mainText {
-  font-size: 20px;
-  margin-top: 10px;
+  margin-top: 12px;
+}
+
+#headerImage {
+  font-size: 14px;
 }
 
 #mainText {
-  font-size: 21px;
+  font-size: 16px;
+  letter-spacing: -0.004em;
   resize: none;
 }
 
-.pstBtn {
-  background-color: #1a8917;
-  border-color: #1a8917;
-  border-radius: 99em;
-  color: white;
-  cursor: pointer;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  font: 14px;
-  padding: 7px 16px 9px;
-  width: 226px;
+a {
+  text-decoration: underline;
 }
 
-p {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+.input-helper {
+  color: #757575;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+@media (min-width: 552px) {
+  #mainText {
+    font-size: 18px;
+    letter-spacing: -0.003em;
+    line-height: 28px;
+  }
+}
+
+@media screen and (min-width: 728px) {
+  #mainText {
+    font-size: 21px;
+    line-height: 32px;
+  }
 }

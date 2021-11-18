@@ -4,6 +4,7 @@ include utils.pug
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/global.css")
   link(rel="stylesheet" href="/stylesheets/index.css")
   link(rel="stylesheet" href="/stylesheets/create-story.css")
   link(rel="stylesheet" href="/stylesheets/errors.css")
@@ -20,7 +21,7 @@ block content
           li()
             form(method='post' action='/stories/new')
               input(type="hidden" name="_csrf" value=csrfToken)
-              button(class='pstBtn' form="storyForm") Create Story
+              button.button.contained.rounded(form="storyForm") Create Story
           li()
             div(class='dropdown')
               div(class='outernamediv')
@@ -43,13 +44,13 @@ block content
       form(method="post" action="/stories/new" id='storyForm')
         input(type="hidden" name="_csrf" value=csrfToken)
 
-        +field("Title", "heading", story.heading, "text", true, "Title")
-        +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
-        +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
+        +field("Title", "heading", story.heading, "text", true, "Title", "h1")
+        +field("Subtitle", "subText", story.subText, "text", false, "Subtitle", "h2")
+        +field("Story Image Url", "headerImage", story.headerImage, "text", false, "Image URL", "serif")
         div
           label(for="mainText") Story Body
-          textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
-          p This input supports 
+          textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
+          p.sans-serif.input-helper This input supports 
             a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
           | 
 
