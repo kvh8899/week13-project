@@ -7,21 +7,18 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
     padding-bottom: 20px;
     text-align: left;
     /*box-shadow: 0px 0px 8px;*/
     padding: 44px 56px;
+    width:100%;
     font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif;
-
-    overflow: scroll; 
-    height: 80%;
-
 }
-
+.write-Content{
+    display: flex;
+    align-items: center;
+}
 
 label {
     display: none;
@@ -50,7 +47,7 @@ input, textarea {
     resize: none;
 }
 
-button {
+.pstBtn {
     padding: 7px 16px 9px;
     color:white;
     font: 14px;

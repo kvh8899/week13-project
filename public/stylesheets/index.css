@@ -26,10 +26,12 @@ p{
     font-size:13px;
     font-weight:800;
 }
+
 .topcontent{
     display:flex;
     width:1192px;
     justify-content:space-between;
+    
 }
 #openingText{
     display:flex;
@@ -71,6 +73,7 @@ p{
 #navbar{
     display: flex;
     flex-direction:row;
+    align-items:center;
     list-style: none;
     text-decoration:none;
     margin-top:20px;

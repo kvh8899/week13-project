@@ -4,7 +4,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/auth-index.js" type="module" )
-
+  script(src="/javascripts/metabar-menu.js" type="module")
 block content
   div(class="topbar topbarA")
     div(class='topcontent')
@@ -12,7 +12,9 @@ block content
         nav()
             ul(id="navbar")
                 li() 
-                    a(href="/stories/new") Write a Story
+                    form(method="get" action="/stories/new")
+                        Button(class='login loginA') Write a Story
+                li()
                     div(class='dropdown')
                         div(class='outernamediv')
                             button
@@ -20,7 +22,8 @@ block content
                             div(class='namediv')
                                 p(class='profname') #{username}
                                 p(class='profname') #{email}
-                        button(href="" class='dselect') Stories
+                        form(method='get' action='/')
+                            button(href="" class='dselect') Stories
                         form(method='post' action='/logout')
                             button(class='dselect') Sign Out
                 li()
