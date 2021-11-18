@@ -18,7 +18,7 @@ router.post('/stories/:id/likes', asyncHandler(async(req, res) => {
         postId: req.params.id
     })
 
-    res.redirect('//stories/:id');
+    res.redirect('/stories/:id');
 
 
 }))
