@@ -47,10 +47,10 @@ block content
         +field("Title", "heading", story.heading, "text", true, "Title", "h1")
         +field("Subtitle", "subText", story.subText, "text", false, "Subtitle", "h2")
         +field("Story Image Url", "headerImage", story.headerImage, "text", false, "Image URL", "serif")
-        div
+        div.main-text-input-wrapper
           label(for="mainText") Story Body
           textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
-          p.sans-serif.input-helper This input supports 
+          p.sans-serif.input-helper.display-after-loaded This input supports 
             a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
             | .
       

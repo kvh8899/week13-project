@@ -176,3 +176,7 @@ h6,
 .modal-close {
   cursor: pointer;
 }
+
+.display-after-loaded {
+  display: none;
+}

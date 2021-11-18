@@ -46,17 +46,27 @@ textarea {
   font-size: 16px;
   letter-spacing: -0.004em;
   resize: none;
+  height: 0;
 }
 
 a {
   text-decoration: underline;
 }
 
+#mainText:focus + .input-helper {
+  opacity: 1;
+  transition: all 0.25s linear 0s;
+}
+
 .input-helper {
   color: #757575;
+  opacity: 0;
   font-size: 13px;
   font-weight: normal;
   line-height: 20px;
+  margin-top: 4px;
+  padding-left: 8px;
+  transition: all 0.25s linear 0.5s;
 }
 
 @media (min-width: 552px) {
