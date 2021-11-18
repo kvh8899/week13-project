@@ -3,10 +3,35 @@ h1 {
     font-size:60px;
     font-family:'Times New Roman', Times, serif;
 }
+h2{
+    font-size:15px;
+    font-weight:bold;
+}
+li {
+    padding:10px;
+}
+a{
+    font-size:25px;
+    font-weight:800;
+    font-size:13px;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    text-decoration:none;
+}
+a:hover{
+color: rgba(0, 0, 0, 0.5);
+}
+p{
+    font-size:13px;
+    font-weight:800;
+}
+
 .topcontent{
     display:flex;
     width:1192px;
     justify-content:space-between;
+    
 }
 #openingText{
     display:flex;
@@ -26,22 +51,30 @@ h1 {
     width:500px;
     height:200px;
 }
-#startWriting{
+.startWriting{
     font-size:17px;
     color:black;
     border: 1px solid black;
     padding-top:10px;
     padding-bottom:10px;
     padding-right:20px;
-    max-width:128px;
     padding-left:20px;
     background-color: white;
     border-radius: 25px;
     font-weight:0;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    transition: color 0.7s;
+}
+.startWriting:hover{
+    color:rgba(0, 0, 0, 0.5);
 }
 #navbar{
+    position:relative;
     display: flex;
     flex-direction:row;
+    align-items:center;
     list-style: none;
     text-decoration:none;
     margin-top:20px;
@@ -99,14 +132,6 @@ h1 {
       width:100vw;
       z-index:-1;
   }
-  li {
-    padding:10px;
-  }
-  a {
-      font-size:25px;
-      font-weight:800;
-    text-decoration:none;
-  }
   .story-grid{
       margin:auto;
       height:250px;
@@ -159,10 +184,6 @@ h1 {
   }
   .author{
       padding-top:10px;
-  }
-  h2{
-      font-size:15px;
-      font-weight:bold;
   }
   .num{
       font-size:30px;
@@ -217,10 +238,6 @@ h1 {
       padding:25px;
       margin:0 50px;
   }
-  p{
-      font-size:13px;
-      font-weight:800;
-  }
   .tag-grid{
       border-bottom: 1px solid lightgrey;
       padding-bottom:25px;
@@ -247,15 +264,6 @@ h1 {
   .footer{
       max-width:100px;
   }
-  a{
-    font-size:13px;
-    transition-property: color;
-    transition-duration: 0.5s;
-    transition-delay: 0s;
-  }
-  a:hover{
-      color: rgba(0, 0, 0, 0.5);
-  }
   .dropdown{
       position:absolute;
       background-color:white;
@@ -263,14 +271,12 @@ h1 {
       width:270px;
       height:500px;
       border-radius:5px;
-      margin-right:40px;
       border: 1px solid lightgray;
       padding:25px;
       padding-bottom:0px;
-      display:flex;
       flex-direction:column;
       top:60px;
-      right:40px;
+      right:20px;
       display:none;
   }
   .dselect{

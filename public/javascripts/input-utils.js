@@ -1,6 +1,11 @@
-const updateTextAreaHeight = (element) => {
+export const updateTextAreaHeight = (element) => {
+  const style = window.getComputedStyle(element);
+
+  const heightOffset =
+    parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+
   element.style.height = "";
-  element.style.height = `${element.scrollHeight + 5}px`;
+  element.style.height = element.scrollHeight + heightOffset + "px";
 };
 
 export const adjustTextAreaHeight = (element) => {
