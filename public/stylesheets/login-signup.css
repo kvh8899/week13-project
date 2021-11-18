@@ -92,7 +92,7 @@ label, input {
     margin-inline-end: 0px;
 }
 
-.loginForm{
+.authForm{
     display:flex;
     flex-direction:column;
     align-items:center;
