@@ -22,10 +22,11 @@ block content
                             div(class='namediv')
                                 p(class='profname') #{locals.user.username}
                                 p(class='profname') #{locals.user.email}
-                        form(method='get' action='/')
-                            button(href="" class='dselect') Stories
-                        form(method='post' action='/logout')
-                            button(class='dselect') Sign Out
+                        div(class='mid-dropdown')
+                            form(method='get' action='/')
+                                button(href="" class='dselect') Stories
+                            form(method='post' action='/logout')
+                                button(class='dselect') Sign Out
                 li()
                     a(class="profileMenu")
                         img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")

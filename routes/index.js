@@ -26,6 +26,7 @@ router.get('/', restoreUser,async function(req, res, next) {
     include: User,
     limit:6
   });
+  
   if(!res.locals.authenticated){
     res.render('index', { 
       title: 'CodeX is a place to write, read, and connect',

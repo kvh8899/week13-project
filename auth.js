@@ -5,12 +5,11 @@ const restoreUser = async (req, res, next) => {
     res.locals.authenticated = false;
     return next();
   }
-
+  console.log(req.session)
   const { userId } = req.session.auth;
 
   try {
     const user = await User.findByPk(userId);
-
     if (user) {
       res.locals.authenticated = true;
       res.locals.user = user;
