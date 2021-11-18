@@ -7,39 +7,43 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div(class="topbar")
-    img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
-    nav()
-    ul(id="navbar")
-      li()
-        a(href="") Our story 
-      li()
-        a(href="") Write 
-      li() 
-        a(href="/login") Sign In
-      li()
-        a(href="/signup" id="login") Get Started
-  div(class="background")
+  div(class="topbar topbarB")
+    div(class='topcontent')
+      img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
+      nav()
+        ul(id="navbar")
+          li()
+            a(href="") Our story 
+          li()
+            a(href="/login") Write 
+          li() 
+            a(href="/login") Sign In
+          li()
+            a(href="/signup" class="login loginA") Get Started
+  div(class='content')
     div(id="openingText")
-      h1= title
-      p It's easy and free to post your thinking on any topic and connect with millions of readers.
-      div(id="startWriting")
-        a( href="/login") Start Writing
-  div(class="mid-content")
-    p(class="mid-content-title") Trending on Codex!
-    div(class="story-grid")
-      each posts,i in post
-        div(class='story-grid-story')
-          div(class="inner-story")
-            p(class='num')= '0' + (i+1)
-            div(class='author')
-              div(class="profile")
-                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                  p(class='auth-name')=posts.User.username
-              a(href='/posts/' + posts.id)=posts.heading
-              p(class='meta-data')= posts.createdAt.toDateString()
+      div(class='textwrap')
+        h1= title
+        p It's easy and free to post your thinking on any topic and connect with millions of readers.
+        div(id="startWriting")
+          a( href="/login") Start Writing
+      img(src="../images/codexLogo.png" class='biglogo' alt="logo")
+  div(class="mid-content-enclose")
+    div(class="mid-content")
+      p(class="mid-content-title") Trending on Codex!
+      div(class="story-grid")
+        each posts,i in post
+          div(class='story-grid-story')
+            div(class="inner-story")
+              p(class='num')= '0' + (i+1)
+              div(class='author')
+                div(class="profile")
+                    img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                    p(class='auth-name')=posts.User.username
+                a(href='/stories/' + posts.id class='heading')=posts.heading
+                p(class='meta-data')= posts.createdAt.toDateString()
   div(class='end-content')
-    div
+    div(class='e-c-2')
       each posts in post
         div(class='story-grid-story')
             div(class="inner-story")
@@ -47,7 +51,7 @@ block content
                 div(class="profile")
                   img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                   p(class='auth-name')=posts.User.username
-                a(id='aa' href='/posts/' + posts.id)=posts.heading
+                a(id='aa' href='/stories/' + posts.id)=posts.heading
                 p(class='meta-data')=posts.subText
                 p(class='date')=posts.createdAt.toDateString()
             img(src=posts.headerImage class='listimg' alt="404")
@@ -81,8 +85,8 @@ block content
         li
           a(href="") About
 
-    
+      
 
-  
+    
 
 

@@ -25,3 +25,8 @@ body, header, nav {
 h1 {
   font-size: 2rem;
 }
+button{
+  background-color:transparent;
+  cursor:pointer;
+  border:none;
+}
