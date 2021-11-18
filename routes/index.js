@@ -32,12 +32,9 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    const currUser = res.locals.user;
     res.render('authIndex', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
-      username: currUser.username,
-      email:currUser.email,
       following:[]
     });
   }

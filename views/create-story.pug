@@ -27,8 +27,8 @@ block content
                 button
                   img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
                 div(class='namediv')
-                  p(class='profname') #{username}
-                  p(class='profname') #{email}
+                  p(class='profname') #{locals.user.username}
+                  p(class='profname') #{locals.user.email}
               form(method='get' action='/')
                 button(href="/" class='dselect') Stories
               form(method='post' action='/logout')

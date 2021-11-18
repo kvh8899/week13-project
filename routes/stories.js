@@ -20,8 +20,6 @@ router.get("/new", requireAuth, csrfProtection, (req, res) => {
   res.render("create-story", {
     csrfToken: req.csrfToken(),
     story: {},
-    username: res.locals.user.username,
-    email: res.locals.user.email
   });
 });
 
@@ -60,8 +58,6 @@ router.post(
           headerImage,
           mainText,
         },
-        username: res.locals.user.username,
-        email: res.locals.user.email
       });
     }
 
