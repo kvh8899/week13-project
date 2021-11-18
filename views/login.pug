@@ -1,5 +1,7 @@
 extends layout
 
+include utils.pug
+
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/login-signup.css")
@@ -15,16 +17,9 @@ block content
     form(method="post" action="/login" class='authForm')
 
       input(type="hidden" name="_csrf" value=csrfToken)
-      br
-      label(for="email") Your email:
-      br
-      input(required type="email" id="email" name="email")
-      br
 
-      label(for="password") Your password:
-      br
-      input(required type="password" id="password" name="password")
-      br
+      +field("Your email", "email", email, "text", true)
+      +field("Your password", "password", '', "password", true)
 
       button Continue
       div

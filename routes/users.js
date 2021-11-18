@@ -145,6 +145,7 @@ router.get("/signup", csrfProtection, restoreUser, async function (req, res) {
   }
   res.render("signup", {
     csrfToken: req.csrfToken(),
+    user: {},
   });
 });
 
