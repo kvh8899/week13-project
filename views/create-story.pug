@@ -30,9 +30,9 @@ block content
     form(method="post" action="/stories/new")
       input(type="hidden" name="_csrf" value=csrfToken)
 
-      +field("Title", "heading", story.heading, "text", true, value="Title")
-      +field("Subtitle", "subText", story.subText, "text", true, value="Subtitle")
-      +field("Story Image Url", "headerImage", story.headerImage, "text", true, value="Image URL")
+      +field("Title", "heading", story.heading, "text", true, "Title")
+      +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
+      +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
       div
         label(for="mainText") Story Body
         textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")= story.mainText
