@@ -60,8 +60,12 @@ function setupLikePostButton() {
   likeButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    const likeId = event.target.dataset.likeId;
-    const storyId = event.target.dataset.storyId;
+    if (isFetching) {
+      return;
+    }
+
+    const likeId = likeButton.dataset.likeId;
+    const storyId = likeButton.dataset.storyId;
 
     isFetching = true;
     try {
