@@ -120,6 +120,25 @@ router.post(
   })
 );
 
+router.get(
+  "/login/demo",
+  asyncHandler(async (req, res) => {
+    const user = await User.findOne({
+      where: {
+        email: "demo@demo.com",
+      },
+    });
+
+    if (!user) {
+      res.locals.errors = ["Unable to find demo user."];
+      return failedLogin(req, res);
+    }
+
+    loginUser(req, user);
+    res.redirect("/");
+  })
+);
+
 router.get("/signup", csrfProtection, restoreUser, async function (req, res) {
   if (res.locals && res.locals.authenticated) {
     return res.redirect("/");
