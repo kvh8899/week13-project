@@ -214,9 +214,15 @@ p{
       cursor:pointer;
   }
   .end-content{
-      display:flex;
-      padding: 35px;
-      justify-content:center;
+    display: flex;
+    padding: 35px;
+    justify-content: center;
+  }
+  .spacer{
+      height:10px;
+  }
+  .e-c-2 > #eop-div {
+      height:145px;
   }
   .e-c-2{
       margin-left:20px;
@@ -307,13 +313,25 @@ p{
       border-bottom:1px solid grey;
   }
   .follow-recommend{
+      /*
       position:relative;
       top:83px;
       width:fit-content;
       height:auto;
       margin:auto;
       padding:25px;
+*/
+      display: flex;
+    position: relative;
+    top: 83px;
+    /* width: 1192px; */
+    /* height: auto; */
+    /* margin: auto; */
+    padding: 25px;
+    flex-direction: column;
+    /* align-items: center; */
   }
+  
   .sub-navbar{
       margin-bottom:20px;
       width:auto;
