@@ -22,24 +22,10 @@ form {
 }
 
 button {
-  background-color: #191919;
-  border-color: #191919;
-  border-radius: 99em;
-  color: white;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  font: 14px;
-  margin-bottom: 15px;
+  line-height: 20px;
+  margin-bottom: 12px;
   margin-top: 12px;
-  padding: 7px 16px 9px;
   width: 226px;
-}
-
-button:hover {
-  background: rgba(8, 8, 8, 1);
-  border-color: rgba(41, 41, 41, 1);
-  cursor: pointer;
 }
 
 label {

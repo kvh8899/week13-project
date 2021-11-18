@@ -102,6 +102,16 @@ h6,
   color: #0f730c;
 }
 
+.button.text.black {
+  color: #292929;
+  fill: #292929;
+}
+
+.button.text.black:hover {
+  color: #191919;
+  fill: #191919;
+}
+
 .button.outlined {
   border: 1px solid #1a8917;
   color: #1a8917;
@@ -111,11 +121,22 @@ h6,
   background-color: #1a8917;
   border: 1px solid #1a8917;
   color: #fff;
+  fill: #fff;
 }
 
 .button.contained:hover {
   background-color: #0f730c;
-  border: 1px solid #0f730c;
+  border-color: #0f730c;
+}
+
+.button.contained.black {
+  background-color: #191919;
+  border-color: #191919;
+}
+
+.button.contained.black:hover {
+  background-color: #080808;
+  border-color: #292929;
 }
 
 .button.icon-button {
