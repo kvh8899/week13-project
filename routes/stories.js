@@ -52,6 +52,7 @@ router.post(
     const { heading, subText, headerImage, mainText } = req.body;
 
     if (res.locals.errors) {
+      console.log(req.body)
       return res.render("create-story", {
         csrfToken: req.csrfToken(),
         story: {
