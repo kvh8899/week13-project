@@ -1,109 +1,107 @@
 #form {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    padding-bottom: 20px;
-    text-align: center;
-    box-shadow: 0px 0px 8px;
-    padding: 44px 56px;
+  padding: 44px 56px;
 
+  align-items: center;
+  box-shadow: 0px 0px 8px;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  padding-bottom: 20px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h2 {
-    font-size: 28px;
-    color: rgba(8, 8, 8, 1);
-    font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-weight: 400;
-    text-align: center;
-    display: block;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-
-
+  color: rgba(8, 8, 8, 1);
+  display: block;
+  font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin-block-end: 0.83em;
+  margin-block-start: 0.83em;
+  margin-inline-end: 0px;
+  margin-inline-start: 0px;
+  text-align: center;
 }
 
 h4 {
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgba(41, 41, 41, 1);
-    font-weight: 400;
-    text-align: center;
-    display: block;
-    margin-block-start: 1.33em;
-    margin-block-end: 1.33em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    margin-top: 30px;
+  color: rgba(41, 41, 41, 1);
+  display: block;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  margin-block-end: 1.33em;
+  margin-block-start: 1.33em;
+  margin-inline-end: 0px;
+  margin-inline-start: 0px;
+  margin-top: 30px;
+  text-align: center;
 }
 
 form {
-    margin-top: 62px;
-    margin-bottom: 28px;
+  margin-bottom: 28px;
+  margin-top: 62px;
 }
 
-
-
 button {
-    padding: 7px 16px 9px;
-    color:white;
-    font: 14px;
-    font-weight: 400;
-    border-color: #191919;
-    border-radius: 99em;
-    background-color: #191919;
-    font-size: 15px;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    width: 226px;
-    margin-top: 12px;
-    margin-bottom: 15px;
+  background-color: #191919;
+  border-color: #191919;
+  border-radius: 99em;
+  color: white;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font: 14px;
+  margin-bottom: 15px;
+  margin-top: 12px;
+  padding: 7px 16px 9px;
+  width: 226px;
 }
 
 button:hover {
-    border-color: rgba(41, 41, 41, 1);
-    background: rgba(8, 8, 8, 1);
-    cursor: pointer;
+  background: rgba(8, 8, 8, 1);
+  border-color: rgba(41, 41, 41, 1);
+  cursor: pointer;
 }
 
 label {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 13px;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 12px;
 }
 
 input {
-  text-align: center;
-  width: 270px;
   border: 0;
-  outline: 0;
+
   background: transparent;
   border-bottom: thin solid rgba(41, 41, 41, 1);
+  outline: 0;
+  text-align: center;
+  width: 270px;
 }
 
-label, input {
-    display: block;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+label,
+input {
+  display: block;
+  margin-block-end: 0.83em;
+  margin-block-start: 0.83em;
+  margin-inline-end: 0px;
+  margin-inline-start: 0px;
 }
 
-.authForm{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+.authForm {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-a{
-    color:rgb(45, 154, 221);
-    font-size:13px;
-    text-decoration:none;
+a {
+  color: rgb(45, 154, 221);
+  font-size: 13px;
+  text-decoration: none;
 }
-a:hover{
-    cursor: pointer;
-    text-decoration:underline;
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
