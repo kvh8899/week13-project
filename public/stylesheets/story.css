@@ -109,6 +109,41 @@ main h2 {
   padding-left: 8px;
 }
 
+#story-body * {
+  letter-spacing: -0.004em;
+  margin-bottom: -0.46em;
+}
+
+#story-body p,
+#story-body ol,
+#story-body ul {
+  line-height: 1.58;
+}
+
+#story-body ol,
+#story-body ul {
+  list-style-image: none;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  margin-block-end: 0;
+  margin-top: 0;
+}
+
+#story-body ol > li {
+  list-style-type: decimal;
+  margin-top: 1.34em;
+}
+#story-body ul > li {
+  list-style-type: disc;
+}
+
+#story-body ol > li,
+#story-body ul > li {
+  margin-left: 30px;
+  padding-left: 0;
+}
+
 blockquote {
   box-shadow: inset 3px 0 0 0 rgb(41 41 41);
   margin-left: -20px;
@@ -148,6 +183,7 @@ pre code {
 }
 
 .story-footer {
+  padding-top: 16px;
   padding-bottom: 8px;
 }
 
@@ -247,6 +283,22 @@ footer nav > a:last-of-type {
   pre {
     margin-top: 40px;
   }
+
+  #story-body * {
+    letter-spacing: -0.003em;
+    margin-top: 1.56em;
+  }
+
+  #story-body p,
+  #story-body ol,
+  #story-body ul {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  #story-body ol > li {
+    margin-top: 1.34em;
+  }
 }
 
 @media screen and (min-width: 728px) {
@@ -260,6 +312,22 @@ footer nav > a:last-of-type {
 
   footer .container {
     margin: 0 48px;
+  }
+
+  #story-body * {
+    letter-spacing: -0.003em;
+    margin-top: 2em;
+  }
+
+  #story-body p,
+  #story-body ol,
+  #story-body ul {
+    font-size: 21px;
+    line-height: 32px;
+  }
+
+  #story-body ol > li {
+    margin-top: 1.05em;
   }
 }
 
