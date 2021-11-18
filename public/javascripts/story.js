@@ -168,6 +168,10 @@ function setupCommentsActions() {
     likeButton.addEventListener("click", async (event) => {
       event.preventDefault();
 
+      if (isFetching) {
+        return;
+      }
+
       isFetching = true;
       try {
         const url = likeId
