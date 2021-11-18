@@ -17,6 +17,7 @@ const {
   csrfProtection,
   handleValidationErrors,
 } = require("./utils");
+const { formatTimeSince } = require("../utils/date-utils");
 
 const converter = new showdown.Converter();
 converter.setOption("noHeaderId", true);
@@ -87,7 +88,7 @@ router.get(
 
     const story = await Post.findByPk(storyId, {
       include: [
-        { model: Comment, include: [CommentLike] },
+        { model: Comment, include: [CommentLike, User] },
         PostLike,
         { model: User, include: [{ model: User, as: "Followers" }] },
       ],
@@ -121,6 +122,7 @@ router.get(
 
     res.render("story", {
       story: {
+        id: story.id,
         heading: story.heading,
         subText: story.subText,
         headerImage: story.headerImage,
@@ -135,6 +137,7 @@ router.get(
       likes: story.PostLikes,
       userFollow: userFollow || {},
       userLike: userLike || {},
+      formatTimeSince,
     });
   })
 );
