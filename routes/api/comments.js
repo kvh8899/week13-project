@@ -16,7 +16,7 @@ router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
 
     })
 
-    //res.json(likedComment);
+    res.redirect('/comment/:id');
 
     
 }));
