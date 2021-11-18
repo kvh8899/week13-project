@@ -4,13 +4,90 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/story.css")
   //- add page specific js
+  script(src="/javascripts/story.js" type="module" defer)
 
 block content
-  h1.title=story.heading
-  if story.subText
-    p.subtitle=story.subText
-  p=story.user.username
-  if story.headerImage
-    img.story-image(src=story.headerImage)
-  div#story-body
-    | !{story.mainText}
+  header
+    .container
+      .navbar.sans-serif
+        div.navbar-left
+          .name #{story.user.username}
+          .followers #{story.user.Followers.length} Followers
+          button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+            | #{userFollow.id ? "Unfollow" : "Follow"}
+        nav.navbar-right
+          if locals.authenticated
+            //- TODO authenticated nav
+          else
+            a(href="/login" alt="Sign in").button.text Sign in
+            a(href="/signup" alt="Get started").button.outlined.rounded Get started
+          a(href="/" alt="CodeX Home")
+            img.logo(src="/images/codexLogoShort.png" alt="CodeX")
+
+  .content-container
+    main
+      .container
+        if story.headerImage
+          img.story-image(src=story.headerImage)
+        h1.title=story.heading
+        if story.subText
+          h2.subtitle=story.subText
+        div.story-details
+          .story-author=story.user.username
+          .story-date=story.createdAt
+        div#story-body
+          | !{story.mainText}
+        div.story-footer
+          div.left
+            div.likes
+              a#like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
+                i.fa-solid.fa-hands-clapping
+              a#view-likes #{likes.length}
+            div.comments
+              a#show-comments
+                i.fa-solid.fa-comment
+                span #{comments.length}
+    footer
+      .container
+        .content-wrapper
+          a.inherit-color.sans-serif(href="/" alt="Home")
+            img.logo(src="/images/codexLogo.png" alt="CodeX")
+          nav
+            a.inherit-color.sans-serif(href="/about") About
+            a.inherit-color.sans-serif(href="/stories/new") Write
+
+  //- Comments Modal
+  .modal-root.comments.hidden
+    .modal-backdrop(aria-hidden="true")
+    .modal-container
+      .modal-content
+        .comments-heading
+          h2 Responses (#{comments.length})
+          div
+            i.fa-solid.fa-xmark.modal-close
+        form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST")
+          textarea#story-comment-input.comments-input(placeholder="What are your thoughts?")
+          div.comment-input-actions
+            div
+              button.button.text.comment-cancel Cancel
+              button.button.contained.rounded.comment-respond Respond
+        .divider
+        .comments-container
+          each comment in comments
+            .comment(data-comment-id=comment.id)
+              .comment-top
+                .comment-details-wrapper
+                  img.comment-user-img(src="../images/defaultavatar.jpeg")
+                  .comment-details
+                    .comment-user=comment.User.username
+                    .comment-time=formatTimeSince(comment.createdAt)
+                form(action=`/comments/${comment.id}/delete` method="POST")
+                  button.button.rounded.icon-button.delete-comment
+                    i.fa-solid.fa-trash
+              .comment-body=comment.content
+              .comment-bottom
+                .comment-actions-left
+                  - const userCommentLike = locals.user ? comment.CommentLikes.find(like => like.userId === locals.user.id) || {} : {};
+                  a.like-comment(data-like-id=userCommentLike.id data-liked=!!userCommentLike.id)
+                    i.fa-solid.fa-hands-clapping
+                  a #{comment.CommentLikes.length}

@@ -3,13 +3,21 @@ const express = require("express");
 const showdown = require("showdown");
 const { check } = require("express-validator");
 
-const { requireAuth } = require("../auth");
-const { Post, User } = require("../db/models");
+const { requireAuth, restoreUser } = require("../auth");
+const {
+  Comment,
+  CommentLike,
+  Follow,
+  Post,
+  PostLike,
+  User,
+} = require("../db/models");
 const {
   asyncHandler,
   csrfProtection,
   handleValidationErrors,
 } = require("./utils");
+const { formatTimeSince } = require("../utils/date-utils");
 
 const converter = new showdown.Converter();
 converter.setOption("noHeaderId", true);
@@ -74,27 +82,62 @@ router.post(
 
 router.get(
   "/:storyId(\\d+)",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const { storyId } = req.params;
 
     const story = await Post.findByPk(storyId, {
-      include: [User],
+      include: [
+        { model: Comment, include: [CommentLike, User] },
+        PostLike,
+        { model: User, include: [{ model: User, as: "Followers" }] },
+      ],
     });
 
     if (!story) {
       throw createError(404);
     }
 
+    let userFollow;
+    if (res.locals.authenticated && res.locals.user) {
+      userFollow = await Follow.findOne({
+        where: {
+          userId: story.User.id,
+          followerId: res.locals.user.id,
+        },
+      });
+    }
+
+    let userLike;
+    if (res.locals.authenticated && res.locals.user) {
+      userLike = await PostLike.findOne({
+        where: {
+          postId: storyId,
+          userId: res.locals.user.id,
+        },
+      });
+    }
+
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
       story: {
+        id: story.id,
         heading: story.heading,
         subText: story.subText,
         headerImage: story.headerImage,
         mainText: storyHtml,
         user: story.User,
+        createdAt: story.createdAt.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        }),
       },
+      comments: story.Comments,
+      likes: story.PostLikes,
+      userFollow: userFollow || {},
+      userLike: userLike || {},
+      formatTimeSince,
     });
   })
 );
