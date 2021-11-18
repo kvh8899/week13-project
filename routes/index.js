@@ -5,6 +5,8 @@ const { loginUser, restoreUser } = require("../auth");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
   /*
+  TODO: get list of posts that the users follow
+
   To get users with an array of followers
   const getUsers = await User.findAll({
     include: {
@@ -16,7 +18,7 @@ router.get('/', restoreUser,async function(req, res, next) {
   const getUsers = await User.findAll({
     include: {
       model: User,
-      as:"Followers"
+      as:"Following"
     }
   });
   */

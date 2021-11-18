@@ -3,6 +3,29 @@ h1 {
     font-size:60px;
     font-family:'Times New Roman', Times, serif;
 }
+h2{
+    font-size:15px;
+    font-weight:bold;
+}
+li {
+    padding:10px;
+}
+a{
+    font-size:25px;
+    font-weight:800;
+    font-size:13px;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    text-decoration:none;
+}
+a:hover{
+color: rgba(0, 0, 0, 0.5);
+}
+p{
+    font-size:13px;
+    font-weight:800;
+}
 .topcontent{
     display:flex;
     width:1192px;
@@ -105,14 +128,6 @@ h1 {
       width:100vw;
       z-index:-1;
   }
-  li {
-    padding:10px;
-  }
-  a {
-      font-size:25px;
-      font-weight:800;
-    text-decoration:none;
-  }
   .story-grid{
       margin:auto;
       height:250px;
@@ -165,10 +180,6 @@ h1 {
   }
   .author{
       padding-top:10px;
-  }
-  h2{
-      font-size:15px;
-      font-weight:bold;
   }
   .num{
       font-size:30px;
@@ -223,10 +234,6 @@ h1 {
       padding:25px;
       margin:0 50px;
   }
-  p{
-      font-size:13px;
-      font-weight:800;
-  }
   .tag-grid{
       border-bottom: 1px solid lightgrey;
       padding-bottom:25px;
@@ -252,15 +259,6 @@ h1 {
   }
   .footer{
       max-width:100px;
-  }
-  a{
-    font-size:13px;
-    transition-property: color;
-    transition-duration: 0.5s;
-    transition-delay: 0s;
-  }
-  a:hover{
-      color: rgba(0, 0, 0, 0.5);
   }
   .dropdown{
       position:absolute;
