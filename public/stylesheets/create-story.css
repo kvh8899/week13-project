@@ -69,6 +69,12 @@ a {
   transition: all 0.25s linear 0.5s;
 }
 
+input:focus,
+textarea:focus {
+  /* The first shadow should match the background of the page */
+  box-shadow: -6px 0 0 #fff, -8px 0 0 #e6e6e6;
+}
+
 @media (min-width: 552px) {
   #mainText {
     font-size: 18px;
