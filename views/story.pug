@@ -6,24 +6,22 @@ append head
   //- add page specific js
   script(src="/javascripts/story.js" type="module" defer)
 
-block content
-  header
-    .container
-      .navbar.sans-serif
-        div.navbar-left
-          .name #{story.user.username}
-          .followers #{story.user.Followers.length} Followers
-          button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
-            | #{userFollow.id ? "Unfollow" : "Follow"}
-        nav.navbar-right
-          if locals.authenticated
-            //- TODO authenticated nav
-          else
-            a(href="/login" alt="Sign in").button.text Sign in
-            a(href="/signup" alt="Get started").button.outlined.rounded Get started
-          a(href="/" alt="CodeX Home")
-            img.logo(src="/images/codexLogoShort.png" alt="CodeX")
+block navbar
+  div.navbar-left
+    .name #{story.user.username}
+    .followers #{story.user.Followers.length} Followers
+    button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+      | #{userFollow.id ? "Unfollow" : "Follow"}
+  nav.navbar-right
+    if locals.authenticated
+      include includes/nav-user-dropdown.pug
+    else
+      a(href="/login" alt="Sign in").button.text Sign in
+      a(href="/signup" alt="Get started").button.outlined.rounded Get started
+    a(href="/" alt="CodeX Home")
+      img.logo(src="/images/codexLogoShort.png" alt="CodeX")
 
+block content
   .content-container
     main
       .container
@@ -48,7 +46,7 @@ block content
                 i.fa-solid.fa-comment
                 span #{comments.length}
     footer
-      .container
+      .wide-container
         .content-wrapper
           a.inherit-color.sans-serif(href="/" alt="Home")
             img.logo(src="/images/codexLogo.png" alt="CodeX")
@@ -81,9 +79,10 @@ block content
                   .comment-details
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
-                form(action=`/comments/${comment.id}/delete` method="POST")
-                  button.button.rounded.icon-button.delete-comment
-                    i.fa-solid.fa-trash
+                if locals.user.id === comment.User.id 
+                  form(action=`/comments/${comment.id}/delete` method="POST")
+                    button.button.rounded.icon-button.delete-comment
+                      i.fa-solid.fa-trash
               .comment-body=comment.content
               .comment-bottom
                 .comment-actions-left

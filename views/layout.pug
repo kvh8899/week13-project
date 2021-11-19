@@ -5,9 +5,32 @@ html
         title="CodeX"
         link(rel='preconnect' href='https://fonts.googleapis.com')
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
-        link(href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora&display=swap' rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap' rel='stylesheet')
         link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer')
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/global.css')
+        link(rel="stylesheet" href="/stylesheets/errors.css")
+        link(rel='stylesheet' href='/stylesheets/nav.css')
+        if locals.authenticated
+          script(src="/javascripts/metabar-menu.js" type="module" defer)
   body
+    .topbar.sans-serif
+      .wide-container
+        block navbar
+          if locals.authenticated
+            a(href="/" alt="CodeX Home")
+              img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+            nav
+              form(method="get" action="/stories/new")
+                button.button.contained.rounded.black Write a Story
+              include includes/nav-user-dropdown.pug
+          else
+            a(href="/" alt="CodeX Home")
+              img.logo(src="../images/codexLogo.png" alt="CodeX Logo")
+            nav
+              a(href="") Our story
+              a(href="/login") Write
+              a(href="/login") Sign In
+              a.login.button.contained.rounded.black(href="/signup") Sign Up
+    .topbar-spacer
     block content

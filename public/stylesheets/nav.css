@@ -1,0 +1,104 @@
+.topbar-spacer {
+  height: 75px;
+}
+
+.topbar {
+  display: flex;
+  box-shadow: inset 0 -1px 0 rgb(230 230 230);
+  flex-direction: row;
+  height: 75px;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  font-size: 14px;
+}
+
+.topbar > .wide-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  max-height: 40px;
+}
+
+.topbar nav {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.topbar nav > *:not(:last-child) {
+  margin-right: 25px;
+}
+
+.topbar a {
+  text-decoration: none;
+}
+
+/*
+  User Profile for Dropdown
+*/
+.profileMenu {
+  display: flex;
+}
+
+/*
+  User Dropdown
+*/
+.dropdown {
+  position: absolute;
+  background-color: white;
+  box-shadow: 3px 3px 3px grey;
+  width: 220px;
+  height: 500px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding-bottom: 0px;
+  flex-direction: column;
+  top: 35px;
+  right: 0;
+  display: none;
+  margin: 0 !important;
+}
+
+.outernamediv {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.namediv {
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.profname {
+  margin: 0px;
+}
+
+.mid-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.dselect {
+  padding-top: 10px;
+  margin: 0px;
+  text-decoration: none;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  padding-left: 0px;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transition-delay: 0s;
+  display: flex;
+}
+.dselect:hover {
+  color: rgba(0, 0, 0, 0.5);
+}

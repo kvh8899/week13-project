@@ -32,8 +32,8 @@ router.get('/', restoreUser,async function(req, res, next) {
         ex.username = e.username
       })
       followingArr = followingArr.concat(e.Posts);
-    })
-    res.render('authIndex', { 
+    });
+    res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
       following:followingArr

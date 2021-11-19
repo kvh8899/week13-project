@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {restoreUser} = require('../auth.js');
 const {asyncHandler,csrfProtection} = require('./utils.js');
-const {Comment, User} = require('../db/models');
+const {Comment, User,CommentLike} = require('../db/models');
 router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
     /* 
         check if logged in
@@ -14,7 +14,7 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
        where:{
            id:req.params.id
        },
-       include: User
+       include: [User,CommentLike]
    })
    const id = dstry.postId
     if(!res.locals.user){
@@ -22,8 +22,10 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
     }else if(res.locals.user.id !== dstry.User.id){
         res.status = 401;
     }else{
+        dstry.CommentLikes.forEach(e => {
+            e.destroy();
+        })
         dstry.destroy();
-        
     }
     res.redirect('/stories/' + `${id}#comments`);
 }))

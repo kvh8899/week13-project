@@ -1,6 +1,9 @@
+body {
+  font-size: 16px;
+}
+
 body,
 .serif {
-  font-size: 16px;
   font-family: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
@@ -10,12 +13,20 @@ h3,
 h4,
 h5,
 h6,
+label,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
 .sans-serif,
 .button {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h1 {
+h1,
+.h1 {
   color: #292929;
   font-size: 32px;
   font-weight: 700;
@@ -25,11 +36,17 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   color: #757575;
 }
 
-h2 {
+h2,
+.h2 {
   font-size: 20px;
   font-weight: 500;
 }
@@ -37,17 +54,23 @@ h2 {
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-size: 16px;
   font-weight: 400;
 }
 
 @media (min-width: 904px) {
-  h1 {
+  h1,
+  .h1 {
     font-size: 46px;
   }
 
-  h2 {
+  h2,
+  .h2 {
     font-size: 22px;
   }
 }
@@ -64,6 +87,7 @@ h6 {
 
 .button:hover {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button.rounded {
@@ -77,6 +101,20 @@ h6 {
   padding: 0;
 }
 
+.button.text:hover {
+  color: #0f730c;
+}
+
+.button.text.black {
+  color: #292929;
+  fill: #292929;
+}
+
+.button.text.black:hover {
+  color: #191919;
+  fill: #191919;
+}
+
 .button.outlined {
   border: 1px solid #1a8917;
   color: #1a8917;
@@ -86,11 +124,23 @@ h6 {
   background-color: #1a8917;
   border: 1px solid #1a8917;
   color: #fff;
+  fill: #fff;
 }
 
 .button.contained:hover {
   background-color: #0f730c;
-  border: 1px solid #0f730c;
+  border-color: #0f730c;
+}
+
+.button.contained.black {
+  background-color: #191919;
+  border-color: #191919;
+}
+
+.button.contained.black:hover {
+  background-color: #080808;
+  border-color: #292929;
+  color:rgba(255, 255, 255, 0.90);
 }
 
 .button.icon-button {
@@ -100,6 +150,15 @@ h6 {
 
 .button.icon-button:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.profpic {
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+}
+.profpic:hover {
+  cursor:pointer;
 }
 
 /*
@@ -156,4 +215,49 @@ h6 {
 
 .modal-close {
   cursor: pointer;
+}
+
+/*
+  Container Classes
+*/
+.container {
+  margin: 0 24px;
+  max-width: 728px;
+  width: 100%;
+}
+
+.wide-container {
+  margin: 0 24px;
+  max-width: 1192px;
+  width: 100%;
+}
+
+@media screen and (min-width: 728px) {
+  .container {
+    margin: 0px 48px;
+  }
+}
+
+@media (min-width: 904px) {
+  .container {
+    margin: 0px 64px;
+  }
+
+  .wide-container {
+    margin: 0 48px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .wide-container {
+    margin: 0 64px;
+  }
+}
+
+/*
+  Util Classes
+*/
+
+.display-after-loaded {
+  display: none;
 }
