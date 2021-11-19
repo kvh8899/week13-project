@@ -21,12 +21,11 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
         res.redirect('/login');
     }else if(res.locals.user.id !== dstry.User.id){
         res.status = 401;
-        res.redirect('/stories/' + id);
     }else{
         dstry.destroy();
-        res.redirect('/stories/' + id );
+        
     }
-
+    res.redirect('/stories/' + `${id}#comments`);
 }))
 
 module.exports = router;

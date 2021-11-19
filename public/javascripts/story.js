@@ -202,7 +202,6 @@ function setupCommentsActions() {
 function deleteComments(){
   const deleteBtn = 
   document.querySelector('button.button.rounded.icon-button.delete-comment');
-
   const url = '/comments/'+ deleteBtn.dataset.commentId+ '/delete';
 
   deleteBtn.addEventListener('click', async(e) => {
@@ -211,5 +210,5 @@ function deleteComments(){
     }catch(e){
       return;
     }
-  })
+  });
 }

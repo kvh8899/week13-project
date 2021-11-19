@@ -154,7 +154,7 @@ router.post('/:id(\\d+)/comment',restoreUser, asyncHandler(async(req,res) => {
         postId: req.params.id,
         content: req.body.commentBox
     })
-    res.redirect('/stories/' + req.params.id);
+    res.redirect('/stories/' + `${req.params.id}#comments`);
   }
 }));
 module.exports = router;
