@@ -8,7 +8,7 @@ const { CommentLike } = require("../../db/models");
 //
 
 //Like a comment
-router.post('/comments/:id/likes', restoreUser asyncHandler(async(req, res) => {
+router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {
     const { userId, commentId } = req.body;
     
     const likedComment = await CommentLike.create({
