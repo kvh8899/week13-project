@@ -32,12 +32,19 @@ router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next
 
 //Unlike a story
 router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
+    if (!res.locals.authenticated) {
+        return next(createError(401)); 
+     } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
+
     await PostLike.destroy({
         where: {
             id: req.params.id
         }
     })
+    }
     res.json({message: 'Deleted'});
-}));//works
+}))
+
+
 
 module.exports = router;

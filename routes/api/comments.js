@@ -1,13 +1,14 @@
 //2 rts
 const express = require('express');
 const {asyncHandler} = require('../utils');
+const { restoreUser } = require('../../auth');
 const router = express.Router();
 const { CommentLike } = require("../../db/models");
 
 //
 
 //Like a comment
-router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
+router.post('/comments/:id/likes', restoreUser asyncHandler(async(req, res) => {
     const { userId, commentId } = req.body;
     
     const likedComment = await CommentLike.create({
@@ -18,7 +19,7 @@ router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
 
     res.json(req.body);
 
-    res.redirect('/comment/:id');
+   
 
     
 }));
@@ -27,9 +28,11 @@ router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
 //Unlike a comment
 router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
         await CommentLike.destroy({
-            where: {id}
+            where: {
+                id:req.params.id
+            }
         })
-        res.redirect('/comments/:id');
+        res.json({comment: "deleted"})
         
 }));
 
