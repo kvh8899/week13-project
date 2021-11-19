@@ -29,7 +29,15 @@ const restoreUser = async (req, res, next) => {
  * @param {*} user
  */
 const loginUser = (req, user) => {
-  req.session.auth = { userId: user.id };
+  return new Promise((resolve, reject) => {
+    req.session.auth = { userId: user.id };
+    req.session.save((err) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve();
+    })
+  })
 };
 
 const redirectUnauthedToLogin = async (req, res, next) => {
