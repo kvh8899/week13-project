@@ -200,18 +200,19 @@ function setupCommentsActions() {
 }
 
 function deleteComments(){
-  const deleteBtn = document.querySelector('button.button.rounded.icon-button.delete-comment');
+  const deleteBtns = document.querySelectorAll('button.button.rounded.icon-button.delete-comment');
   let url;
-  if(deleteBtn){
-    url = '/comments/'+ deleteBtn.dataset.commentId + '/delete';
+  deleteBtns.forEach(deleteBtn => {
+  
     deleteBtn.addEventListener('click', async(e) => {
+      url = '/comments/'+ e.currentTarget.dataset.commentId + '/delete';
       try{
-        const comm = document.querySelector(`[data-comment-id='${deleteBtn.dataset.commentId}']`);
+        const comm = document.querySelector(`[data-comment-id='${e.currentTarget.dataset.commentId}']`);
         document.querySelector('.comments-container').removeChild(comm);
         await fetch(url,{method: 'DELETE'});
       }catch(e){
         return;
       }
     });
-  }
+  })
 }

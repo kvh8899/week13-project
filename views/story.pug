@@ -79,8 +79,8 @@ block content
                   .comment-details
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
-                if locals.user.id === comment.User.id 
-                  button.button.rounded.icon-button.delete-comment(data-comment-id=comment.id)
+                if locals.user && locals.user.id === comment.User.id 
+                  button.button.rounded.icon-button.delete-comment(data-comment-id=comment.id listener='false')
                     i.fa-solid.fa-trash
               .comment-body=comment.content
               .comment-bottom
