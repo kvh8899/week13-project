@@ -27,7 +27,7 @@ router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
 //Unlike a comment
 router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
         await CommentLike.destroy({
-            where: {id}
+            where: {req.params.id}
         })
         res.redirect('/comments/:id');
         
