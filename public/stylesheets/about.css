@@ -35,3 +35,11 @@
   line-height: 100%;
   padding: 10px 0;
 }
+
+.project-repo {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+  font-style: normal;
+  margin-top: 20px;
+}
