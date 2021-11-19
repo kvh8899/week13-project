@@ -13,14 +13,12 @@ document.addEventListener("DOMContentLoaded",() => {
             if(entry.isIntersecting === false) {
                 topbar.classList.remove("topbarB");
                 topbar.classList.add("topbarA");
-                login.classList.remove("loginA");
-                login.classList.add("loginB");
+                login.classList.remove("black");
                 
             }else{
                 topbar.classList.add("topbarB");
                 topbar.classList.remove("topbarA");
-                login.classList.add("loginA");
-                login.classList.remove("loginB");
+                login.classList.add("black");
             }
         })
     },{

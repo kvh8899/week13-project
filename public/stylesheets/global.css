@@ -207,6 +207,30 @@ h6,
   cursor: pointer;
 }
 
+/*
+  Container Classes
+*/
+.wide-container {
+  max-width: 1192px;
+  margin: 0 24px;
+}
+
+@media (min-width: 904px) {
+  .wide-container {
+    margin: 0 48px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .wide-container {
+    margin: 0 64px;
+  }
+}
+
+/*
+  Util Classes
+*/
+
 .display-after-loaded {
   display: none;
 }

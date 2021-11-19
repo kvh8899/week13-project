@@ -2,16 +2,17 @@ extends layout
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/global.css")
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
   div(class="topbar topbarB")
-    div(class='topcontent')
-      img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
+    div.topcontent.wide-container
+      img(src="../images/codexLogo.png" id="logo" alt="CodeX Logo")
       nav()
-        ul(id="navbar")
+        ul#navbar.sans-serif
           li()
             a(href="") Our story 
           li()
@@ -19,18 +20,19 @@ block content
           li() 
             a(href="/login") Sign In
           li()
-            a(href="/signup" class="login loginA") Sign Up
+            a.login.loginA.button.contained.rounded.black(href="/signup") Sign Up
+  .topbar-spacer
   div(class='content')
-    div(id="openingText")
-      div(class='textwrap')
-        h1= title
-        p It's easy and free to post your thinking on any topic and connect with millions of readers.
+    #openingText.wide-container
+      div.textwrap.cta-wrapper
+        h2.cta-title.serif= title
+        p.cta-body.sans-serif It's easy and free to post your thinking on any topic and connect with millions of readers.
         form(action='/login' method='get')
-          button(class='startWriting') Start Writing
+          button.button.contained.rounded.startWriting Start Writing
       img(src="../images/codexLogo.png" class='biglogo' alt="logo")
-  div(class="mid-content-enclose")
-    div(class="mid-content")
-      p(class="mid-content-title") Trending on Codex!
+  .trending.mid-content-enclose
+    .mid-content.wide-container.sans-serif
+      p.mid-content-title Trending on Codex!
       div(class="story-grid")
         each posts,i in post
           div(class='story-grid-story')
@@ -38,55 +40,54 @@ block content
               p(class='num')= '0' + (i+1)
               div(class='author')
                 div(class="profile")
+                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                  p.auth-name=posts.User.username
+                a(href='/stories/' + posts.id class='heading')
+                  h2=posts.heading
+                p(class='meta-data')= posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+  .end-content-wrapper
+    .wide-container
+      .end-content
+        div
+          each posts in post
+            div(class='story-grid-story')
+              div(class="inner-story")
+                div(class='author')
+                  div(class="profile")
                     img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                     p(class='auth-name')=posts.User.username
-                a(href='/stories/' + posts.id class='heading')=posts.heading
-                p(class='meta-data')= posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-  div(class='end-content')
-    div(class='e-c-2')
-      each posts in post
-        div(class='story-grid-story')
-            div(class="inner-story")
-              div(class='author')
-                div(class="profile")
-                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                  p(class='auth-name')=posts.User.username
-                a(id='aa' href='/stories/' + posts.id)=posts.heading
-                p(class='meta-data')=posts.subText
-                p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-            img(src=posts.headerImage class='listimg' alt=posts.heading)
-    div(class='eop')
-      p Discover The Realm of Computer Science Topics!
-      div(class='tag-grid')
-        button(class='tag-button') Programming
-        button(class='tag-button') Python
-        button(class='tag-button') java
-        button(class='tag-button') C
-        button(class='tag-button') Game programming
-        button(class='tag-button') Data Science
-        button(class='tag-button') Machine Learning
-        button(class='tag-button') Bootcamp
-        button(class='tag-button') arm
-      ul(class='footer-links')
-        li
-          a(href="") Help
-        li
-          a(href="") Status
-        li
-          a(href="") Writers 
-        li
-          a(href="") Blog 
-        li
-          a(href="") Careers
-        li
-          a(href="") Privacy
-        li
-          a(href="") Terms 
-        li
-          a(href="") About
-
-      
-
-    
-
-
+                  a.headings-wrapper(href='/stories/' + posts.id)
+                    h2=posts.heading
+                    h3=posts.subText
+                  p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+              a(href=`/stories/${posts.id}`)
+                img(src=posts.headerImage class='listimg' alt=posts.heading)
+        div(class='eop')
+          p.discover-heading.sans-serif Discover The Realm of Computer Science Topics!
+          div(class='tag-grid')
+            button(class='tag-button') Programming
+            button(class='tag-button') Python
+            button(class='tag-button') java
+            button(class='tag-button') C
+            button(class='tag-button') Game programming
+            button(class='tag-button') Data Science
+            button(class='tag-button') Machine Learning
+            button(class='tag-button') Bootcamp
+            button(class='tag-button') arm
+          ul.footer-links.sans-serif
+            li
+              a(href="") Help
+            li
+              a(href="") Status
+            li
+              a(href="") Writers 
+            li
+              a(href="") Blog 
+            li
+              a(href="") Careers
+            li
+              a(href="") Privacy
+            li
+              a(href="") Terms 
+            li
+              a(href="") About
