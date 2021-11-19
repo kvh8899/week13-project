@@ -33,7 +33,7 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    res.render('authIndex', { 
+    res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
       following:[]
