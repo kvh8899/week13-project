@@ -80,9 +80,8 @@ block content
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
                 if locals.user.id === comment.User.id 
-                  form(action=`/comments/${comment.id}/delete` method="POST")
-                    button.button.rounded.icon-button.delete-comment
-                      i.fa-solid.fa-trash
+                  button.button.rounded.icon-button.delete-comment(data-comment-id=comment.id)
+                    i.fa-solid.fa-trash
               .comment-body=comment.content
               .comment-bottom
                 .comment-actions-left

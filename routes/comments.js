@@ -3,7 +3,7 @@ const router = express.Router();
 const {restoreUser} = require('../auth.js');
 const {asyncHandler,csrfProtection} = require('./utils.js');
 const {Comment, User,CommentLike} = require('../db/models');
-router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
+router.delete('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
     /* 
         check if logged in
             if not logged in, redirect to login page
@@ -16,7 +16,6 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
        },
        include: [User,CommentLike]
    })
-   const id = dstry.postId
     if(!res.locals.user){
         res.redirect('/login');
     }else if(res.locals.user.id !== dstry.User.id){
@@ -27,7 +26,7 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
         })
         dstry.destroy();
     }
-    res.redirect('/stories/' + `${id}#comments`);
+    res.json({message:'deleted'});
 }))
 
 module.exports = router;
