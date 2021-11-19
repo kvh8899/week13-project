@@ -1,0 +1,57 @@
+.content-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 60px 0;
+}
+
+.content-container .wide-container {
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.big-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.error-status {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 152px;
+  font-weight: 400;
+  letter-spacing: 0.16px;
+  line-height: 152px;
+  margin-top: 11px;
+}
+
+.error-cta-title {
+  font-size: 66px;
+  line-height: 66px;
+  margin-top: 11px;
+}
+
+.home-link {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+  font-style: normal;
+}
+
+.content-container .wide-container.stack-container {
+  display:block
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
