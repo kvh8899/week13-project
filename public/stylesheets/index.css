@@ -310,6 +310,7 @@ nav .login.button {
   position: relative;
   margin-top: 56px;
   flex-direction: column;
+  width:725px;
 }
 
   .snb{
