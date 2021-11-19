@@ -10,35 +10,30 @@ append head
   //- add page specific js
   script(src="/javascripts/story-editor.js" type="module" defer)
   script(src="/javascripts/metabar-menu.js" type="module" defer)
-  
-block content
-  div(class="topbar")
-    div(class='topcontent')
-      a(href="/" alt="CodeX Home")
-        img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
-      nav()
-        ul(id="navbar")
-          li()
-            form(method='post' action='/stories/new')
-              input(type="hidden" name="_csrf" value=csrfToken)
-              button.button.contained.rounded(form="storyForm") Create Story
-          li()
-            div(class='dropdown')
-              div(class='outernamediv')
-                button
-                  img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
-                div(class='namediv')
-                  p(class='profname') #{locals.user.username}
-                  p(class='profname') #{locals.user.email}
-              div(class='mid-dropdown')
-                form(method='get' action='/')
-                  button(href="/" class='dselect') Stories
-                form(method='post' action='/logout')
-                    button(class='dselect') Sign Out
-          li()
-              a(class="profileMenu")
-                img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
 
+block navbar
+  a(href="/" alt="CodeX Home")
+    img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+  nav
+    form(method='post' action='/stories/new')
+      input(type="hidden" name="_csrf" value=csrfToken)
+      button.button.contained.rounded(form="storyForm") Create Story
+    div(class='dropdown')
+      div(class='outernamediv')
+        button
+          img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
+        div(class='namediv')
+          p(class='profname') #{locals.user.username}
+          p(class='profname') #{locals.user.email}
+      div(class='mid-dropdown')
+        form(method='get' action='/')
+          button(href="" class='dselect') Stories
+        form(method='post' action='/logout')
+          button(class='dselect') Sign Out
+    a(class="profileMenu")
+      img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
+
+block content
   div(class='write-Content')
     +validationErrorSummary(locals.errors)
     div(id="form" class="form")

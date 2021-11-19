@@ -1,6 +1,8 @@
 .topbar {
-  position: relative;
-  z-index: 500;
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  position: static;
 }
 
 #form {
