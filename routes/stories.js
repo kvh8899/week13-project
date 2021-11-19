@@ -88,7 +88,7 @@ router.get(
 
     const story = await Post.findByPk(storyId, {
       include: [
-        { model: Comment, include: [CommentLike, User] },
+        { model: Comment, include: [CommentLike, User]},
         PostLike,
         { model: User, include: [{ model: User, as: "Followers" }] },
       ],
@@ -117,7 +117,10 @@ router.get(
         },
       });
     }
-
+    //sort comments by newest
+    story.Comments.sort((b,a) => {
+     return a.createdAt.getTime() - b.createdAt.getTime();
+    });
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
@@ -141,5 +144,17 @@ router.get(
     });
   })
 );
-
+//router to create a comment
+router.post('/:id(\\d+)/comment',restoreUser, asyncHandler(async(req,res) => {
+  if(!res.locals.user){
+      res.redirect('/login');
+  }else{
+    await Comment.create({
+        userId: res.locals.user.id,
+        postId: req.params.id,
+        content: req.body.commentBox
+    })
+    res.redirect('/stories/' + req.params.id);
+  }
+}));
 module.exports = router;

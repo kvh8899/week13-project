@@ -39,6 +39,7 @@ store.sync();
 
 app.use('/', indexRouter);
 app.use('/stories', storiesRouter);
+app.use
 app.use(usersRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
