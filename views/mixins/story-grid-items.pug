@@ -18,7 +18,7 @@ mixin detailedStoryGridItem(post)
       div(class='author')
         div(class="profile")
           img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-          p(class='auth-name')=post.username
+          p(class='auth-name')=post.User.username
         a.headings-wrapper(href='/stories/' + post.id)
           h2=post.heading
           h3=post.subText
