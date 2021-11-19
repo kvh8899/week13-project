@@ -335,6 +335,7 @@ nav .login.button {
     flex-direction:column;
     text-align:center;
     align-items:center;
+    display:none;
 }
 .browse{
     color:white;

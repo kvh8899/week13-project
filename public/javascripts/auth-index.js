@@ -33,7 +33,8 @@
             document.querySelector('.reco-content').style.display = 'block';
             document.querySelector('.follow-content').style.display = 'none';
         });
-        if(document.querySelector('.follow-content').children.length){
+        
+        if(document.querySelector('.follow-content').children.length === 1){
             document.querySelector('.empty-follow').style.display = 'block';
         }else{
             document.querySelector('.empty-follow').style.display = 'none';
