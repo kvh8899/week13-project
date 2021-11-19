@@ -3,7 +3,9 @@ const router = express.Router();
 const {restoreUser} = require('../auth.js');
 const {asyncHandler,csrfProtection} = require('./utils.js');
 const {Comment, User,CommentLike} = require('../db/models');
-router.delete('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
+const createError = require('http-errors');
+
+router.delete('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res,next) => {
     /* 
         check if logged in
             if not logged in, redirect to login page
@@ -16,10 +18,8 @@ router.delete('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
        },
        include: [User,CommentLike]
    })
-    if(!res.locals.user){
-        res.redirect('/login');
-    }else if(res.locals.user.id !== dstry.User.id){
-        res.status = 401;
+    if(res.locals.user.id !== dstry.User.id){
+        return next(createError(401))
     }else{
         dstry.CommentLikes.forEach(e => {
             e.destroy();
