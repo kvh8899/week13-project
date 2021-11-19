@@ -22,41 +22,47 @@ block content
                             div(class='namediv')
                                 p(class='profname') #{locals.user.username}
                                 p(class='profname') #{locals.user.email}
-                        form(method='get' action='/')
-                            button(href="" class='dselect') Stories
-                        form(method='post' action='/logout')
-                            button(class='dselect') Sign Out
+                        div(class='mid-dropdown')
+                            form(method='get' action='/')
+                                button(href="" class='dselect') Stories
+                            form(method='post' action='/logout')
+                                button(class='dselect') Sign Out
                 li()
                     a(class="profileMenu")
                         img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
-  div(class='follow-recommend')
-    div(class='sub-navbar') 
-        button(class='snb snButton1') Following 
-        button(class='snbOff snButton2') Recommended For You
-    div(class='reco-content')
-      each posts in post
-        div(class='story-grid-story')
-            div(class="inner-story")
-              div(class='author')
-                div(class="profile")
-                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                  p(class='auth-name')=posts.User.username
-                a(id='aa' href='/stories/' + posts.id)=posts.heading
-                p(class='meta-data')=posts.subText
-                p(class='date')=posts.createdAt.toDateString()
-            img(src=posts.headerImage class='listimg' alt="404")
-    div(class='follow-content')
-        each posts in following
-            div(class='story-grid-story')
-                div(class="inner-story")
-                    div(class='author')
-                        div(class="profile")
-                            img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                            p(class='auth-name')=posts.User.username
-                        a(id='aa' href='/stories/' + posts.id)=posts.heading
-                        p(class='meta-data')=posts.subText
-                        p(class='date')=posts.createdAt.toDateString()
-                img(src=posts.headerImage class='listimg' alt="404")
-        div(class='empty-follow')
-            p Stories from people you follow will appear here!
-            button(class='login browse') Browse Recommended Stories
+  div(class='spacer') 
+  div(class='end-content')               
+    div(class='follow-recommend')
+        div(class='sub-navbar') 
+            button(class='snb snButton1') Following 
+            button(class='snbOff snButton2') Recommended For You
+        div(class='reco-content')
+            each posts in post
+                div(class='story-grid-story')
+                    div(class="inner-story")
+                        div(class='author')
+                            div(class="profile")
+                                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                                p(class='auth-name')=posts.User.username
+                            a(id='aa' href='/stories/' + posts.id)=posts.heading
+                            p(class='meta-data')=posts.subText
+                            p(class='date')=posts.createdAt.toDateString()
+                    img(src=posts.headerImage class='listimg' alt="404")
+        div(class='follow-content')
+            each posts in following
+                div(class='story-grid-story')
+                    div(class="inner-story")
+                        div(class='author')
+                            div(class="profile")
+                                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                                p(class='auth-name')=posts.User.username
+                            a(id='aa' href='/stories/' + posts.id)=posts.heading
+                            p(class='meta-data')=posts.subText
+                            p(class='date')=posts.createdAt.toDateString()
+                    img(src=posts.headerImage class='listimg' alt="404")
+            div(class='empty-follow')
+                p Stories from people you follow will appear here!
+                button(class='login browse') Browse Recommended Stories
+    div(class='e-c-2')
+        div(id='eop-div')
+        include fixed-footer.pug

@@ -59,13 +59,9 @@ input, textarea {
     font-size: 15px;
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     width: 226px;
-    /*margin-top: 12px;*/
-    /*margin-bottom: 15px;*/
     cursor: pointer;
 }
 
 p {
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    /*font-style: italic;*/
-    /*font-weight: lighter;*/
 }
