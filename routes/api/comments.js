@@ -2,6 +2,7 @@
 const express = require('express');
 const {asyncHandler} = require('../utils');
 const { restoreUser } = require('../../auth');
+const createError = require('http-errors');
 const router = express.Router();
 const { CommentLike } = require("../../db/models");
 
@@ -36,7 +37,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
     if (!res.locals.authenticated) {
         return next(createError(401)); 
-        
+
     } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
     
     

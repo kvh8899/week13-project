@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const createError = require('http-errors');
 const { Follow } = require("../../db/models");
 const {asyncHandler} = require('../utils');
 
@@ -8,7 +9,9 @@ const {asyncHandler} = require('../utils');
 
 
 router.delete('/follows/:id', asyncHandler(async (req, res) => {
-    
+    if (!res.locals.authenticated) {
+        return next(createError(401)); 
+     } else if (res.locals.user.id === follow.followId && res.locals.authenticated) {
     
         await Follow.destroy({
             where:{
@@ -16,7 +19,7 @@ router.delete('/follows/:id', asyncHandler(async (req, res) => {
             }
         })
         
-    
+     }
 
     res.json({
         message: "Follower deleted",
