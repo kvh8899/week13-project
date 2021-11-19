@@ -111,7 +111,7 @@ router.post(
     const matches = await bcrypt.compare(password, user.password.toString());
 
     if (matches) {
-      loginUser(req, user);
+      await loginUser(req, user);
       res.redirect("/");
       return;
     }
@@ -134,7 +134,7 @@ router.get(
       return failedLogin(req, res);
     }
 
-    loginUser(req, user);
+    await loginUser(req, user);
     res.redirect("/");
   })
 );
@@ -175,7 +175,7 @@ router.post(
         username,
         password: hashedPass,
       });
-      loginUser(req, user);
+      await loginUser(req, user);
       res.redirect("/");
     } catch (error) {
       next(error);
