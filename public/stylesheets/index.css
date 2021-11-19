@@ -320,6 +320,7 @@ p{
     top: 83px;
     padding: 25px;
     flex-direction: column;
+    width:725px;
   }
   
   .sub-navbar{
