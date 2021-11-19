@@ -210,12 +210,29 @@ h6,
 /*
   Container Classes
 */
-.wide-container {
-  max-width: 1192px;
+.container {
   margin: 0 24px;
+  max-width: 728px;
+  width: 100%;
+}
+
+.wide-container {
+  margin: 0 24px;
+  max-width: 1192px;
+  width: 100%;
+}
+
+@media screen and (min-width: 728px) {
+  .container {
+    margin: 0px 48px;
+  }
 }
 
 @media (min-width: 904px) {
+  .container {
+    margin: 0px 64px;
+  }
+
   .wide-container {
     margin: 0 48px;
   }
