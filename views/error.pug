@@ -1,6 +1,19 @@
 extends layout
 
+append head
+  link(rel="stylesheet" href="/stylesheets/error.css")
+
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  .content-container
+    .wide-container
+      .big-logo-wrapper
+        img(src="/images/codexLogoShort.png")
+      div
+        div
+          h1.error-message= message
+          h2.error-status.serif= error.status
+          div.error-cta-title It's not a bug, its a feature!
+          a.home-link.sans-serif(href="/") Home
+    if error.stack
+      .wide-container.stack-container
+        pre #{error.stack}

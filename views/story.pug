@@ -64,6 +64,7 @@ block content
           div
             i.fa-solid.fa-xmark.modal-close
         form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
+          input(type="hidden" name="_csrf" value=csrfToken)
           textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?")
           div.comment-input-actions
             div
