@@ -29,39 +29,44 @@ block navbar
       img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
 
 block content
-  div(class='spacer') 
-  div(class='end-content')               
-    div(class='follow-recommend')
-        div(class='sub-navbar') 
+  .end-content-wrapper
+    .wide-container
+      .end-content           
+        div(class='follow-recommend')
+          div(class='sub-navbar') 
             button(class='snb snButton1') Following 
             button(class='snbOff snButton2') Recommended For You
-        div(class='reco-content')
+          div(class='reco-content')
             each posts in post
+              div(class='story-grid-story')
+                div(class="inner-story")
+                  div(class='author')
+                    div(class="profile")
+                      img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                      p(class='auth-name')=posts.User.username
+                    a.headings-wrapper(href='/stories/' + posts.id)
+                      h2=posts.heading
+                      h3=posts.subText
+                    p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+                a(href=`/stories/${posts.id}`)
+                  img(src=posts.headerImage class='listimg' alt=posts.heading)
+          div(class='follow-content')
+              each posts in following
                 div(class='story-grid-story')
-                    div(class="inner-story")
-                        div(class='author')
-                            div(class="profile")
-                                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                                p(class='auth-name')=posts.User.username
-                            a(id='aa' href='/stories/' + posts.id)=posts.heading
-                            p(class='meta-data')=posts.subText
-                            p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                    img(src=posts.headerImage class='listimg' alt="404")
-        div(class='follow-content')
-            each posts in following
-                div(class='story-grid-story')
-                    div(class="inner-story")
-                        div(class='author')
-                            div(class="profile")
-                                img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                                p(class='auth-name')=posts.User.username
-                            a(id='aa' href='/stories/' + posts.id)=posts.heading
-                            p(class='meta-data')=posts.subText
-                            p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                    img(src=posts.headerImage class='listimg' alt="404")
-            div(class='empty-follow')
-                p Stories from people you follow will appear here!
-                button(class='login browse') Browse Recommended Stories
-    div(class='e-c-2')
-        div(id='eop-div')
-        include fixed-footer.pug
+                  div(class="inner-story")
+                    div(class='author')
+                      div(class="profile")
+                        img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+                        p(class='auth-name')=posts.User.username
+                      a.headings-wrapper(href='/stories/' + posts.id)
+                        h2=posts.heading
+                        h3=posts.subText
+                      p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+                  a(href=`/stories/${posts.id}`)
+                    img(src=posts.headerImage class='listimg' alt=posts.heading)
+              div(class='empty-follow')
+                  p Stories from people you follow will appear here!
+                  button.button.contained.rounded.login.browse Browse Recommended Stories
+        div(class='e-c-2')
+            div(id='eop-div')
+            include fixed-footer.pug
