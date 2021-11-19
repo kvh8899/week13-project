@@ -200,10 +200,9 @@ function setupCommentsActions() {
 }
 
 function deleteComments(){
-  const deleteBtns = document.querySelectorAll('button.button.rounded.icon-button.delete-comment');
+  const deleteBtns = document.querySelectorAll('button.delete-comment');
   let url;
   deleteBtns.forEach(deleteBtn => {
-  
     deleteBtn.addEventListener('click', async(e) => {
       url = '/comments/'+ e.currentTarget.dataset.commentId + '/delete';
       try{
@@ -213,7 +212,8 @@ function deleteComments(){
         await fetch(url,{method: 'DELETE'});
 
         document.querySelector('a#show-comments span').innerText--;
-        document.querySelector('.comments-heading h2').innerText = `Responses (${document.querySelector('a#show-comments span').innerText})`;
+        document.querySelector('.comments-heading h2').innerText = 
+        `Responses (${document.querySelector('a#show-comments span').innerText})`;
       }catch(e){
         return;
       }
