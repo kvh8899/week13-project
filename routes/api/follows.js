@@ -1,16 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { Follow } = require("../db/models");
+const { Follow } = require("../../db/models");
 
 
 
 
-router.delete('/followers/:id', async (req, res) => {
-    await Follow.destroy({
-        where:{id}
-    })
 
-    res.redirect('/followers');
+
+router.delete('/follows/:id', async (req, res) => {
+    
+    
+        await Follow.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        
+    
+
+    res.json({Message: "deleted"});
 
 })
 

@@ -2,7 +2,7 @@
 const express = require('express');
 const {asyncHandler} = require('../utils');
 const router = express.Router();
-const { CommentLike } = require("../db/models");
+const { CommentLike } = require("../../db/models");
 
 //
 
@@ -15,6 +15,8 @@ router.post('/comments/:id/likes', asyncHandler(async(req, res) => {
             commentId: req.params.id
 
     })
+
+    res.json(req.body);
 
     res.redirect('/comment/:id');
 

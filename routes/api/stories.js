@@ -3,14 +3,19 @@ const express = require('express');
 
 
 const {asyncHandler} = require('../utils');
-const { PostLike } = require("../db/models");
+const { PostLike } = require("../../db/models");
+const { restoreUser } = require('../../auth');
+const createError = require('http-errors');
 
 
 
 const router = express.Router();
 
 //Like a story
-router.post('/stories/:id/likes', asyncHandler(async(req, res) => {
+router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
+    if (!res.locals.authenticated) {
+       return next(createError(401)); 
+    }
     const { userId, postId } = req.body;
 
     const likedPost = await PostLike.create({
@@ -18,17 +23,21 @@ router.post('/stories/:id/likes', asyncHandler(async(req, res) => {
         postId: req.params.id
     })
 
-    res.redirect('/stories/:id');
+    //res.send(req.body);
+
+    res.json({message: 'Success'});
 
 
-}))
+}));//works
 
 //Unlike a story
-router.delete('/stories/:id/likes', asyncHandler(async(req, res) => {
+router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
     await PostLike.destroy({
-        where: {id}
+        where: {
+            id: req.params.id
+        }
     })
-    res.redirect('/stories/:id');
-}));
+    res.json({message: 'Deleted'});
+}));//works
 
 module.exports = router;

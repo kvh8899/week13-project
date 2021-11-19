@@ -1,15 +1,18 @@
+
 const express = require('express');
 const router = express.Router();
-const commentsApiRouter = require('../routes/api/comments');
-const followsAPiRouter = require('../routes/api/follows');
-const stories = require('../routes/api/stories');
-const users = require('../routes/api');
+const commentsApiRouter = require('./comments');
+const followsAPiRouter = require('./follows');
+const stories = require('./stories');
+const users = require('./users');
 
 
-//const app = express();
 
-//app.use('/', )
+router.use(commentsApiRouter);
+router.use(followsAPiRouter);
+router.use(stories);
+router.use(users);
 
-
+module.exports = router;
 
 
