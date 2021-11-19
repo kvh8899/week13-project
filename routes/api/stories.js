@@ -1,7 +1,7 @@
 //2
 const express = require('express');
 
-
+const createError = require('http-errors');
 const {asyncHandler} = require('../utils');
 const { PostLike } = require("../../db/models");
 const { restoreUser } = require('../../auth');
@@ -15,24 +15,24 @@ const router = express.Router();
 router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
     if (!res.locals.authenticated) {
        return next(createError(401)); 
-    }
-    const { userId, postId } = req.body;
+    } else if (res.locals.authenticated ) {
+    
 
     const likedPost = await PostLike.create({
         userId: res.locals.user.id,
         postId: req.params.id
     })
-
+    }
     //res.send(req.body);
 
-    res.json({message: 'Success'});
+    res.json(likedPost);
 
 
 }));//works
 
 //Unlike a story
 router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
-    if (!res.locals.authenticated) {
+    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         return next(createError(401)); 
      } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
 

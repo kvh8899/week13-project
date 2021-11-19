@@ -11,11 +11,11 @@ const { CommentLike } = require("../../db/models");
 //Like a comment
 router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {
 
-    const { userId, commentId } = req.body;
+   
 
-    if (!res.locals.authenticated) {
+    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         return next(createError(401)); 
-    } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
+    } else if (res.locals.authenticated ) {
     
     const likedComment = await CommentLike.create({
             userId: res.locals.user.id,
@@ -25,7 +25,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
     }
 
-    res.json(req.body);
+    res.json(likedComment);
 
    
 
@@ -35,7 +35,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
 //Unlike a comment
 router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
-    if (!res.locals.authenticated) {
+    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         return next(createError(401)); 
 
     } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
