@@ -19,14 +19,14 @@ html
         block navbar
           if locals.authenticated
             a(href="/" alt="CodeX Home")
-              img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+              img.logo(src="/images/codexLogo.png" alt="CodeX Logo" )
             nav
               form(method="get" action="/stories/new")
                 button.button.contained.rounded.black Write a Story
               include includes/nav-user-dropdown.pug
           else
             a(href="/" alt="CodeX Home")
-              img.logo(src="../images/codexLogo.png" alt="CodeX Logo")
+              img.logo(src="/images/codexLogo.png" alt="CodeX Logo")
             nav
               a(href="") Our story
               a(href="/login") Write
