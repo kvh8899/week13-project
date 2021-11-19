@@ -313,23 +313,12 @@ p{
       border-bottom:1px solid grey;
   }
   .follow-recommend{
-      /*
-      position:relative;
-      top:83px;
-      width:fit-content;
-      height:auto;
-      margin:auto;
-      padding:25px;
-*/
-      display: flex;
+      
+    display: flex;
     position: relative;
     top: 83px;
-    /* width: 1192px; */
-    /* height: auto; */
-    /* margin: auto; */
     padding: 25px;
     flex-direction: column;
-    /* align-items: center; */
   }
   
   .sub-navbar{
@@ -338,7 +327,6 @@ p{
       display:flex;
       flex-direction:column;
       align-items:flex-start;
-      
   }
   .snb{
       font-size:15px;
@@ -363,6 +351,7 @@ p{
     flex-direction:column;
     text-align:center;
     align-items:center;
+    display:none;
 }
 .browse{
     color:white;

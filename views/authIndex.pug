@@ -54,7 +54,7 @@ block content
                         div(class='author')
                             div(class="profile")
                                 img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                                p(class='auth-name')=posts.User.username
+                                p(class='auth-name')=posts.username
                             a(id='aa' href='/stories/' + posts.id)=posts.heading
                             p(class='meta-data')=posts.subText
                             p(class='date')=posts.createdAt.toDateString()

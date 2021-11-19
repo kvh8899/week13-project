@@ -4,24 +4,7 @@ var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
-  /*
-  TODO: get list of posts that the users follow
-
-  To get users with an array of followers
-  const getUsers = await User.findAll({
-    include: {
-      model: User,
-      as:"Followers"
-    }
-  });
-  to get users with an array of following
-  const getUsers = await User.findAll({
-    include: {
-      model: User,
-      as:"Following"
-    }
-  });
-  */
+  
   const sixUsers = await Post.findAll({
     include: User,
     limit:6
@@ -32,10 +15,28 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
+    const getUsers = await User.findAll({
+        where:{
+          id:res.locals.user.id
+        },
+        include:{
+          model: User,
+          as: 'Following',
+          include:Post
+        }
+        
+    });
+    let followingArr = [];
+    getUsers[0].Following.forEach(e => {
+      e.Posts.forEach(ex => {
+        ex.username = e.username
+      })
+      followingArr = followingArr.concat(e.Posts);
+    })
     res.render('authIndex', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
-      following:[]
+      following:followingArr
     });
   }
 
