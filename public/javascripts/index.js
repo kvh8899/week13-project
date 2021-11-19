@@ -11,16 +11,12 @@ document.addEventListener("DOMContentLoaded",() => {
     const observer = new IntersectionObserver((entries,observer) => {
         entries.forEach(entry => {
             if(entry.isIntersecting === false) {
-                topbar.classList.remove("topbarB");
-                topbar.classList.add("topbarA");
-                login.classList.remove("loginA");
-                login.classList.add("loginB");
+                topbar.classList.add("topbar-alt");
+                login.classList.remove("black");
                 
             }else{
-                topbar.classList.add("topbarB");
-                topbar.classList.remove("topbarA");
-                login.classList.add("loginA");
-                login.classList.remove("loginB");
+                topbar.classList.remove("topbar-alt");
+                login.classList.add("black");
             }
         })
     },{

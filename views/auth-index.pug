@@ -1,0 +1,31 @@
+extends layout.pug 
+
+include mixins/story-grid-items.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+  link(rel="stylesheet" href="/stylesheets/auth-index.css")
+  //- add page specific js
+  script(src="/javascripts/auth-index.js" type="module" )
+
+block content
+  .end-content-wrapper
+    .wide-container
+      .end-content           
+        div(class='follow-recommend')
+          div(class='sub-navbar') 
+            button(class='snb snButton1') Following 
+            button(class='snbOff snButton2') Recommended For You
+          div(class='reco-content')
+            each posts in post
+              +detailedStoryGridItem(posts)
+          div(class='follow-content')
+              each posts in following
+                +detailedStoryGridItem(posts)
+              div(class='empty-follow')
+                  p Stories from people you follow will appear here!
+                  button.button.contained.rounded.login.browse Browse Recommended Stories
+        div(class='e-c-2')
+            div(id='eop-div')
+            include includes/fixed-footer.pug

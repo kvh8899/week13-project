@@ -1,35 +1,28 @@
 extends layout
 
+include mixins/utils.pug
+
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/login-signup.css")
   //- add page specific js
 
 block content
+  .form-container-wrapper
+    .form-container
+      h2 Sign in
+      p.sans-serif Enter the email address and password associated with your account.
+      form(method="post" action="/login" class='authForm')
+        input(type="hidden" name="_csrf" value=csrfToken)
 
-  div(id= "form") 
+        +field("Your email", "email", user.email, "text", true)
+        +field("Your password", "password", '', "password", true)
 
-    h2 Sign in
-    h4 Enter the email address and password associated with your account.
-
-    form(method="post" action="/login" class='authForm')
-
-      input(type="hidden" name="_csrf" value=csrfToken)
-      br
-      label(for="email") Your email:
-      br
-      input(required type="email" id="email" name="email")
-      br
-
-      label(for="password") Your password:
-      br
-      input(required type="password" id="password" name="password")
-      br
-
-      button Continue
-      div
-        p Don't have an account yet? 
-        a(href="/signup") Create one
-        |  or 
-        a(href="/login/demo") Login as demo
+        button.button.contained.rounded.black Continue
+        div.sans-serif
+          p Don't have an account yet? 
+          span.login-links
+            a.button.text(href="/signup") Create one
+            |  or 
+            a.button.text(href="/login/demo") Login as demo
       

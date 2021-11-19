@@ -1,0 +1,27 @@
+//- Creates a story grid item with no subheader or img
+mixin storyGridItem(post, postNum)
+  div(class='story-grid-story')
+    div(class="inner-story")
+      p(class='num')= '0' + (postNum + 1)
+      div(class='author')
+        div(class="profile")
+          img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+          p.auth-name=post.User.username
+        a(href='/stories/' + post.id class='heading')
+          h2=post.heading
+        p(class='meta-data')= post.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+
+//- Creates a story grid item with all details
+mixin detailedStoryGridItem(post)
+  div(class='story-grid-story')
+    div(class="inner-story")
+      div(class='author')
+        div(class="profile")
+          img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+          p(class='auth-name')=post.User.username
+        a.headings-wrapper(href='/stories/' + post.id)
+          h2=post.heading
+          h3=post.subText
+        p.meta-data=post.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+    a(href=`/stories/${post.id}`)
+      img(src=post.headerImage class='listimg' alt=post.heading)

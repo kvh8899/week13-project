@@ -1,57 +1,36 @@
 extends layout
 
-include utils.pug
+include mixins/utils.pug
 
 append head
   //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
   link(rel="stylesheet" href="/stylesheets/create-story.css")
-  link(rel="stylesheet" href="/stylesheets/errors.css")
   //- add page specific js
   script(src="/javascripts/story-editor.js" type="module" defer)
-  script(src="/javascripts/metabar-menu.js" type="module" defer)
-  
-block content
-  div(class="topbar")
-    div(class='topcontent')
-      img(src="../images/codexLogo.png" id="logo" alt="LOGO" )
-      nav()
-        ul(id="navbar")
-          li()
-            form(method='post' action='/stories/new')
-              input(type="hidden" name="_csrf" value=csrfToken)
-              button(class='pstBtn' form="storyForm") Create Story
-          li()
-            div(class='dropdown')
-              div(class='outernamediv')
-                button
-                  img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
-                div(class='namediv')
-                  p(class='profname') #{locals.user.username}
-                  p(class='profname') #{locals.user.email}
-              div(class='mid-dropdown')
-                form(method='get' action='/')
-                  button(href="/" class='dselect') Stories
-                form(method='post' action='/logout')
-                    button(class='dselect') Sign Out
-          li()
-              a(class="profileMenu")
-                img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
 
+block navbar
+  a(href="/" alt="CodeX Home")
+    img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+  nav
+    form(method='post' action='/stories/new')
+      input(type="hidden" name="_csrf" value=csrfToken)
+      button.button.contained.rounded(form="storyForm") Create Story
+    include includes/nav-user-dropdown.pug
+
+block content
   div(class='write-Content')
     +validationErrorSummary(locals.errors)
     div(id="form" class="form")
       form(method="post" action="/stories/new" id='storyForm')
         input(type="hidden" name="_csrf" value=csrfToken)
 
-        +field("Title", "heading", story.heading, "text", true, "Title")
-        +field("Subtitle", "subText", story.subText, "text", false, value="Subtitle")
-        +field("Story Image Url", "headerImage", story.headerImage, "text", false, value="Image URL")
-        div
+        +field("Title", "heading", story.heading, "text", true, "Title", "h1")
+        +field("Subtitle", "subText", story.subText, "text", false, "Subtitle", "h2")
+        +field("Story Image Url", "headerImage", story.headerImage, "text", false, "Image URL", "serif")
+        div.main-text-input-wrapper
           label(for="mainText") Story Body
-          textarea(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
-          p This input supports 
+          textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
+          p.sans-serif.input-helper.display-after-loaded This input supports 
             a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
-          | 
-
+            | .
       
