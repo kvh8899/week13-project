@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCommentsInput();
   setupCommentsActions();
   setupCloseComments();
-  deleteComments();
+  setupDeleteComments();
 });
 
 function setupFollowButton() {
@@ -199,7 +199,7 @@ function setupCommentsActions() {
   });
 }
 
-function deleteComments(){
+function setupDeleteComments(){
   const deleteBtns = document.querySelectorAll('button.delete-comment');
   let url;
   deleteBtns.forEach(deleteBtn => {
