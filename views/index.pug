@@ -56,3 +56,4 @@ block content
                   p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
               a(href=`/stories/${posts.id}`)
                 img(src=posts.headerImage class='listimg' alt=posts.heading)
+        include fixed-footer.pug
