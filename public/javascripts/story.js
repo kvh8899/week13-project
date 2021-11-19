@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCommentsInput();
   setupCommentsActions();
   setupCloseComments();
+  deleteComments();
 });
 
 function setupFollowButton() {
@@ -196,4 +197,19 @@ function setupCommentsActions() {
       }
     });
   });
+}
+
+function deleteComments(){
+  const deleteBtn = 
+  document.querySelector('button.button.rounded.icon-button.delete-comment');
+
+  const url = '/comments/'+ deleteBtn.dataset.commentId+ '/delete';
+
+  deleteBtn.addEventListener('click', async(e) => {
+    try{
+      await fetch(url,{method: 'DELETE'});
+    }catch(e){
+      return;
+    }
+  })
 }

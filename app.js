@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const storiesRouter = require('./routes/stories');
 const usersRouter = require('./routes/users');
 const { sessionSecret } = require('./config');
+const commRouter = require('./routes/comments');
 
 const app = express();
 
@@ -39,6 +40,7 @@ store.sync();
 
 app.use('/', indexRouter);
 app.use('/stories', storiesRouter);
+app.use('/comments',commRouter);
 app.use
 app.use(usersRouter);
 // catch 404 and forward to error handler
