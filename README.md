@@ -14,7 +14,7 @@ Website: [https://codexappaa.herokuapp.com/](https://codexappaa.herokuapp.com/)
 - Website home page with stories
 - User registration / login (with a demo account available)
   - An authenticated home page with recommended stories and stories of users you follow
-- Speicifc story pages to view the story written by an author
+- Specific story pages to view the story written by an author
   - A comments section, where authenticated users can add comments to a story
   - Like/unlike feature on the story and its comments that update live
   - Follow/unfollow feature that updates live
