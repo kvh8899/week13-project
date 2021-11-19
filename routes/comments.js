@@ -10,21 +10,19 @@ router.post('/:id(\\d+)/delete',restoreUser,asyncHandler(async (req,res) => {
         otherwise check if user is owner of comment
             if not owner, then deny authorization to delete
     */
-   const isAuth = await Comment.findOne({
+   const dstry = await Comment.findOne({
        where:{
            id:req.params.id
        },
        include: User
    })
-  
+   const id = dstry.postId
     if(!res.locals.user){
         res.redirect('/login');
-    }else if(res.locals.user.id !== isAuth.User.id){
+    }else if(res.locals.user.id !== dstry.User.id){
         res.status = 401;
-        res.send('unauthorized');
+        res.redirect('/stories/' + id);
     }else{
-        const dstry = await Comment.findByPk(req.params.id);
-        const id = dstry.postId
         dstry.destroy();
         res.redirect('/stories/' + id );
     }
