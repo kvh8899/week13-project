@@ -16,7 +16,7 @@ block content
       form(method="post" action="/login" class='authForm')
         input(type="hidden" name="_csrf" value=csrfToken)
 
-        +field("Your email", "email", email, "text", true)
+        +field("Your email", "email", user.email, "text", true)
         +field("Your password", "password", '', "password", true)
 
         button.button.contained.rounded.black Continue

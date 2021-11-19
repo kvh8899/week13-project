@@ -71,7 +71,7 @@ router.get("/login", csrfProtection, restoreUser, function (req, res) {
   if (res.locals && res.locals.authenticated) {
     return res.redirect("/");
   }
-  res.render("login", { csrfToken: req.csrfToken() });
+  res.render("login", { csrfToken: req.csrfToken(), user: {} });
 });
 
 const failedLogin = (req, res) => {
