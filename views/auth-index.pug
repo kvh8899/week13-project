@@ -1,5 +1,7 @@
 extends layout.pug 
 
+include mixins/story-grid-items.pug
+
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
@@ -38,32 +40,10 @@ block content
             button(class='snbOff snButton2') Recommended For You
           div(class='reco-content')
             each posts in post
-              div(class='story-grid-story')
-                div(class="inner-story")
-                  div(class='author')
-                    div(class="profile")
-                      img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                      p(class='auth-name')=posts.User.username
-                    a.headings-wrapper(href='/stories/' + posts.id)
-                      h2=posts.heading
-                      h3=posts.subText
-                    p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                a(href=`/stories/${posts.id}`)
-                  img(src=posts.headerImage class='listimg' alt=posts.heading)
+              +detailedStoryGridItem(posts)
           div(class='follow-content')
               each posts in following
-                div(class='story-grid-story')
-                  div(class="inner-story")
-                    div(class='author')
-                      div(class="profile")
-                        img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                        p(class='auth-name')=posts.User.username
-                      a.headings-wrapper(href='/stories/' + posts.id)
-                        h2=posts.heading
-                        h3=posts.subText
-                      p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                  a(href=`/stories/${posts.id}`)
-                    img(src=posts.headerImage class='listimg' alt=posts.heading)
+                +detailedStoryGridItem(posts)
               div(class='empty-follow')
                   p Stories from people you follow will appear here!
                   button.button.contained.rounded.login.browse Browse Recommended Stories

@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/story-grid-items.pug
+
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/global.css")
@@ -28,32 +30,12 @@ block content
     .mid-content.wide-container.sans-serif
       p.mid-content-title Trending on Codex!
       div(class="story-grid")
-        each posts,i in post
-          div(class='story-grid-story')
-            div(class="inner-story")
-              p(class='num')= '0' + (i+1)
-              div(class='author')
-                div(class="profile")
-                  img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                  p.auth-name=posts.User.username
-                a(href='/stories/' + posts.id class='heading')
-                  h2=posts.heading
-                p(class='meta-data')= posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+        each posts, i in post
+          +storyGridItem(posts, i)
   .end-content-wrapper
     .wide-container
       .end-content
         div
           each posts in post
-            div(class='story-grid-story')
-              div(class="inner-story")
-                div(class='author')
-                  div(class="profile")
-                    img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
-                    p(class='auth-name')=posts.User.username
-                  a.headings-wrapper(href='/stories/' + posts.id)
-                    h2=posts.heading
-                    h3=posts.subText
-                  p.meta-data=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-              a(href=`/stories/${posts.id}`)
-                img(src=posts.headerImage class='listimg' alt=posts.heading)
+            +detailedStoryGridItem(posts)
         include includes/fixed-footer.pug
