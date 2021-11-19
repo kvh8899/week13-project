@@ -1,6 +1,9 @@
+body {
+  font-size: 16px;
+}
+
 body,
 .serif {
-  font-size: 16px;
   font-family: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
