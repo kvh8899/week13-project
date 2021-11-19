@@ -11,7 +11,8 @@ append head
   script(src="/javascripts/metabar-menu.js" type="module")
 
 block navbar
-  img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+  a(href="/" alt="CodeX Home")
+    img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
   nav
     form(method="get" action="/stories/new")
       button.button.text.black Write a Story
