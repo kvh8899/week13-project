@@ -1,7 +1,6 @@
 const { User } = require("./db/models");
 
 const restoreUser = async (req, res, next) => {
-  console.log(req.session);
   if (!req.session.auth || !req.session.auth.userId) {
     res.locals.authenticated = false;
     return next();
