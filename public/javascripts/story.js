@@ -210,6 +210,7 @@ function deleteComments(){
         const comm = document.querySelector(`[data-comment-id='${e.currentTarget.dataset.commentId}']`);
         document.querySelector('.comments-container').removeChild(comm);
         await fetch(url,{method: 'DELETE'});
+        document.querySelector('a#show-comments span').innerText--;
       }catch(e){
         return;
       }
