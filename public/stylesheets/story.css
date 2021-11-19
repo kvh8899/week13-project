@@ -1,19 +1,13 @@
-header {
-  display: flex;
+.topbar {
   align-items: center;
+  display: flex;
   justify-content: center;
-  box-shadow: inset 0 -1px 0 rgb(230 230 230);
   min-height: 115px;
+  position: static;
 }
 
-header .logo {
-  height: 30px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.topbar-spacer {
+  display: none;
 }
 
 .navbar-left,
@@ -34,7 +28,7 @@ header .logo {
   margin-left: 22px;
 }
 
-header .name {
+.topbar .name {
   color: #191919;
   font-size: 27px;
   font-weight: 500;

@@ -6,24 +6,23 @@ append head
   //- add page specific js
   script(src="/javascripts/story.js" type="module" defer)
 
-block content
-  header
-    .wide-container
-      .navbar.sans-serif
-        div.navbar-left
-          .name #{story.user.username}
-          .followers #{story.user.Followers.length} Followers
-          button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
-            | #{userFollow.id ? "Unfollow" : "Follow"}
-        nav.navbar-right
-          if locals.authenticated
-            //- TODO authenticated nav
-          else
-            a(href="/login" alt="Sign in").button.text Sign in
-            a(href="/signup" alt="Get started").button.outlined.rounded Get started
-          a(href="/" alt="CodeX Home")
-            img.logo(src="/images/codexLogoShort.png" alt="CodeX")
+block navbar
+  //- .navbar.sans-serif
+  div.navbar-left
+    .name #{story.user.username}
+    .followers #{story.user.Followers.length} Followers
+    button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+      | #{userFollow.id ? "Unfollow" : "Follow"}
+  nav.navbar-right
+    if locals.authenticated
+      //- TODO authenticated nav
+    else
+      a(href="/login" alt="Sign in").button.text Sign in
+      a(href="/signup" alt="Get started").button.outlined.rounded Get started
+    a(href="/" alt="CodeX Home")
+      img.logo(src="/images/codexLogoShort.png" alt="CodeX")
 
+block content
   .content-container
     main
       .container

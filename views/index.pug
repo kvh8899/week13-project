@@ -7,21 +7,15 @@ append head
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
+block navbar
+  img.logo(src="../images/codexLogo.png" alt="CodeX Logo")
+  nav
+    a(href="") Our story
+    a(href="/login") Write
+    a(href="/login") Sign In
+    a.login.button.contained.rounded.black(href="/signup") Sign Up
+
 block content
-  div(class="topbar topbarB")
-    div.topcontent.wide-container
-      img(src="../images/codexLogo.png" id="logo" alt="CodeX Logo")
-      nav()
-        ul#navbar.sans-serif
-          li()
-            a(href="") Our story 
-          li()
-            a(href="/login") Write 
-          li() 
-            a(href="/login") Sign In
-          li()
-            a.login.loginA.button.contained.rounded.black(href="/signup") Sign Up
-  .topbar-spacer
   div(class='content')
     #openingText.wide-container
       div.textwrap.cta-wrapper

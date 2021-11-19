@@ -11,13 +11,11 @@ document.addEventListener("DOMContentLoaded",() => {
     const observer = new IntersectionObserver((entries,observer) => {
         entries.forEach(entry => {
             if(entry.isIntersecting === false) {
-                topbar.classList.remove("topbarB");
-                topbar.classList.add("topbarA");
+                topbar.classList.add("topbar-alt");
                 login.classList.remove("black");
                 
             }else{
-                topbar.classList.add("topbarB");
-                topbar.classList.remove("topbarA");
+                topbar.classList.remove("topbar-alt");
                 login.classList.add("black");
             }
         })

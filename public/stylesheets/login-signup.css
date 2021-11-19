@@ -1,3 +1,7 @@
+.topbar-spacer {
+  display: none;
+}
+
 .form-container-wrapper {
   align-items: center;
   display: flex;

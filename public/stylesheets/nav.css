@@ -1,0 +1,39 @@
+.topbar-spacer {
+  height: 75px;
+}
+
+.topbar {
+  display: flex;
+  box-shadow: inset 0 -1px 0 rgb(230 230 230);
+  flex-direction:row;
+  height: 75px;
+  justify-content:center;
+  position:fixed;
+  width:100%;
+  z-index:1;
+  font-size: 14px;
+}
+
+.topbar > .wide-container {
+  align-items: center;
+  display:flex;
+  justify-content: space-between;
+}
+
+.logo {
+  max-height: 40px;
+}
+
+.topbar nav {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.topbar nav > *:not(:last-child) {
+  margin-right: 25px;
+}
+
+.topbar a {
+  text-decoration: none;
+}

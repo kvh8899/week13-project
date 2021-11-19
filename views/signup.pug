@@ -8,6 +8,14 @@ append head
   link(rel="stylesheet" href="/stylesheets/login-signup.css")
   //- add page specific js
 
+block navbar
+  img.logo(src="../images/codexLogo.png" alt="CodeX Logo")
+  nav
+    a(href="") Our story
+    a(href="/login") Write
+    a(href="/login") Sign In
+    a.login.button.contained.rounded.black(href="/signup") Sign Up
+
 block content 
   .form-container-wrapper
     .form-container

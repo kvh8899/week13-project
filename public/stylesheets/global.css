@@ -140,6 +140,7 @@ h6,
 .button.contained.black:hover {
   background-color: #080808;
   border-color: #292929;
+  color:rgba(255, 255, 255, 0.90);
 }
 
 .button.icon-button {

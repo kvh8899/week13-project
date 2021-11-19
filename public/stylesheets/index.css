@@ -27,14 +27,6 @@
   fill: #080808;
 }
 
-#navbar {
-  font-size: 14px;
-}
-
-#navbar li {
-    padding:10px;
-}
-
 a {
   transition-property: color;
   transition-duration: 0.5s;
@@ -43,12 +35,6 @@ a {
 }
 a:hover {
   color: rgba(0, 0, 0, 0.5);
-}
-
-.topcontent{
-  align-items: center;
-  display:flex;
-  justify-content: space-between;
 }
 
 #openingText{
@@ -74,48 +60,22 @@ a:hover {
   transition: color 0.7s;
 }
 
-#navbar{
-  position:relative;
-  display: flex;
-  flex-direction:row;
-  align-items:center;
-  list-style: none;
-  text-decoration:none;
-}
-
-.login {
+nav .login.button {
   transition-property: color;
   transition-duration: 0.5s;
   transition-delay: 0s;
   transition: background-color 0.7s;
 }
-.login.button.black:hover{
-  color:rgba(255, 255, 255, 0.90);
+  
+.topbar {
+  background-color: #c2c0c0;
+  border-bottom: 1px solid black;
+  box-shadow: none;
+  transition: background-color 0.7s;
 }
-
-#logo{
-  max-height: 40px;
+.topbar-alt {
+  background-color:#fff;
 }
-  .topbar{
-    border-bottom: 1px solid black;
-    display: flex;
-    flex-direction:row;
-    justify-content:center;
-    position:fixed;
-    width:100%;
-    z-index:1;
-    transition: background-color 0.7s;
-    height: 75px;
-  }
-  .topbar-spacer {
-    height: 75px;
-  }
-  .topbarB{
-    background-color:#c2c0c0;
-  }
-  .topbarA{
-      background-color:white;
-  }
   .background{
       background-color:#c2c0c0;
       border-bottom: 1px solid black;
@@ -366,9 +326,10 @@ a:hover {
       border: 1px solid lightgray;
       padding-bottom:0px;
       flex-direction:column;
-      top:60px;
-      right:20px;
+      top: 35px;
+      right: 0;
       display:none;
+      margin: 0 !important;
   }
   .mid-dropdown{
     display: flex;
@@ -423,15 +384,7 @@ a:hover {
     flex-direction: column;
     /* align-items: center; */
   }
-  
-  .sub-navbar{
-      margin-bottom:20px;
-      width:auto;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      
-  }
+
   .snb{
       font-size:15px;
       color:black;
