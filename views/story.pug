@@ -14,7 +14,7 @@ block navbar
       | #{userFollow.id ? "Unfollow" : "Follow"}
   nav.navbar-right
     if locals.authenticated
-      //- TODO authenticated nav
+      include includes/nav-user-dropdown.pug
     else
       a(href="/login" alt="Sign in").button.text Sign in
       a(href="/signup" alt="Get started").button.outlined.rounded Get started

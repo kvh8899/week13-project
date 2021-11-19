@@ -10,9 +10,26 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/global.css')
         link(rel='stylesheet' href='/stylesheets/nav.css')
+        if locals.authenticated
+          script(src="/javascripts/metabar-menu.js" type="module" defer)
   body
     .topbar.sans-serif
       .wide-container
         block navbar
+          if locals.authenticated
+            a(href="/" alt="CodeX Home")
+              img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
+            nav
+              form(method="get" action="/stories/new")
+                button.button.text.black Write a Story
+              include includes/nav-user-dropdown.pug
+          else
+            a(href="/" alt="CodeX Home")
+              img.logo(src="../images/codexLogo.png" alt="CodeX Logo")
+            nav
+              a(href="") Our story
+              a(href="/login") Write
+              a(href="/login") Sign In
+              a.login.button.contained.rounded.black(href="/signup") Sign Up
     .topbar-spacer
     block content

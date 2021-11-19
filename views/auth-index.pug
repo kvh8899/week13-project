@@ -8,28 +8,6 @@ append head
   link(rel="stylesheet" href="/stylesheets/auth-index.css")
   //- add page specific js
   script(src="/javascripts/auth-index.js" type="module" )
-  script(src="/javascripts/metabar-menu.js" type="module")
-
-block navbar
-  a(href="/" alt="CodeX Home")
-    img.logo(src="../images/codexLogo.png" alt="CodeX Logo" )
-  nav
-    form(method="get" action="/stories/new")
-      button.button.text.black Write a Story
-    div(class='dropdown')
-      div(class='outernamediv')
-        button
-          img(src="../images/defaultavatar.jpeg" class="profpic" alt="")
-        div(class='namediv')
-          p(class='profname') #{locals.user.username}
-          p(class='profname') #{locals.user.email}
-      div(class='mid-dropdown')
-        form(method='get' action='/')
-          button(href="" class='dselect') Stories
-        form(method='post' action='/logout')
-          button(class='dselect') Sign Out
-    a(class="profileMenu")
-      img(src="../images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
 
 block content
   .end-content-wrapper
