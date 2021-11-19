@@ -26,13 +26,6 @@ p{
     font-size:13px;
     font-weight:800;
 }
-
-.topcontent{
-    display:flex;
-    width:1192px;
-    justify-content:space-between;
-    
-}
 #openingText{
     display:flex;
     justify-content:space-between;
@@ -42,6 +35,12 @@ p{
     padding-top:110px;
     top:90px;
     height:450px;
+    
+}
+.topcontent{
+    display:flex;
+    width:1192px;
+    justify-content:space-between;
     
 }
 .textwrap{
@@ -88,9 +87,6 @@ p{
     padding-right:15px;
     padding-left:15px;
     border-radius: 25px;
-    transition-property: color;
-    transition-duration: 0.5s;
-    transition-delay: 0s;
     transition: background-color 0.7s;
   }
   .loginA{
@@ -319,23 +315,11 @@ p{
     border-bottom: 1px solid lightgray;
   }
   .follow-recommend{
-      /*
-      position:relative;
-      top:83px;
-      width:fit-content;
-      height:auto;
-      margin:auto;
-      padding:25px;
-*/
-      display: flex;
+    display: flex;
     position: relative;
     top: 83px;
-    /* width: 1192px; */
-    /* height: auto; */
-    /* margin: auto; */
     padding: 25px;
     flex-direction: column;
-    /* align-items: center; */
   }
   
   .sub-navbar{
