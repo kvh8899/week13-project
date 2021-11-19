@@ -1,3 +1,7 @@
+.topbar {
+  position: static;
+}
+
 .topbar-spacer {
   display: none;
 }
