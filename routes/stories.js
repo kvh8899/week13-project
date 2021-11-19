@@ -83,6 +83,7 @@ router.post(
 router.get(
   "/:storyId(\\d+)",
   restoreUser,
+  csrfProtection,
   asyncHandler(async (req, res) => {
     const { storyId } = req.params;
 
@@ -121,6 +122,7 @@ router.get(
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
+      csrfToken: req.csrfToken(),
       story: {
         id: story.id,
         heading: story.heading,
@@ -142,7 +144,7 @@ router.get(
   })
 );
 //router to create a comment
-router.post('/:id(\\d+)/comment',restoreUser, asyncHandler(async(req,res) => {
+router.post('/:id(\\d+)/comment',restoreUser, csrfProtection, asyncHandler(async(req,res) => {
   if(!res.locals.user){
       res.redirect('/login');
   }else{
