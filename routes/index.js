@@ -29,7 +29,7 @@ router.get('/', restoreUser,async function(req, res, next) {
     let followingArr = [];
     getUsers[0].Following.forEach(e => {
       e.Posts.forEach(ex => {
-        ex.username = e.username
+        ex.User = e;
       })
       followingArr = followingArr.concat(e.Posts);
     });
