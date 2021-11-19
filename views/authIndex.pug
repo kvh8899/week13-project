@@ -43,7 +43,7 @@ block content
                   p(class='auth-name')=posts.User.username
                 a(id='aa' href='/stories/' + posts.id)=posts.heading
                 p(class='meta-data')=posts.subText
-                p(class='date')=posts.createdAt.toDateString()
+                p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
             img(src=posts.headerImage class='listimg' alt="404")
     div(class='follow-content')
         each posts in following
@@ -55,7 +55,7 @@ block content
                             p(class='auth-name')=posts.User.username
                         a(id='aa' href='/stories/' + posts.id)=posts.heading
                         p(class='meta-data')=posts.subText
-                        p(class='date')=posts.createdAt.toDateString()
+                        p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
                 img(src=posts.headerImage class='listimg' alt="404")
         div(class='empty-follow')
             p Stories from people you follow will appear here!

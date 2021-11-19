@@ -41,7 +41,7 @@ block content
                     img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
                     p(class='auth-name')=posts.User.username
                 a(href='/stories/' + posts.id class='heading')=posts.heading
-                p(class='meta-data')= posts.createdAt.toDateString()
+                p(class='meta-data')= posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
   div(class='end-content')
     div(class='e-c-2')
       each posts in post
@@ -53,7 +53,7 @@ block content
                   p(class='auth-name')=posts.User.username
                 a(id='aa' href='/stories/' + posts.id)=posts.heading
                 p(class='meta-data')=posts.subText
-                p(class='date')=posts.createdAt.toDateString()
+                p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
             img(src=posts.headerImage class='listimg' alt="404")
     div(class='eop')
       p Discover The Realm of Computer Science Topics!
