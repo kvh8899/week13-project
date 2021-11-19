@@ -92,6 +92,7 @@ router.get(
         PostLike,
         { model: User, include: [{ model: User, as: "Followers" }] },
       ],
+      order: [[Comment,'createdAt','DESC']]
     });
 
     if (!story) {
@@ -116,11 +117,7 @@ router.get(
           userId: res.locals.user.id,
         },
       });
-    }
-    //sort comments by newest
-    story.Comments.sort((b,a) => {
-     return a.createdAt.getTime() - b.createdAt.getTime();
-    });
+    } 
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
