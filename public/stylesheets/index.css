@@ -247,10 +247,11 @@ a:hover {
   .profpic:hover{
       cursor:pointer;
   }
+
 .end-content-wrapper {
-    display:flex;
-    padding: 35px 0;
-    justify-content:center;
+  display:flex;
+  padding: 35px 0;
+  justify-content:center;
 }
 
 .end-content {
@@ -265,6 +266,16 @@ a:hover {
   .end-content .story-grid-story {
     margin-bottom: 48px;
   }
+}
+
+.spacer{
+  height:10px;
+}
+.e-c-2 > #eop-div {
+  height:145px;
+}
+.e-c-2{
+  margin-left:20px;
 }
 
 .end-content .inner-story {
@@ -349,16 +360,21 @@ a:hover {
       position:absolute;
       background-color:white;
       box-shadow: 3px 3px 3px grey;
-      width:270px;
+      width:220px;
       height:500px;
       border-radius:5px;
       border: 1px solid lightgray;
-      padding:25px;
       padding-bottom:0px;
       flex-direction:column;
       top:60px;
       right:20px;
       display:none;
+  }
+  .mid-dropdown{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
   }
   .dselect{
     padding-top:10px;
@@ -383,18 +399,31 @@ a:hover {
       padding-left:10px;
   }
   .outernamediv{
-      display:flex;
-      align-items:center;
-      border-bottom:1px solid grey;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
   }
   .follow-recommend{
+      /*
       position:relative;
       top:83px;
       width:fit-content;
       height:auto;
       margin:auto;
       padding:25px;
+*/
+      display: flex;
+    position: relative;
+    top: 83px;
+    /* width: 1192px; */
+    /* height: auto; */
+    /* margin: auto; */
+    padding: 25px;
+    flex-direction: column;
+    /* align-items: center; */
   }
+  
   .sub-navbar{
       margin-bottom:20px;
       width:auto;
