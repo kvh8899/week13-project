@@ -54,7 +54,7 @@ block content
                 a(id='aa' href='/stories/' + posts.id)=posts.heading
                 p(class='meta-data')=posts.subText
                 p(class='date')=posts.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-            img(src=posts.headerImage class='listimg' alt="404")
+            img(src=posts.headerImage class='listimg' alt=posts.heading)
     div(class='eop')
       p Discover The Realm of Computer Science Topics!
       div(class='tag-grid')
