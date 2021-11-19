@@ -18,7 +18,10 @@ router.delete('/follows/:id', async (req, res) => {
         
     
 
-    res.json({Message: "deleted"});
+    res.json({
+        Message: "Follower deleted",
+        
+    });
 
 })
 
