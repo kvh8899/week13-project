@@ -1,0 +1,24 @@
+extends layout
+
+include mixins/story-grid-items.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/about.css")
+
+block content
+  .tagline-wrapper
+    .container-wrapper
+      .wide-container
+        h1.tagline.serif Writing the code so you can share yours.
+  .container-wrapper
+    .wide-container
+      .dual-col-wrapper
+        each author in authors
+          .dual-col.sans-serif
+            .name=author.name
+            each social in author.socials
+              a.button.icon-button.rounded(href=social.url)
+                i.fa-brands(class=`fa-${social.iconName}`)
+  .project-repo.container-wrapper
+    a.sans-serif(href="https://github.com/kvh8899/week13-project") Project Repository
