@@ -13,11 +13,7 @@ router.get('/stories', async (req,res,next) => {
             include: User,
             limit,
             offset:getRandomInt(10)
-        })
-        getStories.forEach(story => {
-            story.createdAt = story.createdAt.toLocaleDateString("en-US",
-            { month: "short", day: "numeric" });
-        })
+        });
         res.json(getStories)
     }catch(e){
         next(e);

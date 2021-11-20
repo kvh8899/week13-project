@@ -71,19 +71,20 @@ function constructPost(getPosts,containerClass){
           pSubText.innerText = post.subText
           headingsWrapper.appendChild(pSubText);
 
-          //need to import toLocaleDateString here
           const date = document.createElement("p");
           date.classList.add('meta-data','sans-serif');
-          date.innerText = post.createdAt;
+          
+          let newDate = Date.parse(post.createdAt);
+          newDate = new Date(newDate);
+          date.innerText = newDate.toLocaleDateString("en-US",
+          { month: "short", day: "numeric" });
+          
           author.appendChild(date)
-
 
           const storyLink = document.createElement("a");
           storyLink.href = `/stories/${post.id}`;
 
-
           author.appendChild(storyLink)
-
 
           const listImg = document.createElement("img");
           listImg.src = post.headerImage;
