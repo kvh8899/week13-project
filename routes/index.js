@@ -25,8 +25,6 @@ router.get('/', restoreUser,async function(req, res, next) {
           as: 'Following',
           include:Post
         },
-        
-        
     });
     let followingArr = [];
     getUsers[0].Following.forEach(e => {
