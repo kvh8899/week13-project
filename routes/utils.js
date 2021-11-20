@@ -14,9 +14,12 @@ const handleValidationErrors = (req, res, next) => {
 
   next();
 };
-
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 module.exports = {
   asyncHandler,
+  getRandomInt,
   csrfProtection,
   handleValidationErrors,
 };

@@ -4,7 +4,6 @@ var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
-  
   const sixUsers = await Post.findAll({
     include: User,
     limit:6
@@ -44,3 +43,4 @@ router.get('/', restoreUser,async function(req, res, next) {
 });
 
 module.exports = router;
+
