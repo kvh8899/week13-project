@@ -9,7 +9,11 @@ const {asyncHandler} = require('../utils');
 
 
 router.delete('/follows/:id', asyncHandler(async (req, res) => {
-    const follow = await Follow.findOne({where: {id: req.params.id}});
+    const follow = await Follow.findPk(req.params.id);
+    if (typeof follow === "undefined" ) {
+        
+    }
+
 
     if (!res.locals.authenticated || res.locals.user.id !== follow.followerId) {
         return next(createError(401)); 
