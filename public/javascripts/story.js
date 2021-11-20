@@ -199,24 +199,29 @@ function setupCommentsActions() {
   });
 }
 
-function setupDeleteComments(){
-  const deleteBtns = document.querySelectorAll('button.delete-comment');
+function setupDeleteComments() {
+  const deleteBtns = document.querySelectorAll("button.delete-comment");
   let url;
-  deleteBtns.forEach(deleteBtn => {
-    deleteBtn.addEventListener('click', async(e) => {
-      url = '/comments/'+ e.currentTarget.dataset.commentId + '/delete';
-      try{
-        const comm = document.querySelector(`[data-comment-id='${e.currentTarget.dataset.commentId}']`);
-        document.querySelector('.comments-container').removeChild(comm);
+  deleteBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", async (e) => {
+      url = "/comments/" + e.currentTarget.dataset.commentId + "/delete";
+      try {
+        const comm = document.querySelector(
+          `[data-comment-id='${e.currentTarget.dataset.commentId}']`
+        );
+        document.querySelector(".comments-container").removeChild(comm);
 
-        await fetch(url,{method: 'DELETE'});
+        await fetch(url, { method: "DELETE" });
 
-        document.querySelector('a#show-comments span').innerText--;
-        document.querySelector('.comments-heading h2').innerText = 
-        `Responses (${document.querySelector('a#show-comments span').innerText})`;
-      }catch(e){
+        document.querySelector("a#show-comments span").innerText--;
+        document.querySelector(
+          ".comments-heading h2"
+        ).innerText = `Responses (${
+          document.querySelector("a#show-comments span").innerText
+        })`;
+      } catch (e) {
         return;
       }
     });
-  })
+  });
 }
