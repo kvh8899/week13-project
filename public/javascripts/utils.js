@@ -24,7 +24,7 @@ export const showAfterLoaded = () => {
   }
 };
 
-function constructPost(getPosts,containerClass){
+export function constructPost(getPosts,containerClass){
   const postDiv = document.querySelector(containerClass);
       getPosts.forEach(post => {
           const storyGridStory = document.createElement("div");
@@ -95,4 +95,4 @@ function constructPost(getPosts,containerClass){
           postDiv.appendChild(storyGridStory);
       })
 }
-export {constructPost};
+

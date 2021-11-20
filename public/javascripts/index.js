@@ -26,12 +26,9 @@ document.addEventListener("DOMContentLoaded",() => {
     //Infinite scroll
     const bottomObserver = new IntersectionObserver( async (entries,observer) => {
         let url = '/api/stories';
-
-       
         entries.forEach(async(entry) => {
-            console.log(entry);
             if(entry.isIntersecting ){
-                let getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+                let getPosts =  await fetch(url).then(res => res.json())
                 constructPost(getPosts,'.pContainer');
             }
         })

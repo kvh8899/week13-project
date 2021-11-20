@@ -47,17 +47,16 @@ import {constructPost} from './utils.js'
      const foll = document.querySelector('.follow-content');
      const bottom = document.querySelector('.bott');
      const bottomObserver = new IntersectionObserver( async (entries,observer) => {
-        let url = '/api/stories'
-        let follUrl = '/api/stories/following'
+        let url;
         let getPosts;
         //prevent fetch unless tab is open
         if(reco.style.display === 'block'){
-            getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+            url = '/api/stories'
         }else if(foll.style.display === 'block'){
-            getPosts =  await fetch(follUrl).then(res => res.json()).then(res => res);
+            url = '/api/stories/following'
         }
+        getPosts =  await fetch(url).then(res => res.json())
         entries.forEach(entry => {
-            
             if(entry.isIntersecting && reco.style.display === 'block'){
                 constructPost(getPosts,'.pContainer');
             }else if(entry.isIntersecting && foll.style.display === 'block'){
