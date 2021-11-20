@@ -157,6 +157,10 @@ router.get(
       throw createError(404);
     }
 
+    if (story.userId !== res.locals.user.id) {
+      return res.redirect(`/stories/${storyId}`);
+    }
+
     res.render("create-story", {
       csrfToken: req.csrfToken(),
       editing: true,
@@ -179,6 +183,10 @@ router.post(
 
     if (!story) {
       throw createError(404);
+    }
+
+    if (story.userId !== res.locals.user.id) {
+      throw createError(401);
     }
 
     if (res.locals.errors) {
