@@ -1,4 +1,4 @@
-import "./modal.js";
+import { closeModal, showModal } from "./modal.js";
 import { adjustTextAreaHeight, updateTextAreaHeight } from "./input-utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -97,6 +97,9 @@ function setupShowCommentsButton() {
   const button = document.querySelector("#show-comments");
 
   const commentsModal = document.querySelector(".modal-root.comments");
+  const commentsModalContent = document.querySelector(
+    ".modal-root.comments .modal-content"
+  );
 
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -104,13 +107,32 @@ function setupShowCommentsButton() {
     location.hash = "comments";
   });
 
+  let hiddenTimeout;
+
   const onHashChange = () => {
     if (location.hash === "#comments") {
-      commentsModal.classList.remove("hidden");
-    } else {
-      commentsModal.classList.add("hidden");
+      showModal(commentsModal);
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      hiddenTimeout = setTimeout(() => {
+        commentsModalContent.classList.remove("hidden");
+      }, 50);
+    } else if (!commentsModal.classList.contains("hidden")) {
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      commentsModalContent.classList.add("hidden");
+      closeModal(commentsModal);
     }
   };
+
+  commentsModal.addEventListener("close", () => {
+    if (hiddenTimeout) {
+      clearTimeout(hiddenTimeout);
+    }
+    commentsModalContent.classList.add("hidden");
+  });
 
   window.addEventListener("hashchange", onHashChange);
   onHashChange();
