@@ -336,6 +336,10 @@ footer nav > a:last-of-type {
   width: 100%;
 }
 
+.post-sidebar.hidden {
+  opacity: 0;
+}
+
 .post-sidebar-content-wrapper {
   display: flex;
   flex-direction: column;

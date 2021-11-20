@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCommentsActions();
   setupCloseComments();
   setupDeleteComments();
+  setupSidebarObserver();
 });
 
 function setupFollowButton() {
@@ -249,4 +250,25 @@ function setupDeleteComments() {
       }
     });
   });
+}
+
+function setupSidebarObserver() {
+  const storyHeader = document.querySelector("main h1.title");
+  const postSidebar = document.querySelector(".post-sidebar");
+
+  if (!storyHeader || !postSidebar) {
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        postSidebar.classList.add("hidden");
+      } else {
+        postSidebar.classList.remove("hidden");
+      }
+    });
+  });
+
+  observer.observe(storyHeader);
 }
