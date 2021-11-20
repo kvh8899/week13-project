@@ -4,13 +4,13 @@ const {asyncHandler} = require('../utils');
 const { restoreUser } = require('../../auth');
 const createError = require('http-errors');
 const router = express.Router();
-const { CommentLike } = require("../../db/models");
+const { sequelize, CommentLike } = require("../../db/models");
 
 //
 
 //Like a comment
 router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {
-
+    
    
 
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
@@ -34,7 +34,10 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
 
 //Unlike a comment
-router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
+router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) => {
+    const likedComments = await CommentLike.findAll();
+    const like = likedComments.some(likedComment => likedComment.id === parseInt(req.params.id));
+    if (like) {
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         return next(createError(401)); 
 
@@ -48,9 +51,11 @@ router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
             }
         })
     }
+}
         res.json({message: "Comment deleted"});
         
-}));
+}))
+
 
 
 
