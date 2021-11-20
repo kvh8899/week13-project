@@ -23,7 +23,7 @@ import {constructPost} from './utils.js'
         });
         
         /*
-            listens for clicks on following and recommended tabes
+            listens for clicks on following and recommended tabs
         */
         document.querySelector('.browse').addEventListener('click',(e) => {
             document.querySelector('.snButton1').classList.remove('snb');

@@ -25,14 +25,17 @@ document.addEventListener("DOMContentLoaded",() => {
     })
     //Infinite scroll
     const bottomObserver = new IntersectionObserver( async (entries,observer) => {
-        let url = '/api/stories'
-        let getPosts =  await fetch(url).then(res => res.json()).then(res => res);
-        entries.forEach(entry => {
-            if(entry.isIntersecting === true){
+        let url = '/api/stories';
+
+       
+        entries.forEach(async(entry) => {
+            console.log(entry);
+            if(entry.isIntersecting ){
+                let getPosts =  await fetch(url).then(res => res.json()).then(res => res);
                 constructPost(getPosts,'.pContainer');
             }
         })
-    })
+    },{threshold:1})
     /*
         makes sure the element being observed exists
     */

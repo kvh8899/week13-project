@@ -4,9 +4,11 @@ var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
+  req.session.offset = 6;
   const sixUsers = await Post.findAll({
     include: User,
-    limit:6
+    limit:6,
+    order:[['createdAt','DESC']]
   });
   if(!res.locals.authenticated){
     res.render('index', { 
@@ -22,7 +24,8 @@ router.get('/', restoreUser,async function(req, res, next) {
           model: User,
           as: 'Following',
           include:Post
-        }
+        },
+        
         
     });
     let followingArr = [];
