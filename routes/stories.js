@@ -195,8 +195,6 @@ router.post(
       });
     }
 
-    console.log(story);
-
     await story.update({
       heading,
       subText: subText || null,
