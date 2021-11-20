@@ -46,9 +46,12 @@ import {constructPost} from './utils.js'
      const bottom = document.querySelector('.bott');
      const bottomObserver = new IntersectionObserver( async (entries,observer) => {
         let url = '/api/stories'
-        let getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+        let getPosts;
+        //prevent fetch unless tab is open
+        if(reco.style.display === 'block'){
+            getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+        }
         entries.forEach(entry => {
-            console.log(reco.style.display);
             if(entry.isIntersecting === true && reco.style.display === 'block'){
                 constructPost(getPosts,'.pContainer');
             }

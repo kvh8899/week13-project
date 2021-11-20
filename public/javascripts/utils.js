@@ -84,14 +84,14 @@ function constructPost(getPosts,containerClass){
           const storyLink = document.createElement("a");
           storyLink.href = `/stories/${post.id}`;
 
-          author.appendChild(storyLink)
+          storyGridStory.appendChild(storyLink)
 
           const listImg = document.createElement("img");
           listImg.src = post.headerImage;
           listImg.classList.add('listimg');
           listImg.alt = post.heading;
 
-          author.appendChild(listImg)
+          storyLink.appendChild(listImg)
           postDiv.appendChild(storyGridStory);
       })
 }
