@@ -6,7 +6,7 @@ const createError = require('http-errors');
 const router = express.Router();
 const { sequelize, CommentLike } = require("../../db/models");
 
-//
+
 
 //Like a comment
 router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {

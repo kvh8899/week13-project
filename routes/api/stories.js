@@ -14,24 +14,24 @@ const router = express.Router();
 //Like a story
 router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
     if (!res.locals.authenticated) {
-       return next(createError(401)); 
+
+       return next(createError(401));
+
     } else if (res.locals.authenticated ) {
     
-
-    const likedPost = await PostLike.create({
+     const likedPost = await PostLike.create({
         userId: res.locals.user.id,
         postId: req.params.id
     })
     }
-    
+        res.status(201).json(likedPost);
 
-    res.status(201).json(likedPost);
-
-
-}));//works
+}));
 
 //Unlike a story
 router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
+    const like = await PostLike.findByPk(req.params.id);
+    if (!like) {res.status(404)};
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         return next(createError(401)); 
      } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
@@ -42,9 +42,8 @@ router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, ne
         }
     })
     }
-    res.json({message: 'Deleted'});
+        res.json({message: 'Deleted'});
 }))
-
 
 
 module.exports = router;

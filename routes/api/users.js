@@ -20,5 +20,5 @@ router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, n
     res.status(201).json({message: 'Success'});
 
 }));
-//works
+
 module.exports = router;
