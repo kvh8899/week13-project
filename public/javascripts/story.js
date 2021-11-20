@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupFollowButton() {
   const followButtons = document.querySelectorAll(".follow-button");
-  const followCount = document.querySelectorAll(".followers-count");
+  const followCounts = document.querySelectorAll(".followers-count");
 
   followButtons.forEach((followButton) => {
     let isFetching = false;
@@ -42,11 +42,11 @@ function setupFollowButton() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
-            followCount.forEach((el) => {
+            followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) - 1;
             });
           } else if (res.status === 201) {
-            followCount.forEach((el) => {
+            followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) + 1;
             });
           }
@@ -62,7 +62,7 @@ function setupFollowButton() {
 
 function setupLikePostButton() {
   const likeButton = document.querySelector("#like-post");
-  const likeCounts = document.querySelector(".post-likes-count");
+  const likeCounts = document.querySelectorAll(".post-likes-count");
 
   let isFetching = false;
 
