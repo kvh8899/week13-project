@@ -244,6 +244,8 @@ Instead of building monolithic apps, build independent components first and comp
 
 OSS Tools like [Bit](https://bit.dev/) offer a great developer experience for building independent components and composing applications. Many teams start by building their Design Systems or Micro Frontends, through independent components.
 
+![](https://miro.medium.com/max/2000/1*zGUo5gijshzi_iKEgxg1Ow.png)
+
 [Read Full Article](https://blog.bitsrc.io/microservices-are-dead-long-live-miniservices-40e4ccf4741)`,
   },
   {
@@ -255,6 +257,14 @@ OSS Tools like [Bit](https://bit.dev/) offer a great developer experience for bu
 But age-old wisdom says that there are things in life that must be taken at a slow pace. They might be difficult to learn.
 
 But when you master them, you command a position no one can take away. When done right, such things create drastically positive changes in your life.
+
+Look at the following diagram:
+
+![](https://miro.medium.com/max/2400/0*DlMHBPXo9ubG6tM3.png)
+
+We are talking about the green line.
+
+I describe 5 things that can create exponential growth in your programming career.
 
 ## #1: Tinkering with Toys:
 
