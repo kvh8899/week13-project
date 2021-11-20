@@ -83,15 +83,17 @@ router.post(
 router.get(
   "/:storyId(\\d+)",
   restoreUser,
+  csrfProtection,
   asyncHandler(async (req, res) => {
     const { storyId } = req.params;
 
     const story = await Post.findByPk(storyId, {
       include: [
-        { model: Comment, include: [CommentLike, User] },
+        { model: Comment, include: [CommentLike, User]},
         PostLike,
         { model: User, include: [{ model: User, as: "Followers" }] },
       ],
+      order: [[Comment,'createdAt','DESC']]
     });
 
     if (!story) {
@@ -116,11 +118,11 @@ router.get(
           userId: res.locals.user.id,
         },
       });
-    }
-
+    } 
     const storyHtml = converter.makeHtml(story.mainText);
 
     res.render("story", {
+      csrfToken: req.csrfToken(),
       story: {
         id: story.id,
         heading: story.heading,
@@ -141,5 +143,17 @@ router.get(
     });
   })
 );
-
+//router to create a comment
+router.post('/:id(\\d+)/comment',restoreUser, csrfProtection, asyncHandler(async(req,res) => {
+  if(!res.locals.user){
+      res.redirect('/login');
+  }else{
+    await Comment.create({
+        userId: res.locals.user.id,
+        postId: req.params.id,
+        content: req.body.commentBox
+    })
+    res.redirect('/stories/' + `${req.params.id}#comments`);
+  }
+}));
 module.exports = router;

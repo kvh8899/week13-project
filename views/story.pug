@@ -63,12 +63,13 @@ block content
           h2 Responses (#{comments.length})
           div
             i.fa-solid.fa-xmark.modal-close
-        form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST")
-          textarea#story-comment-input.comments-input(placeholder="What are your thoughts?")
+        form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
+          input(type="hidden" name="_csrf" value=csrfToken)
+          textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?")
           div.comment-input-actions
             div
               button.button.text.comment-cancel Cancel
-              button.button.contained.rounded.comment-respond Respond
+              button.button.contained.rounded.comment-respond(form='commForm') Respond
         .divider
         .comments-container
           each comment in comments
@@ -79,8 +80,8 @@ block content
                   .comment-details
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
-                form(action=`/comments/${comment.id}/delete` method="POST")
-                  button.button.rounded.icon-button.delete-comment
+                if locals.user && locals.user.id === comment.User.id 
+                  button.button.rounded.icon-button.delete-comment(data-comment-id=comment.id listener='false')
                     i.fa-solid.fa-trash
               .comment-body=comment.content
               .comment-bottom
