@@ -175,7 +175,8 @@ pre code {
   display: flex;
 }
 
-.story-footer a {
+.story-footer a,
+.post-sidebar a {
   cursor: pointer;
 }
 
@@ -191,7 +192,8 @@ pre code {
 }
 
 .story-footer .likes i,
-.comment-bottom i {
+.comment-bottom i,
+.post-sidebar .post-actions i {
   font-size: 25px;
   padding-right: 8px;
 }
@@ -202,11 +204,11 @@ pre code {
   transform: scale(-1, 1);
 }
 
-#like-post[data-liked] i,
+.like-post[data-liked] i,
 .like-comment[data-liked] i {
   color: #1a8917;
 }
-#like-post[data-liked] i:hover,
+.like-post[data-liked] i:hover,
 .like-comment[data-liked] i:hover {
   color: #0f730c;
 }
@@ -322,6 +324,54 @@ footer nav > a:last-of-type {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+.post-sidebar {
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  transform: translateY(187px);
+  transition: opacity 200ms;
+  width: 100%;
+}
+
+.post-sidebar-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 197px;
+}
+
+.post-sidebar .sidebar-author {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 20px;
+}
+
+.post-sidebar .sidebar-author .story-author {
+  color: #292929;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  word-break: break-word;
+}
+
+.post-sidebar .sidebar-author .author-actions {
+  display: flex;
+  padding-top: 20px;
+}
+
+.post-sidebar .post-actions {
+  color: #292929;
+  display: flex;
+  fill: #292929;
+  font-size: 14px;
+  justify-content: space-evenly;
+  padding-top: 32px;
+}
+
+@media (max-width: 1240px) {
+  .post-sidebar {
+    display: none;
   }
 }
 

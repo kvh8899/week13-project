@@ -38,11 +38,11 @@ block content
         div.story-footer
           div.left
             div.likes
-              a#like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
+              a.like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
                 i.fa-solid.fa-hands-clapping
-              a#view-likes.post-likes-count #{likes.length}
+              a.view-likes.post-likes-count #{likes.length}
             div.comments
-              a#show-comments
+              a.show-comments
                 i.fa-solid.fa-comment
                 span #{comments.length}
     footer
@@ -53,6 +53,24 @@ block content
           nav
             a.inherit-color.sans-serif(href="/about") About
             a.inherit-color.sans-serif(href="/stories/new") Write
+  .post-sidebar
+    .container-wrapper
+      .wide-container
+        .post-sidebar-content-wrapper.sans-serif
+          .sidebar-author
+            .story-author=story.user.username
+            .author-actions
+              button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+                | #{userFollow.id ? "Unfollow" : "Follow"}
+          .post-actions
+            div.likes
+              a.like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
+                i.fa-solid.fa-hands-clapping
+              a.view-likes #{likes.length}
+            div.comments
+              a.show-comments
+                i.fa-solid.fa-comment
+                span #{comments.length}
 
   //- Comments Modal
   .modal-root.comments.hidden
