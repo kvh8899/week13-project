@@ -97,6 +97,10 @@ main h2 {
   margin-bottom: -0.46em;
 }
 
+#story-body img {
+  width: 100%;
+}
+
 #story-body p,
 #story-body ol,
 #story-body ul {
