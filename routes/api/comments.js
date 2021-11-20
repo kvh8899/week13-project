@@ -25,7 +25,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
     }
 
-    res.json(likedComment);
+    res.status(201).json(likedComment);
 
    
 
@@ -48,7 +48,7 @@ router.delete('/comments/likes/:id', asyncHandler(async(req, res) => {
             }
         })
     }
-        res.json({comment: "deleted"})
+        res.json({message: "Comment deleted"});
         
 }));
 

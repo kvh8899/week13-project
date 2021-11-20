@@ -23,9 +23,9 @@ router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next
         postId: req.params.id
     })
     }
-    //res.send(req.body);
+    
 
-    res.json(likedPost);
+    res.status(201).json(likedPost);
 
 
 }));//works

@@ -17,7 +17,7 @@ router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, n
         followerId: req.params.id
     })
   
-    res.json({message: 'Success'});
+    res.status(201).json({message: 'Success'});
 
 }));
 //works
