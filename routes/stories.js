@@ -144,6 +144,93 @@ router.get(
   })
 );
 
+router.get(
+  "/:storyId(\\d+)/edit",
+  requireAuth,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const { storyId } = req.params;
+
+    const story = await Post.findByPk(storyId);
+
+    if (!story) {
+      throw createError(404);
+    }
+
+    res.render("create-story", {
+      csrfToken: req.csrfToken(),
+      editing: true,
+      story,
+    });
+  })
+);
+
+router.post(
+  "/:storyId(\\d+)/edit",
+  requireAuth,
+  csrfProtection,
+  storyValidators,
+  handleValidationErrors,
+  asyncHandler(async (req, res) => {
+    const { storyId } = req.params;
+    const { heading, subText, headerImage, mainText } = req.body;
+
+    const story = await Post.findByPk(storyId);
+
+    if (!story) {
+      throw createError(404);
+    }
+
+    if (res.locals.errors) {
+      return res.render("create-story", {
+        csrfToken: req.csrfToken(),
+        editing: true,
+        story: {
+          id: storyId,
+          heading,
+          subText,
+          headerImage,
+          mainText,
+        },
+      });
+    }
+
+    console.log(story);
+
+    await story.update({
+      heading,
+      subText: subText || null,
+      headerImage: headerImage || null,
+      mainText,
+    });
+
+    res.redirect(`/stories/${story.id}`);
+  })
+);
+
+router.post(
+  "/:storyId(\\d+)/delete",
+  requireAuth,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const { storyId } = req.params;
+
+    const story = await Post.findByPk(storyId);
+
+    if (!story) {
+      throw createError(404);
+    }
+
+    if (story.userId !== res.locals.user.id) {
+      throw createError(401);
+    }
+
+    await story.destroy();
+
+    res.redirect("/");
+  })
+);
+
 //router to create a comment
 router.post(
   "/:id(\\d+)/comment",

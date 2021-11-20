@@ -166,8 +166,10 @@ pre code {
 }
 
 .story-footer {
-  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 8px;
+  padding-top: 16px;
 }
 
 .story-footer .left {
