@@ -6,7 +6,7 @@ mixin storyGridItem(post, postNum)
       div(class='author')
         div(class="profile")
           img(class='profpic' src="/images/defaultavatar.jpeg" alt="P")
-          p.auth-name=post.User.username
+          p.auth-name.sans-serif=post.User.username
         a(href='/stories/' + post.id class='heading')
           h2=post.heading
         p.meta-data.sans-serif= post.createdAt.toLocaleDateString("en-US", { month: "short", day: "numeric" })
@@ -18,7 +18,7 @@ mixin detailedStoryGridItem(post)
       div(class='author')
         div(class="profile")
           img(class='profpic' src="/images/defaultavatar.jpeg" alt="P")
-          p(class='auth-name')=post.User.username
+          p.auth-name.sans-serif=post.User.username
         a.headings-wrapper(href='/stories/' + post.id)
           h2=post.heading
           h3=post.subText
