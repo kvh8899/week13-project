@@ -33,6 +33,19 @@ function formatTimeSinceString(interval, singularTimeString) {
   return `${roundedAmount} ${singularTimeString} ago`;
 }
 
+/**
+ * Gets a random date between two dates provided
+ * @param {Date} start
+ * @param {Date} end
+ * @returns a random date between start and end
+ */
+function randomDate(start, end) {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+}
+
 module.exports = {
   formatTimeSince,
+  randomDate,
 };
