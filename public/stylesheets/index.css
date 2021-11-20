@@ -318,14 +318,14 @@ nav .login.button {
       color:black;
       border-bottom:3px solid black;
       text-align:left;
-      width:100%;
+      width:725px;
   }
   .snbOff{
     font-size:15px;
     color:grey;
     border-bottom:3px solid grey;
     text-align:left;
-    width:100%;
+    width:725px;
 }
 .reco-content{
     display:none;
