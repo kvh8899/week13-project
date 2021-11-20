@@ -3,6 +3,7 @@ import {constructPost} from './utils.js'
         /*
             navigation for following and recommended stories
         */
+        document.querySelector('.follow-content').style.display = 'block';
         function changeActiveBtn(e,btnName){
                 if(e.target.classList.contains('snbOff')){
                     e.target.classList.remove('snbOff');
@@ -43,17 +44,24 @@ import {constructPost} from './utils.js'
     })
      //Infinite scroll
      const reco = document.querySelector('.reco-content');
+     const foll = document.querySelector('.follow-content');
      const bottom = document.querySelector('.bott');
      const bottomObserver = new IntersectionObserver( async (entries,observer) => {
         let url = '/api/stories'
+        let follUrl = '/api/stories/following'
         let getPosts;
         //prevent fetch unless tab is open
         if(reco.style.display === 'block'){
             getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+        }else if(foll.style.display === 'block'){
+            getPosts =  await fetch(follUrl).then(res => res.json()).then(res => res);
         }
         entries.forEach(entry => {
-            if(entry.isIntersecting === true && reco.style.display === 'block'){
+            
+            if(entry.isIntersecting && reco.style.display === 'block'){
                 constructPost(getPosts,'.pContainer');
+            }else if(entry.isIntersecting && foll.style.display === 'block'){
+                constructPost(getPosts,'.follow-content');
             }
         })
     })

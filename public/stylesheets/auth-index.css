@@ -8,10 +8,14 @@
   padding: 0;
 }
 
-.reco-content, .follow-content {
+.reco-content{
+  display:none;
   margin-top: 16px;
 }
-
+.follow-content{
+  margin-top:16px;
+  display:block;
+}
 .story-grid-story {
   margin-bottom: 32px;
 }
