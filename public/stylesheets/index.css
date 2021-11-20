@@ -264,6 +264,8 @@ nav .login.button {
   .tag-grid{
       border-bottom: 1px solid lightgrey;
       padding-bottom:25px;
+      display:flex;
+      justify-content:center;
   }
   .tag-button{
       color:rgb(141, 141, 141);
