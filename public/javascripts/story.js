@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupFollowButton() {
   const followButtons = document.querySelectorAll(".follow-button");
+  const followCount = document.querySelectorAll(".followers-count");
 
   followButtons.forEach((followButton) => {
     let isFetching = false;
@@ -40,12 +41,18 @@ function setupFollowButton() {
         const resData = await res.json();
 
         if (resData && !resData.errors) {
-          // Success!
-          return;
+          if (res.status === 200) {
+            followCount.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) - 1;
+            });
+          } else if (res.status === 201) {
+            followCount.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) + 1;
+            });
+          }
         }
-
-        // TODO: How should errors be handled?
       } catch (error) {
+        // TODO: How should errors be handled?
       } finally {
         isFetching = false;
       }
@@ -55,6 +62,7 @@ function setupFollowButton() {
 
 function setupLikePostButton() {
   const likeButton = document.querySelector("#like-post");
+  const likeCounts = document.querySelector(".post-likes-count");
 
   let isFetching = false;
 
@@ -81,12 +89,18 @@ function setupLikePostButton() {
       const resData = await res.json();
 
       if (resData && !resData.errors) {
-        // Success!
-        return;
+        if (res.status === 200) {
+          likeCounts.forEach((el) => {
+            el.innerText = parseInt(el.innerText, 10) - 1;
+          });
+        } else if (res.status === 201) {
+          likeCounts.forEach((el) => {
+            el.innerText = parseInt(el.innerText, 10) + 1;
+          });
+        }
       }
-
-      // TODO: How should errors be handled?
     } catch (error) {
+      // TODO: How should errors be handled?
     } finally {
       isFetching = false;
     }
@@ -161,6 +175,11 @@ function setupCommentsActions() {
     if (!commentEl) {
       return;
     }
+    const commentLikeEl = commentEl.querySelector(".comment-like-count");
+    if (!commentLikeEl) {
+      return;
+    }
+
     const commentId = commentEl.dataset.commentId;
     const likeId = likeButton.dataset.likeId;
 
@@ -186,12 +205,14 @@ function setupCommentsActions() {
         const resData = await res.json();
 
         if (resData && !resData.errors) {
-          // Success!
-          return;
+          if (res.status === 200) {
+            commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) - 1;
+          } else if (res.status === 201) {
+            commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) + 1;
+          }
         }
-
-        // TODO: How should errors be handled?
       } catch (error) {
+        // TODO: How should errors be handled?
       } finally {
         isFetching = false;
       }
