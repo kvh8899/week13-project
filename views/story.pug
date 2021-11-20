@@ -45,6 +45,9 @@ block content
               a#show-comments
                 i.fa-solid.fa-comment
                 span #{comments.length}
+          div.right
+            a.button.icon-button.rounded(href=`/stories/${story.id}/edit`)
+              i.fa-solid.fa-pen-to-square
     footer
       .wide-container
         .content-wrapper
