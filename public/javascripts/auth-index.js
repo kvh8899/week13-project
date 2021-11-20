@@ -1,3 +1,4 @@
+import {constructPost} from './utils.js'
     document.addEventListener('DOMContentLoaded',(e) => {
         /*
             navigation for following and recommended stories
@@ -40,3 +41,20 @@
             document.querySelector('.empty-follow').style.display = 'none';
         }
     })
+     //Infinite scroll
+     const reco = document.querySelector('.reco-content');
+     const bottom = document.querySelector('.bott');
+     const bottomObserver = new IntersectionObserver( async (entries,observer) => {
+        let url = '/api/stories'
+        let getPosts =  await fetch(url).then(res => res.json()).then(res => res);
+        entries.forEach(entry => {
+            console.log(reco.style.display);
+            if(entry.isIntersecting === true && reco.style.display === 'block'){
+                constructPost(getPosts,'.pContainer');
+            }
+        })
+    })
+    /*
+        makes sure the element being observed exists
+    */
+    if(bottom) bottomObserver.observe(bottom);
