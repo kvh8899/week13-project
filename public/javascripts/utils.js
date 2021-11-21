@@ -86,7 +86,6 @@ export function constructPost(getPosts,containerClass){
 
           storyGridStory.appendChild(storyLink)
 
-          console.log(post.headerImage)
           if(post.headerImage){
             const listImg = document.createElement("img");
             listImg.src = post.headerImage;

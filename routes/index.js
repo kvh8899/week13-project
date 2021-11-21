@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
+const { Op } = require("sequelize");
 /* GET home page. */
 router.get('/', restoreUser,async function(req, res, next) {
   req.session.offset = 6;
@@ -16,32 +17,33 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    const getUsers = await User.findAll({
-        where:{
-          id:res.locals.user.id
-        },
-        include:{
+    const getFollowing = await Post.findAll({
+      include:{
           model: User,
-          as: 'Following',
-          include:Post
-        },
-    });
-    let followingArr = [];
-    getUsers[0].Following.forEach(e => {
-      e.Posts.forEach(ex => {
-        ex.User = e;
-      })
-      followingArr = followingArr.concat(e.Posts);
-    });
+          include:{
+              model:User,
+              as:"Followers",
+              where:{
+                  id:res.locals.user.id
+              }
+          }
+      },
+      order:[['createdAt','DESC']],
+      limit:6,
+  })
     res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
-      following:followingArr
+      following:getFollowing
     });
   }
 
   
 });
 
+router.get('/reset',(req,res) => {
+  req.session.offset = 0;
+  res.send('Reset');
+})
 module.exports = router;
 

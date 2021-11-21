@@ -30,10 +30,11 @@ router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) =>
                 }
             }
         },
+        limit,
+        offset:req.session.offset,
+        order:[['createdAt','DESC']]
     })
-    let getPosts = getFollowing.filter(e => {
-        if(e.User) return true;
-    })
-    res.json(getPosts);
+    req.session.offset += 6;
+    res.json(getFollowing);
 }))
 module.exports = router;

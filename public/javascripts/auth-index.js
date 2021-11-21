@@ -12,13 +12,17 @@ import {constructPost} from './utils.js'
                     document.querySelector(btnName).classList.add('snbOff');
                 }
         } 
-        document.querySelector('.snButton1').addEventListener('click',(e) => {
+        document.querySelector('.snButton1').addEventListener('click',async(e) => {
+            e.preventDefault();
             changeActiveBtn(e,'.snButton2');
+            await fetch('/reset');
             document.querySelector('.reco-content').style.display = 'none';
             document.querySelector('.follow-content').style.display = 'block';
         });
-        document.querySelector('.snButton2').addEventListener('click',(e) => {
+        document.querySelector('.snButton2').addEventListener('click',async(e) => {
+            e.preventDefault();
             changeActiveBtn(e,'.snButton1');
+            await fetch('/reset');
             document.querySelector('.reco-content').style.display = 'block';
             document.querySelector('.follow-content').style.display = 'none';
         });
@@ -55,11 +59,14 @@ import {constructPost} from './utils.js'
         }else if(foll.style.display === 'block'){
             url = '/api/stories/following'
         }
-        getPosts =  await fetch(url).then(res => res.json())
-        entries.forEach(entry => {
+       
+        entries.forEach(async(entry) => {
+            
             if(entry.isIntersecting && reco.style.display === 'block'){
+                getPosts =  await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.pContainer');
             }else if(entry.isIntersecting && foll.style.display === 'block'){
+                getPosts =  await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.follow-content');
             }
         })
