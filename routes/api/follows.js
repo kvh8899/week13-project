@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { restoreUser } = require('../../auth');
 const createError = require('http-errors');
+const { restoreUser } = require('../../auth');
 const { sequelize, Follow } = require("../../db/models");
 const {asyncHandler} = require('../utils');
 
@@ -21,14 +22,14 @@ router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) =
             /* Return error 401 if
                    user is not authenticated, or
                    user is not the follower */
-            return next(createError(401));
+            res.status(401);
 
-         } else if (res.locals.user.id === follow.followId && res.locals.authenticated) {
+         } else if (res.locals.user.id === follow.followerId && res.locals.authenticated) {
         
             /* Destroy follow if
                    user is authenticated, and
                    user is follower */
-            await follow.destroy();
+            await follow.destroy()
             
          }
 

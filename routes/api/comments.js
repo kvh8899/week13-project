@@ -13,7 +13,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, nex
         /* Return error 401, if
                user is not authenticated, or
                user is not liker */
-        return next(createError(401)); 
+        res.status(401); 
 
     } else if (res.locals.authenticated ) {
         
@@ -39,7 +39,7 @@ router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res, n
         /* Return error 404, if 
            there is no like object */
         if (!like) {
-            return next(createError(404)); 
+            res.status(404); 
         };
     
         if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
@@ -47,13 +47,13 @@ router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res, n
             /* Return error 401 if
                    user is not authenticated, or
                    current user is not the liker */
-            return next(createError(401)); 
+            res.status(401); 
 
         } else if (res.locals.user.id === like.userId && res.locals.authenticated ) {
                 /* Destroy like if
                     user is authenticated, and
                     current user is the liker. */
-                await like.destroy();
+               await like.destroy()
         }
         /* Respond with json message,
            "Comment like deleted" */  
