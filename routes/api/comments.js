@@ -7,13 +7,14 @@ const router = express.Router();
 const { sequelize, CommentLike } = require("../../db/models");
 
 /* Like a comment */
-router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {
-
+router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
+    const like = await CommentLike.findByPk(req.params.id);
+    
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         /* Return error 401, if
                user is not authenticated, or
                user is not liker */
-        return next(createError(401)); 
+        res.status(401); 
 
     } else if (res.locals.authenticated ) {
         
@@ -32,7 +33,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
 
 /* Unlike a comment */
-router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) => {
+router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
 
         /* Initialize like object */
         const like = await CommentLike.findByPk(req.params.id);
@@ -54,7 +55,7 @@ router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) =
                 /* Destroy like if
                     user is authenticated, and
                     current user is the liker. */
-               await like.destroy({where: {id:req.params.id}})
+               await like.destroy()
         }
         /* Respond with json message,
            "Comment like deleted" */  

@@ -5,12 +5,10 @@ const restoreUser = async (req, res, next) => {
     res.locals.authenticated = false;
     return next();
   }
-
   const { userId } = req.session.auth;
 
   try {
     const user = await User.findByPk(userId);
-
     if (user) {
       res.locals.authenticated = true;
       res.locals.user = user;
@@ -31,7 +29,15 @@ const restoreUser = async (req, res, next) => {
  * @param {*} user
  */
 const loginUser = (req, user) => {
-  req.session.auth = { userId: user.id };
+  return new Promise((resolve, reject) => {
+    req.session.auth = { userId: user.id };
+    req.session.save((err) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve();
+    })
+  })
 };
 
 const redirectUnauthedToLogin = async (req, res, next) => {

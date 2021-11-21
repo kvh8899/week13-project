@@ -23,17 +23,11 @@ router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next
                 userId: res.locals.user.id,
                 postId: req.params.id
             })
+            /* Set 201 status code for response, and
+               send newPostLike as json response. */
+            res.status(201).json(postLike);
         }
-
-        /* Initialize new post like variable to pass as json response */
-        const newPostLike = await PostLike.findByPk(req.params.id);
-
-        /* User has been authenticated, and
-           a like has been created.
-           Set 201 status code for response, and
-           send newPostLike as json response. */
-        res.status(201).json(newPostLike);
-
+        
     }));
 
 /* Unlike a story */
@@ -59,11 +53,7 @@ router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, ne
                 /* Destroy like if
                     user is authenticated, and
                     current user is the liker. */
-                like.destroy({
-                    where: {
-                        id: req.params.id
-                    }
-                })
+                await like.destroy();
         }
         /* Respond with json message,
            "Story like deleted" */

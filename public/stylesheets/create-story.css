@@ -1,71 +1,95 @@
 .topbar {
-    position: relative;
-    z-index: 500;
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  position: static;
 }
 
-#form { 
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    left: 50%;
-    padding-bottom: 20px;
-    text-align: left;
-    /*box-shadow: 0px 0px 8px;*/
-    padding: 44px 56px;
-    width:100%;
-    font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif;
+#form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  padding-bottom: 20px;
+  padding: 44px 56px;
+  text-align: left;
+  width: 100%;
 }
-.write-Content{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
+.write-Content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    display: none;
+  display: none;
 }
 
-input, textarea {
-  text-align: left;
+input,
+textarea {
+  background: transparent;
   border: 0;
   outline: 0;
-  background: transparent;
+  text-align: left;
   width: 700px;
-  font-family: medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif;
 }
 
-#heading {
-    font-size: 42px;
+#subText,
+#headerImage,
+#mainText {
+  margin-top: 12px;
 }
 
-#subText, #headerImage, #mainText {
-    font-size: 20px;
-    margin-top: 10px;
+#headerImage {
+  font-size: 14px;
 }
 
 #mainText {
+  font-size: 16px;
+  letter-spacing: -0.004em;
+  resize: none;
+  height: 0;
+}
+
+a {
+  text-decoration: underline;
+}
+
+#mainText:focus + .input-helper {
+  opacity: 1;
+  transition: all 0.25s linear 0s;
+  visibility: visible;
+}
+
+.input-helper {
+  color: #757575;
+  opacity: 0;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-top: 4px;
+  padding-left: 8px;
+  transition: all 0.25s linear 0.5s;
+  visibility: hidden;
+}
+
+input:focus,
+textarea:focus {
+  /* The first shadow should match the background of the page */
+  box-shadow: -6px 0 0 #fff, -8px 0 0 #e6e6e6;
+}
+
+@media (min-width: 552px) {
+  #mainText {
+    font-size: 18px;
+    letter-spacing: -0.003em;
+    line-height: 28px;
+  }
+}
+
+@media screen and (min-width: 728px) {
+  #mainText {
     font-size: 21px;
-    resize: none;
-}
-
-.pstBtn {
-    padding: 7px 16px 9px;
-    color:white;
-    font: 14px;
-    font-weight: 400;
-    border-color: #1a8917;
-    border-radius: 99em;
-    background-color: #1a8917;
-    font-size: 15px;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    width: 226px;
-    /*margin-top: 12px;*/
-    /*margin-bottom: 15px;*/
-    cursor: pointer;
-}
-
-p {
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    /*font-style: italic;*/
-    /*font-weight: lighter;*/
+    line-height: 32px;
+  }
 }

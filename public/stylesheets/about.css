@@ -1,0 +1,45 @@
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.tagline-wrapper {
+  border-bottom: 1px solid #000;
+  padding: 105px 0;
+}
+
+.tagline {
+  color: #000;
+  font-size: 4.3vw;
+  font-weight: 400;
+  letter-spacing: -0.35vw;
+  line-height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.dual-col-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  column-gap: 1vw;
+}
+
+.dual-col {
+  align-items: center;
+  border-bottom: 1px solid #000;
+  display: flex;
+  font-size: 28px;
+  height: 80px;
+  justify-content: space-between;
+  line-height: 100%;
+  padding: 10px 0;
+}
+
+.project-repo {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+  font-style: normal;
+  margin-top: 20px;
+}

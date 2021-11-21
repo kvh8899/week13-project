@@ -1,0 +1,14 @@
+div(class='dropdown')
+  div(class='outernamediv')
+    button
+      img(src="/images/defaultavatar.jpeg" class="profpic" alt="")
+    div(class='namediv')
+      p(class='profname') #{locals.user.username}
+      p(class='profname') #{locals.user.email}
+  div(class='mid-dropdown')
+    form(method='get' action='/')
+      button(href="" class='dselect') Stories
+    form(method='post' action='/logout')
+      button(class='dselect') Sign Out
+a(class="profileMenu")
+  img(src="/images/defaultavatar.jpeg" class="metabar-menu profpic" alt="")
