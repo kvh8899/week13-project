@@ -38,16 +38,6 @@ router.get('/following',restoreUser, asyncHandler(async(req,res,next) => {
     res.json(getPosts);
 }))
 
-router.get('/:storyId(\\d+)/likes',
-asyncHandler(async(req,res,next) => {
-
-    const getFollows = await PostLike.findAll({
-        where:{
-            postId:req.params.storyId
-        }
-    });
-    res.json(getFollows);
-}));
 
 //like a post
 router.post('/:storyId(\\d+)/likes',
