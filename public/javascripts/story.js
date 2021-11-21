@@ -67,9 +67,9 @@ function setupLikePostButton() {
 
     const likeId = likeButton.dataset.likeId;
     const storyId = likeButton.dataset.storyId;
-
     isFetching = true;
     try {
+      
       const url = likeId
         ? `/api/stories/likes/${likeId}`
         : `/api/stories/${storyId}/likes`;

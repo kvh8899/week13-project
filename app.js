@@ -12,7 +12,7 @@ const storiesRouter = require('./routes/stories');
 const usersRouter = require('./routes/users');
 const { sessionSecret } = require('./config');
 const commRouter = require('./routes/comments');
-const apiStories = require('./routes/api/stories')
+const api = require('./routes/api');
 const app = express();
 // view engine setup
 app.set('view engine', 'pug');
@@ -43,7 +43,8 @@ app.use('/stories', storiesRouter);
 app.use('/about', aboutRouter);
 app.use('/comments',commRouter);
 app.use(usersRouter);
-app.use('/api',apiStories);
+app.use('/api',api);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
