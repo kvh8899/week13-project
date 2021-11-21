@@ -2,19 +2,14 @@
 
 Website: [https://codexappaa.herokuapp.com/](https://codexappaa.herokuapp.com/)
 
-## Summary
+## Technologies Used
 
-CodeX is a multi-page application inspired by Medium, built using express js and pug architecture. Codex allows users to:
-- Create an account
-- Log in with email / Log out
-- Add and delete stories
-- Like, unlike, comment, and delete comment on stories
-- Follow and unfollow users
-- Like and unlike comments
-- etc.
+- JavaScript
+- Express
+- PUG
+- CSS
 
-
-### Features
+## Features
 
 - Website home page with stories
 - User registration / login (with a demo account available)
@@ -26,21 +21,9 @@ CodeX is a multi-page application inspired by Medium, built using express js and
 - A story creation page allowing authenciated users to post new stories
   - Supports markdown in the body of the story
 
-## Technologies Used
-
-- JavaScript
-- Express
-- PUG
-- CSS
-
-## To-Do's and Future Features
-
-- User profile page where one can view list of stories and list of followers.
-
-
 ## Contributors
 
 - [Justin Russo](https://github.com/justinrusso)
 - [Ken Julian](https://github.com/kenjulian)
 - [Kyle Huang](https://github.com/kvh8899)
-- [Ricky Thang](https://github.com/rickythewriter)
+- [Ricky Tang](https://github.com/rickythewriter)
