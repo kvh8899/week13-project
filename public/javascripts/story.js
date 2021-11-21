@@ -42,7 +42,7 @@ function setupFollowButton() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
-            followButtons.forEach(el => {
+            followButtons.forEach((el) => {
               el.innerText = "Follow";
               delete el.dataset.followId;
             });
@@ -50,7 +50,7 @@ function setupFollowButton() {
               el.innerText = parseInt(el.innerText, 10) - 1;
             });
           } else if (res.status === 201) {
-            followButtons.forEach(el => {
+            followButtons.forEach((el) => {
               el.innerText = "Unfollow";
               el.dataset.followId = resData.id;
             });
@@ -98,7 +98,7 @@ function setupLikePostButton() {
 
       if (resData && !resData.errors) {
         if (res.status === 200) {
-          likeButton.dataset.liked = false;
+          delete likeButton.dataset.liked;
           delete likeButton.dataset.likeId;
           likeCounts.forEach((el) => {
             el.innerText = parseInt(el.innerText, 10) - 1;
@@ -214,9 +214,6 @@ function setupCommentsActions() {
       return;
     }
 
-    const commentId = commentEl.dataset.commentId;
-    const likeId = likeButton.dataset.likeId;
-
     let isFetching = false;
 
     likeButton.addEventListener("click", async (event) => {
@@ -225,6 +222,9 @@ function setupCommentsActions() {
       if (isFetching) {
         return;
       }
+
+      const commentId = commentEl.dataset.commentId;
+      const likeId = likeButton.dataset.likeId;
 
       isFetching = true;
       try {
@@ -240,7 +240,7 @@ function setupCommentsActions() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
-            likeButton.dataset.liked = false;
+            delete likeButton.dataset.liked;
             delete likeButton.dataset.likeId;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) - 1;
           } else if (res.status === 201) {
