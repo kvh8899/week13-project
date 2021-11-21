@@ -16,7 +16,7 @@ const apiStories = require('./routes/api/stories')
 const app = express();
 // view engine setup
 app.set('view engine', 'pug');
-
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,7 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
-
+app.use((req,res,next) => {
+  //set cookie for 24 hours
+  //overwrite: true allows cookie to be updated
+    res.cookie('followOffset',6,{
+      maxAge: 86400 * 1000,
+      overwrite:true
+    });
+    next();
+})
 app.use(
   session({
     secret: sessionSecret,

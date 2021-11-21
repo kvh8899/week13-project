@@ -31,10 +31,10 @@ router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) =>
             }
         },
         limit,
-        offset:req.session.offset,
+        offset:req.cookies['followOffset'],
         order:[['createdAt','DESC']]
     })
-    req.session.offset += 6;
+    res.cookie('followOffset',parseInt(req.cookies['followOffset']) + limit);
     res.json(getFollowing);
 }))
 module.exports = router;
