@@ -1,9 +1,11 @@
-const express = require("express");
-const { asyncHandler } = require("../utils");
-const { restoreUser } = require("../../auth");
 const createError = require("http-errors");
+const express = require("express");
+
+const { asyncHandler } = require("../utils");
+const { CommentLike } = require("../../db/models");
+const { restoreUser } = require("../../auth");
+
 const router = express.Router();
-const { sequelize, CommentLike } = require("../../db/models");
 
 /* Like a comment */
 router.post(

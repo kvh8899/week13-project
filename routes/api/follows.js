@@ -1,9 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const { restoreUser } = require("../../auth");
 const createError = require("http-errors");
-const { sequelize, Follow } = require("../../db/models");
+const express = require("express");
+
 const { asyncHandler } = require("../utils");
+const { Follow } = require("../../db/models");
+const { restoreUser } = require("../../auth");
+
+const router = express.Router();
 
 /* Delete a follower from a user */
 router.delete(

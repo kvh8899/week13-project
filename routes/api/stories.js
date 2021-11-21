@@ -1,9 +1,11 @@
-const express = require("express");
-const router = express.Router();
 const createError = require("http-errors");
+const express = require("express");
+
 const { asyncHandler } = require("../utils");
 const { PostLike } = require("../../db/models");
 const { restoreUser } = require("../../auth");
+
+const router = express.Router();
 
 /* Like a story */
 router.post(

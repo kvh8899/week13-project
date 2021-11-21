@@ -1,9 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const { restoreUser } = require("../../auth");
 const createError = require("http-errors");
+const express = require("express");
+
 const { asyncHandler } = require("../utils");
 const { Follow } = require("../../db/models");
+const { restoreUser } = require("../../auth");
+
+const router = express.Router();
 
 /* Add a follower to a user */
 router.post(
