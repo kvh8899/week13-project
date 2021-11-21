@@ -8,9 +8,8 @@ const { sequelize, CommentLike } = require("../../db/models");
 
 /* Like a comment */
 router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
-    const like = await CommentLike.findByPk(req.params.id);
-    
-    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
+
+    if (!res.locals.authenticated) {
         /* Return error 401, if
                user is not authenticated, or
                user is not liker */
@@ -23,12 +22,11 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, nex
                 userId: res.locals.user.id,
                 commentId: req.params.id
             })
-           /* Set status 201, and
-           respond with json, likedComment */ 
-           res.status(201).json(likedComment);
-        }
 
-        
+        /* Set status 201, and
+           respond with json, likedComment */
+        res.status(201).json(likedComment);
+        };
     }));
 
 

@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const createError = require('http-errors');
+const { restoreUser } = require('../../auth');
 const { sequelize, Follow } = require("../../db/models");
 const {asyncHandler} = require('../utils');
 
 /* Delete a follower from a user */
-router.delete('/follows/:id', asyncHandler(async (req, res, next) => {
+router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) => {
 
         /* Initialize follow object */
-        const follow = await Follow.findPk(req.params.id);
+        const follow = await Follow.findByPk(req.params.id);
 
         /* Return error 404, if 
            there is no follow object */
-        if (typeof follow === "undefined" ) {
+        if (!follow) {
             res.status(404); 
         };
 
