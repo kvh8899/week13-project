@@ -92,7 +92,7 @@ block content
                   - const userCommentLike = locals.user ? comment.CommentLikes.find(like => like.userId === locals.user.id) || {} : {};
                   a.like-comment(data-like-id=userCommentLike.id data-liked=!!userCommentLike.id)
                     i.fa-solid.fa-hands-clapping
-                  a.comment-like-count #{comment.CommentLikes.length}
+                  span.comment-like-count #{comment.CommentLikes.length}
 
 mixin commentForm(csrfToken, story)
   form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
