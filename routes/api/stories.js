@@ -3,6 +3,7 @@ const {Post, User,Follow,PostLike} = require('../../db/models');
 const {getRandomInt,asyncHandler} = require('../utils.js')
 const router = express.Router();
 const {restoreUser} = require('../../auth.js');
+const createError = require("http-errors");
 const limit = 6;
 const { Op } = require("sequelize");
 router.get('/', asyncHandler(async (req,res,next) => { 
@@ -54,7 +55,7 @@ restoreUser,
 asyncHandler(async(req,res,next) => {
     //if not logged in, redirect to login
     if(!res.locals.authenticated){
-        res.send(createError(401));
+        next(createError(401));
     }else{
         const postLike = await PostLike.create({
             userId: res.locals.user.id,
@@ -69,8 +70,7 @@ restoreUser,
 asyncHandler(async(req,res,next) => {
 
     if(!res.locals.authenticated){
-        res.status = 401
-        res.send(createError(401));
+        next(createError(401));
     }else{
         const likeDelete = 
         await PostLike.findByPk(req.params.likesId);
