@@ -98,8 +98,10 @@ block content
 mixin commentForm(csrfToken, story)
   form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
     input(type="hidden" name="_csrf" value=csrfToken)
-    textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?" class=`${locals.authenticated ? "" : "pointer"}`)
-    div.comment-input-actions
-      div
-        button.button.text.comment-cancel Cancel
-        button.button.contained.rounded.comment-respond(form='commForm') Respond
+    .grow-wrapper
+      textarea#story-comment-input.grow-textarea.comments-input.sans-serif(name='commentBox' placeholder="What are your thoughts?" class=`${locals.authenticated ? "" : "pointer"}` rows="1")
+      .grow-hidden.sans-serif
+      div.comment-input-actions
+        div
+          button.button.text.comment-cancel Cancel
+          button.button.contained.rounded.comment-respond(form='commForm') Respond
