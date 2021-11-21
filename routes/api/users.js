@@ -8,6 +8,7 @@ const router = express.Router();
 
 //add a follower to a user
 router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, next) => {
+    
     if (!res.locals.authenticated) {
         return next(createError(401)); 
      }
@@ -17,7 +18,7 @@ router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, n
         followerId: req.params.id
     })
   
-    res.status(201).json({message: 'Success'});
+    res.status(201).json({newFollower});
 
 }));
 
