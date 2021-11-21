@@ -25,15 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
-app.use((req,res,next) => {
-  //set cookie for 24 hours
-  //overwrite: true allows cookie to be updated
-    res.cookie('followOffset',6,{
-      maxAge: 86400 * 1000,
-      overwrite:true
-    });
-    next();
-})
+
 app.use(
   session({
     secret: sessionSecret,
