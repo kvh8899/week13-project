@@ -9,10 +9,8 @@ const { sequelize, CommentLike } = require("../../db/models");
 /* Like a comment */
 router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
 
-    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
-        /* Return error 401, if
-               user is not authenticated, or
-               user is not liker */
+    if (!res.locals.authenticated) {
+        /* Return error 401, if user is not authenticated */
         return next(createError(401)); 
 
     } else if (res.locals.authenticated ) {
