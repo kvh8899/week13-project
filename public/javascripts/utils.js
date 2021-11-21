@@ -81,12 +81,11 @@ export function constructPost(getPosts,containerClass){
           
           author.appendChild(date)
 
-          const storyLink = document.createElement("a");
-          storyLink.href = `/stories/${post.id}`;
-
-          storyGridStory.appendChild(storyLink)
 
           if(post.headerImage){
+            const storyLink = document.createElement("a");
+            storyLink.href = `/stories/${post.id}`;
+            storyGridStory.appendChild(storyLink)
             const listImg = document.createElement("img");
             listImg.src = post.headerImage;
             listImg.classList.add('listimg');
