@@ -488,6 +488,10 @@ footer nav > a:last-of-type {
   align-items: center;
 }
 
+.comment-bottom a {
+  cursor: pointer;
+}
+
 .comment-bottom i:hover {
   color: #757575;
 }
