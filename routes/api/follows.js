@@ -25,7 +25,7 @@ router.delete(
       /* Return error 401 if
         user is not authenticated, or
         user is not the follower */
-      res.status(401);
+      return next(createError(401));
     } else if (
       res.locals.user.id === follow.followerId &&
       res.locals.authenticated

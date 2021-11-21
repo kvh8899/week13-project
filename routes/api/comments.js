@@ -16,7 +16,7 @@ router.post(
       /* Return error 401, if
         user is not authenticated, or
         user is not liker */
-      res.status(401);
+        return next(createError(401));
     } else if (res.locals.authenticated) {
       /* Create comment like */
       const likedComment = await CommentLike.create({
@@ -42,14 +42,14 @@ router.delete(
     /* Return error 404, if 
       there is no like object */
     if (!like) {
-      res.status(404);
+      return next(createError(404));
     }
 
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
       /* Return error 401 if
         user is not authenticated, or
         current user is not the liker */
-      res.status(401);
+      return next(createError(401));
     } else if (res.locals.user.id === like.userId && res.locals.authenticated) {
       /* Destroy like if
         user is authenticated, and
