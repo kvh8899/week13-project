@@ -98,10 +98,14 @@ function setupLikePostButton() {
 
       if (resData && !resData.errors) {
         if (res.status === 200) {
+          likeButton.dataset.liked = false;
+          delete likeButton.dataset.likeId;
           likeCounts.forEach((el) => {
             el.innerText = parseInt(el.innerText, 10) - 1;
           });
         } else if (res.status === 201) {
+          likeButton.dataset.liked = true;
+          likeButton.dataset.likeId = resData.id;
           likeCounts.forEach((el) => {
             el.innerText = parseInt(el.innerText, 10) + 1;
           });
@@ -236,8 +240,12 @@ function setupCommentsActions() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
+            likeButton.dataset.liked = false;
+            delete likeButton.dataset.likeId;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) - 1;
           } else if (res.status === 201) {
+            likeButton.dataset.liked = true;
+            likeButton.dataset.likeId = resData.id;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) + 1;
           }
         }
