@@ -16,7 +16,7 @@ router.post(
       /* Return error 401, if
         user is not authenticated, or
         user is not liker */
-        return next(createError(401));
+      return next(createError(401));
     } else if (res.locals.authenticated) {
       /* Create comment like */
       const likedComment = await CommentLike.create({
