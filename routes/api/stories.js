@@ -3,37 +3,31 @@ const express = require("express");
 
 const { asyncHandler } = require("../utils");
 const { PostLike } = require("../../db/models");
-const { restoreUser } = require("../../auth");
+const { requireAuthApi } = require("../../auth");
 
 const router = express.Router();
 
 /* Like a story */
 router.post(
   "/stories/:id/likes",
-  restoreUser,
+  requireAuthApi,
   asyncHandler(async (req, res, next) => {
-    if (!res.locals.authenticated) {
-      /* If the user is not authenticated,
-        return a 401 error */
-      return next(createError(401));
-    } else if (res.locals.authenticated) {
-      /* If the user is authenticated,
+    /* If the user is authenticated,
         create a new like */
-      const postLike = await PostLike.create({
-        userId: res.locals.user.id,
-        postId: req.params.id,
-      });
-      /* Set 201 status code for response, and
+    const postLike = await PostLike.create({
+      userId: res.locals.user.id,
+      postId: req.params.id,
+    });
+    /* Set 201 status code for response, and
         send newPostLike as json response. */
-      res.status(201).json(postLike);
-    }
+    res.status(201).json(postLike);
   })
 );
 
 /* Unlike a story */
 router.delete(
   "/stories/likes/:id",
-  restoreUser,
+  requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Initialize like object */
     const like = await PostLike.findByPk(req.params.id);
@@ -44,12 +38,11 @@ router.delete(
       return next(createError(404));
     }
 
-    if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
+    if (res.locals.user.id !== like.userId) {
       /* Return error 401 if
-        user is not authenticated, or
         current user is not the liker */
       return next(createError(401));
-    } else if (res.locals.user.id === like.userId && res.locals.authenticated) {
+    } else if (res.locals.user.id === like.userId) {
       /* Destroy like if
         user is authenticated, and
         current user is the liker. */

@@ -3,14 +3,14 @@ const express = require("express");
 
 const { asyncHandler } = require("../utils");
 const { Follow } = require("../../db/models");
-const { restoreUser } = require("../../auth");
+const { requireAuthApi } = require("../../auth");
 
 const router = express.Router();
 
 /* Delete a follower from a user */
 router.delete(
   "/follows/:id",
-  restoreUser,
+  requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Initialize follow object */
     const follow = await Follow.findByPk(req.params.id);
@@ -21,15 +21,11 @@ router.delete(
       return next(createError(404));
     }
 
-    if (!res.locals.authenticated || res.locals.user.id !== follow.followerId) {
+    if (res.locals.user.id !== follow.followerId) {
       /* Return error 401 if
-        user is not authenticated, or
         user is not the follower */
       return next(createError(401));
-    } else if (
-      res.locals.user.id === follow.followerId &&
-      res.locals.authenticated
-    ) {
+    } else if (res.locals.user.id === follow.followerId) {
       /* Destroy follow if
         user is authenticated, and
         user is follower */

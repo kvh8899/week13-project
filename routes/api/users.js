@@ -3,21 +3,15 @@ const express = require("express");
 
 const { asyncHandler } = require("../utils");
 const { Follow } = require("../../db/models");
-const { restoreUser } = require("../../auth");
+const { requireAuthApi } = require("../../auth");
 
 const router = express.Router();
 
 /* Add a follower to a user */
 router.post(
   "/users/:id/followers",
-  restoreUser,
+  requireAuthApi,
   asyncHandler(async (req, res, next) => {
-    /* Return 401 error if
-      user is not authenticated. */
-    if (!res.locals.authenticated) {
-      return next(createError(401));
-    }
-
     /* Create a new follower */
     const newFollower = await Follow.create({
       userId: req.params.id,
