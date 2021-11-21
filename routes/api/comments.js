@@ -8,12 +8,6 @@ const { Op } = require("sequelize");
 const router = express.Router();
 
 
-//get a like from a comment
-router.get('/:commentId(\\d+)/likes', asyncHandler(async(req,res,next) => {
-    const likes = await CommentLike.findByPk(req.params.commentId);
-    res.json(likes);
-}));
-
 router.post('/:commentId(\\d+)/likes',restoreUser, asyncHandler(async(req,res,next) => {
     if(!res.locals.authenticated){
         next(createError(401));
