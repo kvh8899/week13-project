@@ -1,4 +1,4 @@
-import "./modal.js";
+import { closeModal, showModal } from "./modal.js";
 import { adjustTextAreaHeight, updateTextAreaHeight } from "./input-utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCommentsInput();
   setupCommentsActions();
   setupCloseComments();
+  setupDeleteComments();
 });
 
 function setupFollowButton() {
@@ -96,6 +97,9 @@ function setupShowCommentsButton() {
   const button = document.querySelector("#show-comments");
 
   const commentsModal = document.querySelector(".modal-root.comments");
+  const commentsModalContent = document.querySelector(
+    ".modal-root.comments .modal-content"
+  );
 
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -103,13 +107,32 @@ function setupShowCommentsButton() {
     location.hash = "comments";
   });
 
+  let hiddenTimeout;
+
   const onHashChange = () => {
     if (location.hash === "#comments") {
-      commentsModal.classList.remove("hidden");
-    } else {
-      commentsModal.classList.add("hidden");
+      showModal(commentsModal);
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      hiddenTimeout = setTimeout(() => {
+        commentsModalContent.classList.remove("hidden");
+      }, 50);
+    } else if (!commentsModal.classList.contains("hidden")) {
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      commentsModalContent.classList.add("hidden");
+      closeModal(commentsModal);
     }
   };
+
+  commentsModal.addEventListener("close", () => {
+    if (hiddenTimeout) {
+      clearTimeout(hiddenTimeout);
+    }
+    commentsModalContent.classList.add("hidden");
+  });
 
   window.addEventListener("hashchange", onHashChange);
   onHashChange();
@@ -196,4 +219,26 @@ function setupCommentsActions() {
       }
     });
   });
+}
+
+function setupDeleteComments(){
+  const deleteBtns = document.querySelectorAll('button.delete-comment');
+  let url;
+  deleteBtns.forEach(deleteBtn => {
+    deleteBtn.addEventListener('click', async(e) => {
+      url = '/comments/'+ e.currentTarget.dataset.commentId + '/delete';
+      try{
+        const comm = document.querySelector(`[data-comment-id='${e.currentTarget.dataset.commentId}']`);
+        document.querySelector('.comments-container').removeChild(comm);
+
+        await fetch(url,{method: 'DELETE'});
+
+        document.querySelector('a#show-comments span').innerText--;
+        document.querySelector('.comments-heading h2').innerText = 
+        `Responses (${document.querySelector('a#show-comments span').innerText})`;
+      }catch(e){
+        return;
+      }
+    });
+  })
 }

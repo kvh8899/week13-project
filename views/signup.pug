@@ -1,34 +1,27 @@
-extends layout.pug 
+extends layout.pug
+
+include mixins/utils.pug
+
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/login-signup.css")
   //- add page specific js
 
 block content 
-    
-    div(id= "form") 
+  .form-container-wrapper
+    .form-container
+      h2 Sign up with email
+      p.sans-serif Enter your email address to create an account.
+      form(action="/signup" method="post" class='authForm')
+        input(type="hidden" name="_csrf" value=csrfToken)
 
-        h2 Sign up with email
-        h4 Enter your email address to create an account.
+        +field("Your email", "email", user.email, "text", true)
+        +field("Your username", "username", user.username, "text", true)
+        +field("Your password", "password", '', "password", true)
+        +field("Confirm your password", "confirmPassword", '', "password", true)
 
-        form(action="/signup" method="post" class='authForm')
-            
-            input(type="hidden" name="_csrf" value=csrfToken)
-            label(for="email") Your email:
-            br
-            input(type="text" name="email" required)
-            br
-            label(for="username") Your username:
-            br
-            input(type="text" name="username" required)
-            br
-            label(for="password") Enter your password: 
-            br
-            input(type="password" name="password" required)
-            br
-            label(for="confirmPassword") Confirm your password: 
-            br
-            input(type="password" name="confirmPassword" required)
-            br
-            button Continue
-            a(href='/login') Already have an account?
+        button.button.contained.rounded.black Continue
+        div.sans-serif
+          p Already have an account? 
+            span.login-links
+              a.button.text(href="/login") Sign in
