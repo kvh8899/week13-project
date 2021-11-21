@@ -53,7 +53,7 @@ router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) =
                 /* Destroy like if
                     user is authenticated, and
                     current user is the liker. */
-                like.destroy({where: {id:req.params.id}})
+                await like.destroy();
         }
         /* Respond with json message,
            "Comment like deleted" */  
