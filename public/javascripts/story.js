@@ -153,10 +153,6 @@ function setupCommentsInput() {
   const input = document.querySelector("#story-comment-input");
 
   adjustTextAreaHeight(input);
-
-  window.addEventListener("hashchange", () => {
-    updateTextAreaHeight(input);
-  });
 }
 
 function setupCommentsActions() {
