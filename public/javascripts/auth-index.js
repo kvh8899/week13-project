@@ -46,14 +46,16 @@ import {constructPost} from './utils.js'
      const reco = document.querySelector('.reco-content');
      const foll = document.querySelector('.follow-content');
      const bottom = document.querySelector('.bott');
+     let offsetF = 6;
+     let offsetR = 6;
      const bottomObserver = new IntersectionObserver( async (entries,observer) => {
         let url;
         let getPosts;
         //prevent fetch unless tab is open
         if(reco.style.display === 'block'){
-            url = '/api/stories'
+            url = '/api/stories?offset=' + offsetR;
         }else if(foll.style.display === 'block'){
-            url = '/api/stories/following'
+            url = '/api/stories/following?offset=' + offsetF;
         }
        
         entries.forEach(async(entry) => {
@@ -63,12 +65,15 @@ import {constructPost} from './utils.js'
                 getPosts =  
                 await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.pContainer');
+                offsetR += 6;
             }else if(entry.isIntersecting && 
                 foll.style.display === 'block'){
                 getPosts =  
                 await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.follow-content');
+                offsetF += 6;
             }
+            
         })
     })
     /*

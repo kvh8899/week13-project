@@ -4,8 +4,8 @@ var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
 const { Op } = require("sequelize");
 /* GET home page. */
-router.get('/', restoreUser,async function(req, res, next) {
-  req.session.offset = 6;
+
+router.get('/',restoreUser,async function(req, res, next) {
   const sixUsers = await Post.findAll({
     include: User,
     limit:6,

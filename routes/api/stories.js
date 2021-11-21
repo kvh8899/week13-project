@@ -5,18 +5,18 @@ const router = express.Router();
 const {restoreUser} = require('../../auth.js');
 const limit = 6;
 const { Op } = require("sequelize");
-router.get('/stories', asyncHandler(async (req,res,next) => { 
-    // TODO write a query to get 6 random rows
+
+router.get('/stories',asyncHandler(async (req,res,next) => { 
     const getStories = await Post.findAll({
         include: User,
         limit,
         order:[['createdAt','DESC']],
-        offset:req.session.offset
+        offset:req.query.offset,
+        limit
     });
-    req.session.offset += 6;
     res.json(getStories);
 }));
-//TODO route to get people followed and their posts
+
 
 router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) => {
     const getFollowing = await Post.findAll({

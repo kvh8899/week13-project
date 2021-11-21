@@ -23,12 +23,15 @@ document.addEventListener("DOMContentLoaded",() => {
     },{
         threshold:0.25
     })
+    let offset = 6;
     //Infinite scroll
     const bottomObserver = new IntersectionObserver( async (entries,observer) => {
-        let url = '/api/stories';
+        
         entries.forEach(async(entry) => {
+            let url = '/api/stories?offset=' + offset;
             if(entry.isIntersecting ){
-                let getPosts =  await fetch(url).then(res => res.json())
+                let getPosts =  await fetch(url).then(res => res.json());
+                offset += 6;
                 constructPost(getPosts,'.pContainer');
             }
         })
