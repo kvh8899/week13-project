@@ -8,7 +8,7 @@ const {asyncHandler} = require('../utils');
 router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) => {
 
         /* Initialize follow object */
-        const follow = await Follow.findPk(req.params.id);
+        const follow = await Follow.findByPk(req.params.id);
 
         /* Return error 404, if 
            there is no follow object */
