@@ -1,4 +1,5 @@
 const express = require("express");
+const createHttpError = require("http-errors");
 
 const commentsApiRouter = require("./comments");
 const followsApiRouter = require("./follows");
@@ -11,6 +12,11 @@ router.use(commentsApiRouter);
 router.use(followsApiRouter);
 router.use(storiesApiRouter);
 router.use(usersApiRouter);
+
+// Catch unhandled requests to `/api` and forward to error handler
+router.use((req, res, next) => {
+  next(createHttpError(404));
+});
 
 router.use((err, req, res, next) => {
   res.status(err.status || 500);
