@@ -41,9 +41,5 @@ router.get('/',restoreUser,async function(req, res, next) {
   
 });
 
-router.get('/reset',(req,res) => {
-  req.session.offset = 0;
-  res.send('Reset');
-})
 module.exports = router;
 
