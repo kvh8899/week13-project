@@ -1,4 +1,3 @@
-//2 rts
 const express = require("express");
 const { asyncHandler } = require("../utils");
 const { restoreUser } = require("../../auth");
@@ -13,8 +12,8 @@ router.post(
   asyncHandler(async (req, res, next) => {
     if (!res.locals.authenticated) {
       /* Return error 401, if
-               user is not authenticated, or
-               user is not liker */
+        user is not authenticated, or
+        user is not liker */
       res.status(401);
     } else if (res.locals.authenticated) {
       /* Create comment like */
@@ -24,7 +23,7 @@ router.post(
       });
 
       /* Set status 201, and
-           respond with json, likedComment */
+        respond with json, likedComment */
       res.status(201).json(likedComment);
     }
   })
@@ -39,24 +38,24 @@ router.delete(
     const like = await CommentLike.findByPk(req.params.id);
 
     /* Return error 404, if 
-           there is no like object */
+      there is no like object */
     if (!like) {
       res.status(404);
     }
 
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
       /* Return error 401 if
-                   user is not authenticated, or
-                   current user is not the liker */
+        user is not authenticated, or
+        current user is not the liker */
       res.status(401);
     } else if (res.locals.user.id === like.userId && res.locals.authenticated) {
       /* Destroy like if
-                    user is authenticated, and
-                    current user is the liker. */
+        user is authenticated, and
+        current user is the liker. */
       await like.destroy();
     }
     /* Respond with json message,
-           "Comment like deleted" */
+      "Comment like deleted" */
     res.json({ message: "Comment like deleted" });
   })
 );

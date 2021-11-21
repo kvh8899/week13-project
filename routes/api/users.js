@@ -11,7 +11,7 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res, next) => {
     /* Return 401 error if
-           user is not authenticated. */
+      user is not authenticated. */
     if (!res.locals.authenticated) {
       return next(createError(401));
     }
@@ -23,7 +23,7 @@ router.post(
     });
 
     /* Set status 201, and
-           send new follower as json response */
+      send new follower as json response */
     res.status(201).json(newFollower);
   })
 );
