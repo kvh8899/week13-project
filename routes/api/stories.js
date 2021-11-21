@@ -12,7 +12,6 @@ router.get('/stories',asyncHandler(async (req,res,next) => {
         limit,
         order:[['createdAt','DESC']],
         offset:req.query.offset,
-        limit
     });
     res.json(getStories);
 }));
