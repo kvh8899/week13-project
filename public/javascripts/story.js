@@ -153,10 +153,6 @@ function setupCommentsInput() {
   const input = document.querySelector("#story-comment-input");
 
   adjustTextAreaHeight(input);
-
-  window.addEventListener("hashchange", () => {
-    updateTextAreaHeight(input);
-  });
 }
 
 function setupCommentsActions() {
@@ -167,9 +163,15 @@ function setupCommentsActions() {
     cancelButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const input = cancelButton
-        .closest(".comments-input-wrapper")
-        .querySelector("textarea");
+      const inputWrapper = cancelButton.closest(".comments-input-wrapper");
+      const input = inputWrapper.querySelector("textarea");
+
+      if (input.classList.contains("grow-textarea")) {
+        const hiddenGrower = inputWrapper.querySelector(".grow-hidden");
+        if (hiddenGrower) {
+          hiddenGrower.innerText = "";
+        }
+      }
 
       input.value = "";
     });
