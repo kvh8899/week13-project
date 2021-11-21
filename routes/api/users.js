@@ -22,7 +22,7 @@ router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, n
   
     /* Set status 201, and
            send new follower as json response */
-    res.status(201).json({newFollower});
+    res.status(201).json(newFollower);
 
 }));
 
