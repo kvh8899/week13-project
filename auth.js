@@ -1,3 +1,5 @@
+const createHttpError = require("http-errors");
+
 const { User } = require("./db/models");
 
 const restoreUser = async (req, res, next) => {
@@ -36,8 +38,8 @@ const loginUser = (req, user) => {
         return reject(err);
       }
       resolve();
-    })
-  })
+    });
+  });
 };
 
 const redirectUnauthedToLogin = async (req, res, next) => {
@@ -49,8 +51,21 @@ const redirectUnauthedToLogin = async (req, res, next) => {
 
 const requireAuth = [restoreUser, redirectUnauthedToLogin];
 
+// API middlewares to require auth
+const requireAuthApi = [
+  restoreUser,
+
+  (req, res, next) => {
+    if (!res.locals.authenticated) {
+      return next(createHttpError(401));
+    }
+    next();
+  },
+];
+
 module.exports = {
   loginUser,
   requireAuth,
+  requireAuthApi,
   restoreUser,
 };

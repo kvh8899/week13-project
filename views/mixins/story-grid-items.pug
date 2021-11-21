@@ -5,7 +5,7 @@ mixin storyGridItem(post, postNum)
       p(class='num')= '0' + (postNum + 1)
       div(class='author')
         div(class="profile")
-          img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+          img(class='profpic' src="/images/defaultavatar.jpeg" alt="P")
           p.auth-name.sans-serif=post.User.username
         a(href='/stories/' + post.id class='heading')
           h2=post.heading
@@ -17,7 +17,7 @@ mixin detailedStoryGridItem(post)
     div(class="inner-story")
       div(class='author')
         div(class="profile")
-          img(class='profpic' src="../images/defaultavatar.jpeg" alt="P")
+          img(class='profpic' src="/images/defaultavatar.jpeg" alt="P")
           p.auth-name.sans-serif=post.User.username
         a.headings-wrapper(href='/stories/' + post.id)
           h2=post.heading
