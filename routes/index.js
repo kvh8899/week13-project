@@ -47,8 +47,6 @@ router.get('/',restoreUser,async function(req, res, next) {
       following:getPosts
     });
   }
-
-  
 });
 
 module.exports = router;
