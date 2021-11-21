@@ -13,7 +13,7 @@ router.delete('/follows/:id', asyncHandler(async (req, res) => {
         /* Return error 404, if 
            there is no follow object */
         if (typeof follow === "undefined" ) {
-            return next(createError(404)); 
+            res.status(404); 
         };
 
         if (!res.locals.authenticated || res.locals.user.id !== follow.followerId) {
