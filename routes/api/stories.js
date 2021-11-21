@@ -18,21 +18,32 @@ router.get('/stories',asyncHandler(async (req,res,next) => {
 
 
 router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) => {
-    const getFollowing = await Post.findAll({
+    
+    const getFollowing = await User.findOne({
+        where:{
+            id:res.locals.user.id
+        },
         include:{
-            model: User,
-            include:{
-                model:User,
-                as:"Followers",
-                where:{
-                    id:res.locals.user.id
-                }
+            model:User,
+            as: 'Following'
+        }
+    })
+    const following = getFollowing.Following.map(e => {
+        return e.id;
+    });
+    const getPosts = await Post.findAll({
+        where: {
+            userId: {
+                [Op.or]: following
             }
         },
-        limit,
-        offset:req.query.offset,
-        order:[['createdAt','DESC']]
-    })
-    res.json(getFollowing);
+        include: {
+            model:User
+        },
+        limit:6,
+        order:[['createdAt','DESC']],
+        offset: req.query.offset
+    });
+    res.json(getPosts);
 }))
 module.exports = router;

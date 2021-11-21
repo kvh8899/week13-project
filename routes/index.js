@@ -17,24 +17,34 @@ router.get('/',restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    const getFollowing = await Post.findAll({
+    const getFollowing = await User.findOne({
+      where:{
+          id:res.locals.user.id
+      },
       include:{
-          model: User,
-          include:{
-              model:User,
-              as:"Followers",
-              where:{
-                  id:res.locals.user.id
-              }
+          model:User,
+          as: 'Following'
+      }
+  })
+  const following = getFollowing.Following.map(e => {
+      return e.id;
+  });
+  const getPosts = await Post.findAll({
+      where: {
+          userId: {
+              [Op.or]: following
           }
       },
-      order:[['createdAt','DESC']],
+      include: {
+          model:User
+      },
       limit:6,
-  })
+      order:[['createdAt','DESC']]
+  });
     res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
-      following:getFollowing
+      following:getPosts
     });
   }
 
