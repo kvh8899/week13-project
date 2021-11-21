@@ -68,11 +68,15 @@ import {constructPost} from './utils.js'
        
         entries.forEach(async(entry) => {
             
-            if(entry.isIntersecting && reco.style.display === 'block'){
-                getPosts =  await fetch(url).then(res => res.json());
+            if(entry.isIntersecting && 
+                reco.style.display === 'block'){
+                getPosts =  
+                await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.pContainer');
-            }else if(entry.isIntersecting && foll.style.display === 'block'){
-                getPosts =  await fetch(url).then(res => res.json());
+            }else if(entry.isIntersecting && 
+                foll.style.display === 'block'){
+                getPosts =  
+                await fetch(url).then(res => res.json());
                 constructPost(getPosts,'.follow-content');
             }
         })
