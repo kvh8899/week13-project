@@ -5,7 +5,7 @@ const { sequelize, Follow } = require("../../db/models");
 const {asyncHandler} = require('../utils');
 
 /* Delete a follower from a user */
-router.delete('/follows/:id', asyncHandler(async (req, res, next) => {
+router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) => {
 
         /* Initialize follow object */
         const follow = await Follow.findPk(req.params.id);
