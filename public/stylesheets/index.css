@@ -227,8 +227,8 @@ nav .login.button {
   margin-left:20px;
 }
 
-.end-content .inner-story {
-  margin-right: 20px;
+.story-grid-story > a {
+  margin-left: 20px;
 }
 
 .headings-wrapper h2,
