@@ -15,7 +15,7 @@ router.post('/:commentId(\\d+)/likes',restoreUser, asyncHandler(async(req,res,ne
             userId:res.locals.user.id,
             commentId:req.params.commentId
         });
-        res.json(commentLike);
+        res.status(201).json(commentLike);
     }
 }));
 

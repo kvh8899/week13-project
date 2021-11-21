@@ -16,7 +16,7 @@ asyncHandler(async(req,res,next) => {
             userId:req.params.userId,
             followerId:res.locals.user.id
         });
-        res.json(createFollow);
+        res.status(201).json(createFollow);
     }
 }));
 
