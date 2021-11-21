@@ -71,7 +71,7 @@ router.get("/login", csrfProtection, restoreUser, function (req, res) {
   if (res.locals && res.locals.authenticated) {
     return res.redirect("/");
   }
-  res.render("login", { csrfToken: req.csrfToken() });
+  res.render("login", { csrfToken: req.csrfToken(), user: {} });
 });
 
 const failedLogin = (req, res) => {
@@ -111,7 +111,7 @@ router.post(
     const matches = await bcrypt.compare(password, user.password.toString());
 
     if (matches) {
-      loginUser(req, user);
+      await loginUser(req, user);
       res.redirect("/");
       return;
     }
@@ -134,7 +134,7 @@ router.get(
       return failedLogin(req, res);
     }
 
-    loginUser(req, user);
+    await loginUser(req, user);
     res.redirect("/");
   })
 );
@@ -145,6 +145,7 @@ router.get("/signup", csrfProtection, restoreUser, async function (req, res) {
   }
   res.render("signup", {
     csrfToken: req.csrfToken(),
+    user: {},
   });
 });
 
@@ -174,7 +175,7 @@ router.post(
         username,
         password: hashedPass,
       });
-      loginUser(req, user);
+      await loginUser(req, user);
       res.redirect("/");
     } catch (error) {
       next(error);
