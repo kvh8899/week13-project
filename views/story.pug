@@ -42,7 +42,7 @@ block content
             div.likes
               a#like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
                 i.fa-solid.fa-hands-clapping
-              a#view-likes.post-likes-count #{likes.length}
+              span#view-likes.post-likes-count #{likes.length}
             div.comments
               a#show-comments
                 i.fa-solid.fa-comment
