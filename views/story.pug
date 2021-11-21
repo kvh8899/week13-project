@@ -45,6 +45,9 @@ block content
               a#show-comments
                 i.fa-solid.fa-comment
                 span #{comments.length}
+          div.right
+            a.button.icon-button.rounded(href=`/stories/${story.id}/edit`)
+              i.fa-solid.fa-pen-to-square
     footer
       .wide-container
         .content-wrapper
@@ -58,25 +61,23 @@ block content
   .modal-root.comments.hidden
     .modal-backdrop(aria-hidden="true")
     .modal-container
-      .modal-content
+      .modal-content.hidden
         .comments-heading
           h2 Responses (#{comments.length})
           div
             i.fa-solid.fa-xmark.modal-close
-        form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
-          input(type="hidden" name="_csrf" value=csrfToken)
-          textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?")
-          div.comment-input-actions
-            div
-              button.button.text.comment-cancel Cancel
-              button.button.contained.rounded.comment-respond(form='commForm') Respond
+        if locals.authenticated
+          +commentForm(csrfToken, story)
+        else
+          a(href="/signup")
+            +commentForm(csrfToken, story)
         .divider
         .comments-container
           each comment in comments
             .comment(data-comment-id=comment.id)
               .comment-top
                 .comment-details-wrapper
-                  img.comment-user-img(src="../images/defaultavatar.jpeg")
+                  img.comment-user-img(src="/images/defaultavatar.jpeg")
                   .comment-details
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
@@ -90,3 +91,12 @@ block content
                   a.like-comment(data-like-id=userCommentLike.id data-liked=!!userCommentLike.id)
                     i.fa-solid.fa-hands-clapping
                   a.comment-like-count #{comment.CommentLikes.length}
+
+mixin commentForm(csrfToken, story)
+  form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
+    input(type="hidden" name="_csrf" value=csrfToken)
+    textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?" class=`${locals.authenticated ? "" : "pointer"}`)
+    div.comment-input-actions
+      div
+        button.button.text.comment-cancel Cancel
+        button.button.contained.rounded.comment-respond(form='commForm') Respond

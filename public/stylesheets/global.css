@@ -140,7 +140,7 @@ h6,
 .button.contained.black:hover {
   background-color: #080808;
   border-color: #292929;
-  color:rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .button.icon-button {
@@ -158,7 +158,7 @@ h6,
   width: 20px;
 }
 .profpic:hover {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /*
@@ -260,4 +260,8 @@ h6,
 
 .display-after-loaded {
   display: none;
+}
+
+.pointer {
+  cursor: pointer;
 }
