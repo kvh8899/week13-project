@@ -1,11 +1,10 @@
 const express = require('express');
-const {Post, User,Follow,PostLike} = require('../../db/models');
+const {Post, User,PostLike} = require('../../db/models');
 const {getRandomInt,asyncHandler} = require('../utils.js')
 const router = express.Router();
 const {restoreUser} = require('../../auth.js');
 const createError = require("http-errors");
 const limit = 6;
-const { Op } = require("sequelize");
 router.get('/', asyncHandler(async (req,res,next) => { 
     // TODO write a query to get 6 random rows
     const getStories = await Post.findAll({

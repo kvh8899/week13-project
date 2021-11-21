@@ -1,10 +1,8 @@
 const express = require('express');
-const {Post, User,Follow,PostLike,CommentLike} = require('../../db/models');
-const {getRandomInt,asyncHandler} = require('../utils.js')
+const {CommentLike} = require('../../db/models');
+const {asyncHandler} = require('../utils.js')
 const {restoreUser} = require('../../auth.js');
 const createError = require("http-errors");
-const limit = 6;
-const { Op } = require("sequelize");
 const router = express.Router();
 
 
