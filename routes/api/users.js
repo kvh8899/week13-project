@@ -16,8 +16,8 @@ router.post('/users/:id/followers', restoreUser, asyncHandler(async (req, res, n
 
     /* Create a new follower */
     const newFollower = await Follow.create({
-        userId: res.locals.user.id,
-        followerId: req.params.id
+        userId: req.params.id,
+        followerId: res.locals.user.id
     })
   
     /* Set status 201, and

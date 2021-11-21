@@ -14,7 +14,7 @@ router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) =
         /* Return error 404, if 
            there is no follow object */
         if (!follow) {
-            res.status(404); 
+            return next(createError(404)); 
         };
 
         if (!res.locals.authenticated || res.locals.user.id !== follow.followerId) {
@@ -23,7 +23,7 @@ router.delete('/follows/:id', restoreUser, asyncHandler(async (req, res, next) =
                    user is not the follower */
             res.status(401);
 
-         } else if (res.locals.user.id === follow.followId && res.locals.authenticated) {
+         } else if (res.locals.user.id === follow.followerId && res.locals.authenticated) {
         
             /* Destroy follow if
                    user is authenticated, and
