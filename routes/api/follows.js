@@ -25,12 +25,12 @@ router.delete(
       /* Return error 401 if
         user is not the follower */
       return next(createError(401));
-    } else if (res.locals.user.id === follow.followerId) {
-      /* Destroy follow if
-        user is authenticated, and
-        user is follower */
-      await follow.destroy();
     }
+
+    /* Destroy follow if
+      user is authenticated, and
+      user is follower */
+    await follow.destroy();
 
     /* Respond with json message,
       "Follower deleted" */

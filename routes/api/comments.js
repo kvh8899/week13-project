@@ -42,12 +42,13 @@ router.delete(
       /* Return error 401 if
         current user is not the liker */
       return next(createError(401));
-    } else if (res.locals.user.id === like.userId) {
-      /* Destroy like if
-        user is authenticated, and
-        current user is the liker. */
-      await like.destroy();
     }
+
+    /* Destroy like if
+      user is authenticated, and
+      current user is the liker. */
+    await like.destroy();
+
     /* Respond with json message,
       "Comment like deleted" */
     res.json({ message: "Comment like deleted" });
