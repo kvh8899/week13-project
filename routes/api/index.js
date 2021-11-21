@@ -8,10 +8,10 @@ const usersApiRouter = require("./users");
 
 const router = express.Router();
 
-router.use(commentsApiRouter);
-router.use(followsApiRouter);
-router.use(storiesApiRouter);
-router.use(usersApiRouter);
+router.use("/comments", commentsApiRouter);
+router.use("/follows", followsApiRouter);
+router.use("/stories", storiesApiRouter);
+router.use("/users", usersApiRouter);
 
 // Catch unhandled requests to `/api` and forward to error handler
 router.use((req, res, next) => {

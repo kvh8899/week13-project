@@ -8,7 +8,7 @@ const router = express.Router();
 
 /* Add a follower to a user */
 router.post(
-  "/users/:id/followers",
+  "/:id/followers",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Create a new follower */

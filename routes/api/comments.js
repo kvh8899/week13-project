@@ -9,7 +9,7 @@ const router = express.Router();
 
 /* Like a comment */
 router.post(
-  "/comments/:id/likes",
+  "/:id/likes",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Create comment like */
@@ -26,7 +26,7 @@ router.post(
 
 /* Unlike a comment */
 router.delete(
-  "/comments/likes/:id",
+  "/likes/:id",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Initialize like object */

@@ -9,7 +9,7 @@ const router = express.Router();
 
 /* Like a story */
 router.post(
-  "/stories/:id/likes",
+  "/:id/likes",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* If the user is authenticated,
@@ -26,7 +26,7 @@ router.post(
 
 /* Unlike a story */
 router.delete(
-  "/stories/likes/:id",
+  "/likes/:id",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Initialize like object */
