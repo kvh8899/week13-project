@@ -86,12 +86,15 @@ export function constructPost(getPosts,containerClass){
 
           storyGridStory.appendChild(storyLink)
 
-          const listImg = document.createElement("img");
-          listImg.src = post.headerImage;
-          listImg.classList.add('listimg');
-          listImg.alt = post.heading;
-
-          storyLink.appendChild(listImg)
+          console.log(post.headerImage)
+          if(post.headerImage){
+            const listImg = document.createElement("img");
+            listImg.src = post.headerImage;
+            listImg.classList.add('listimg');
+            listImg.alt = post.heading;
+            storyLink.appendChild(listImg);
+          }
+          
           postDiv.appendChild(storyGridStory);
       })
 }
