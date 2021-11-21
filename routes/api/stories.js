@@ -54,8 +54,7 @@ restoreUser,
 asyncHandler(async(req,res,next) => {
     //if not logged in, redirect to login
     if(!res.locals.authenticated){
-        res.status = 401;
-        res.redirect('/login');
+        res.send(createError(401));
     }else{
         const postLike = await PostLike.create({
             userId: res.locals.user.id,
@@ -70,8 +69,8 @@ restoreUser,
 asyncHandler(async(req,res,next) => {
 
     if(!res.locals.authenticated){
-        res.status = 401;
-        res.redirect('/login')
+        res.status = 401
+        res.send(createError(401));
     }else{
         const likeDelete = 
         await PostLike.findByPk(req.params.likesId);
