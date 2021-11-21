@@ -22,11 +22,11 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, nex
                 userId: res.locals.user.id,
                 commentId: req.params.id
             })
-        }
 
         /* Set status 201, and
            respond with json, likedComment */
         res.status(201).json(likedComment);
+        };
     }));
 
 
