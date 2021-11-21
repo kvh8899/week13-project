@@ -7,7 +7,7 @@ const router = express.Router();
 const { sequelize, CommentLike } = require("../../db/models");
 
 /* Like a comment */
-router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => {
+router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res, next) => {
 
     if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
         /* Return error 401, if
@@ -31,7 +31,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 
 
 /* Unlike a comment */
-router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) => {
+router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res, next) => {
 
         /* Initialize like object */
         const like = await CommentLike.findByPk(req.params.id);
