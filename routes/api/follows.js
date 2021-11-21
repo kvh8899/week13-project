@@ -20,14 +20,14 @@ router.delete('/follows/:id', asyncHandler(async (req, res) => {
             /* Return error 401 if
                    user is not authenticated, or
                    user is not the follower */
-            return next(createError(401));
+            res.status(401);
 
          } else if (res.locals.user.id === follow.followId && res.locals.authenticated) {
         
             /* Destroy follow if
                    user is authenticated, and
                    user is follower */
-            follow.destroy({where:{id: req.params.id}})
+            await follow.destroy({where:{id: req.params.id}})
             
          }
 
