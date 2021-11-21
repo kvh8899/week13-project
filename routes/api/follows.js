@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { restoreUser } = require('../../auth');
 const createError = require('http-errors');
 const { sequelize, Follow } = require("../../db/models");
 const {asyncHandler} = require('../utils');
