@@ -3,7 +3,7 @@ const express = require("express");
 
 const { asyncHandler } = require("../utils");
 const { CommentLike } = require("../../db/models");
-const { restoreUser, requireAuthApi } = require("../../auth");
+const { requireAuthApi } = require("../../auth");
 
 const router = express.Router();
 

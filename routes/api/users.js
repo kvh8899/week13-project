@@ -1,4 +1,3 @@
-const createError = require("http-errors");
 const express = require("express");
 
 const { asyncHandler } = require("../utils");
