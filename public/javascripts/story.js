@@ -42,10 +42,18 @@ function setupFollowButton() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
+            followButtons.forEach(el => {
+              el.innerText = "Follow";
+              delete el.dataset.followId;
+            });
             followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) - 1;
             });
           } else if (res.status === 201) {
+            followButtons.forEach(el => {
+              el.innerText = "Unfollow";
+              el.dataset.followId = resData.id;
+            });
             followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) + 1;
             });
