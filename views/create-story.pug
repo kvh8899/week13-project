@@ -35,8 +35,10 @@ block content
         +field("Story Image Url", "headerImage", story.headerImage, "text", false, "Image URL", "serif")
         div.main-text-input-wrapper
           label(for="mainText") Story Body
-          textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
-          p.sans-serif.input-helper.display-after-loaded This input supports 
-            a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
-            | .
+          .grow-wrapper
+            textarea.grow-textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts..." rows="1")=story.mainText
+            .grow-hidden(aria-hidden="true")
+            p.sans-serif.input-helper.display-after-loaded This input supports 
+              a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
+              | .
       
