@@ -39,9 +39,11 @@ router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, ne
         /* Initialize like object */
         const like = await PostLike.findByPk(req.params.id);
 
-        /* Set status 404; 
+        /* Return error 404, if 
            there is no like object */
-        if (!like) {res.status(404)};
+        if (!like) {
+            return next(createError(404)); 
+        };
 
         if (!res.locals.authenticated || res.locals.user.id !== like.userId) {
 
