@@ -19,17 +19,20 @@ router.post('/stories/:id/likes', restoreUser, asyncHandler(async(req, res, next
             
             /* If the user is authenticated,
                create a new like */
-            const likedPost = await PostLike.create({
+            const postLike = await PostLike.create({
                 userId: res.locals.user.id,
                 postId: req.params.id
             })
         }
 
+        /* Initialize new post like variable to pass as json response */
+        const newPostLike = await PostLike.findByPk(req.params.id);
+
         /* User has been authenticated, and
            a like has been created.
            Set 201 status code for response, and
-           send likedPost as json response. */
-        res.status(201).json(likedPost);
+           send newPostLike as json response. */
+        res.status(201).json(newPostLike);
 
     }));
 
