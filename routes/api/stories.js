@@ -49,8 +49,6 @@ router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) =>
     });
     res.json(getPosts);
 }))
-=======
-
 
 /* Like a story */
 router.post(
