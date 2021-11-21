@@ -54,7 +54,7 @@ router.delete('/stories/likes/:id', restoreUser, asyncHandler(async(req, res, ne
                 /* Destroy like if
                     user is authenticated, and
                     current user is the liker. */
-                await PostLike.destroy({
+                like.destroy({
                     where: {
                         id: req.params.id
                     }
