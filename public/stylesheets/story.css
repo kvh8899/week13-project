@@ -385,20 +385,23 @@ footer nav > a:last-of-type {
   margin-bottom: 20px;
 }
 
+.comments-input,
+.grow-hidden {
+  border-radius: 4px;
+  border: 0;
+  width: 100%;
+  outline: 0;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 20px;
+  width: 366px;
+}
+
 .comments-input {
   background-color: #fff;
   color: #292929;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px;
-  border-radius: 4px;
-  width: 100%;
-  border: 0;
   resize: none;
-  outline: 0;
-
-  padding: 14px;
-  font-size: 14px;
-  line-height: 20px;
-  height: 48px;
 }
 
 .comments-input:focus,
@@ -407,11 +410,11 @@ footer nav > a:last-of-type {
   outline: 0;
 }
 
-.comments-input + * {
+.comments-input ~ .comment-input-actions {
   display: none;
 }
 
-.comments-input:not(:placeholder-shown) + * {
+.comments-input:not(:placeholder-shown) ~ .comment-input-actions {
   display: block;
 }
 
