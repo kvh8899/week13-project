@@ -34,7 +34,7 @@ router.post('/comments/:id/likes', restoreUser, asyncHandler(async(req, res) => 
 router.delete('/comments/likes/:id', restoreUser, asyncHandler(async(req, res) => {
 
         /* Initialize like object */
-        const like = CommentLike.findByPk(req.params.id);
+        const like = await CommentLike.findByPk(req.params.id);
 
         /* Set status 404; 
            there is no like object */
