@@ -10,8 +10,11 @@ router.delete('/follows/:id', asyncHandler(async (req, res) => {
         /* Initialize follow object */
         const follow = await Follow.findPk(req.params.id);
 
-        /* Set status 404 if follow doesn't exist */
-        if (typeof follow === "undefined" ) {res.status(404)};
+        /* Return error 404, if 
+           there is no follow object */
+        if (typeof follow === "undefined" ) {
+            return next(createError(404)); 
+        };
 
         if (!res.locals.authenticated || res.locals.user.id !== follow.followerId) {
             /* Return error 401 if
