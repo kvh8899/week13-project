@@ -19,7 +19,7 @@ router.post(
     });
 
     /* Set status 201, and
-        respond with json, likedComment */
+      respond with json, likedComment */
     res.status(201).json(likedComment);
   })
 );

@@ -13,13 +13,13 @@ router.post(
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* If the user is authenticated,
-        create a new like */
+      create a new like */
     const postLike = await PostLike.create({
       userId: res.locals.user.id,
       postId: req.params.id,
     });
     /* Set 201 status code for response, and
-        send newPostLike as json response. */
+      send newPostLike as json response. */
     res.status(201).json(postLike);
   })
 );
