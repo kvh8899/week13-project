@@ -9,7 +9,7 @@ const router = express.Router();
 
 /* Delete a follower from a user */
 router.delete(
-  "/:id",
+  "/:id(\\d+)",
   requireAuthApi,
   asyncHandler(async (req, res, next) => {
     /* Initialize follow object */
