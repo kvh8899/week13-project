@@ -27,7 +27,7 @@ router.delete('/follows/:id', asyncHandler(async (req, res) => {
             /* Destroy follow if
                    user is authenticated, and
                    user is follower */
-            follow.destroy({where:{id: req.params.id}})
+            await follow.destroy();
             
          }
 
