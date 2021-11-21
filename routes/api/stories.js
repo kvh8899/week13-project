@@ -51,21 +51,21 @@ asyncHandler(async(req,res,next) => {
             userId: res.locals.user.id,
             postId: req.params.storyId
         });
-        res.json(postLike);
+        res.status(201).json(postLike);
     }
 }));
 
 router.delete('/likes/:likesId(\\d+)',
 restoreUser,
 asyncHandler(async(req,res,next) => {
-
+    const like = await PostLike.findByPk(req.params.likesId);
     if(!res.locals.authenticated){
         next(createError(401));
-    }else{
-        const likeDelete = 
-        await PostLike.findByPk(req.params.likesId);
-        likeDelete.destroy();
+    }else if(like){
+        like.destroy();
         res.json({message: 'Comment Successfully Deleted'})
+    }else{
+        next(createError(404));
     }
 }));
 module.exports = router;

@@ -22,15 +22,14 @@ router.post('/:commentId(\\d+)/likes',restoreUser, asyncHandler(async(req,res,ne
 }));
 
 router.delete('/likes/:commentId(\\d+)',restoreUser, asyncHandler(async(req,res,next) => {
-    
+    const commentDstry = await CommentLike.findOne({
+        where:{
+            id:req.params.commentId
+        }
+    });
     if(!res.locals.authenticated){
         next(createError(401));
-    }else{
-        const commentDstry = await CommentLike.findOne({
-            where:{
-                id:req.params.commentId
-            }
-        });
+    }else if(commentDstry){
         commentDstry.destroy();
         res.json({message:"Comment Like Successfully Deleted"});
     }
