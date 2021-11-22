@@ -4,7 +4,13 @@
  * @param {HTMLElement} textarea the text area element
  */
 export const updateTextAreaHeight = (growHidden, textarea) => {
-  growHidden.innerText = textarea.value;
+  const endsWithNewLine = /\n$/g.test(textarea.value);
+
+  if (endsWithNewLine) {
+    growHidden.innerText = textarea.value + "\n";
+  } else {
+    growHidden.innerText = textarea.value;
+  }
 };
 
 /**
