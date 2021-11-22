@@ -276,27 +276,45 @@ function setupCommentsActions() {
 }
 
 function setupDeleteComments() {
+  const commentsContainer = document.querySelector(".comments-container");
   const deleteBtns = document.querySelectorAll("button.delete-comment");
-  let url;
+  const postCommentCounts = document.querySelectorAll(".post-comments-count");
+
+  if (postCommentCounts.length === 0) {
+    throw new Error("Failed to find comment counts");
+  }
+
   deleteBtns.forEach((deleteBtn) => {
-    deleteBtn.addEventListener("click", async (e) => {
-      url = "/comments/" + e.currentTarget.dataset.commentId + "/delete";
-      try {
-        const comm = document.querySelector(
-          `[data-comment-id='${e.currentTarget.dataset.commentId}']`
-        );
-        document.querySelector(".comments-container").removeChild(comm);
+    let isFetching = false;
+    deleteBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
 
-        await fetch(url, { method: "DELETE" });
-
-        document.querySelector("a.show-comments span").innerText--;
-        document.querySelector(
-          ".comments-heading h2"
-        ).innerText = `Responses (${
-          document.querySelector("a.show-comments span").innerText
-        })`;
-      } catch (e) {
+      if (isFetching) {
         return;
+      }
+
+      const url = `/api/comments/${deleteBtn.dataset.commentId}`;
+
+      try {
+        isFetching = true;
+        const res = await fetch(url, { method: "DELETE" });
+
+        if (res.status === 200) {
+          const commentContainer = document.querySelector(
+            `[data-comment-id='${deleteBtn.dataset.commentId}']`
+          );
+          commentsContainer.removeChild(commentContainer);
+
+          const newCount = parseInt(postCommentCounts[0].innerText, 10) - 1;
+          postCommentCounts.forEach((countEl) => {
+            countEl.innerText = newCount;
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        return;
+      } finally {
+        isFetching = false;
       }
     });
   });
