@@ -2,7 +2,7 @@ const createError = require("http-errors");
 const express = require("express");
 
 const { asyncHandler } = require("../utils");
-const { CommentLike } = require("../../db/models");
+const { Comment, CommentLike } = require("../../db/models");
 const { requireAuthApi } = require("../../auth");
 
 const router = express.Router();
