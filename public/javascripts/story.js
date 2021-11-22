@@ -1,4 +1,4 @@
-import "./modal.js";
+import { closeModal, showModal } from "./modal.js";
 import { adjustTextAreaHeight, updateTextAreaHeight } from "./input-utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,10 +43,18 @@ function setupFollowButton() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
+            followButtons.forEach((el) => {
+              el.innerText = "Follow";
+              delete el.dataset.followId;
+            });
             followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) - 1;
             });
           } else if (res.status === 201) {
+            followButtons.forEach((el) => {
+              el.innerText = "Unfollow";
+              el.dataset.followId = resData.id;
+            });
             followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) + 1;
             });
@@ -92,10 +100,18 @@ function setupLikePostButton() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
+            likeButtons.forEach((el) => {
+              delete el.dataset.liked;
+              delete el.dataset.likeId;
+            });
             likeCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) - 1;
             });
           } else if (res.status === 201) {
+            likeButtons.forEach((el) => {
+              el.dataset.liked = true;
+              el.dataset.likeId = resData.id;
+            });
             likeCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) + 1;
             });
@@ -114,6 +130,9 @@ function setupShowCommentsButton() {
   const buttons = document.querySelectorAll(".show-comments");
 
   const commentsModal = document.querySelector(".modal-root.comments");
+  const commentsModalContent = document.querySelector(
+    ".modal-root.comments .modal-content"
+  );
 
   buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -123,13 +142,32 @@ function setupShowCommentsButton() {
     });
   });
 
+  let hiddenTimeout;
+
   const onHashChange = () => {
     if (location.hash === "#comments") {
-      commentsModal.classList.remove("hidden");
-    } else {
-      commentsModal.classList.add("hidden");
+      showModal(commentsModal);
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      hiddenTimeout = setTimeout(() => {
+        commentsModalContent.classList.remove("hidden");
+      }, 50);
+    } else if (!commentsModal.classList.contains("hidden")) {
+      if (hiddenTimeout) {
+        clearTimeout(hiddenTimeout);
+      }
+      commentsModalContent.classList.add("hidden");
+      closeModal(commentsModal);
     }
   };
+
+  commentsModal.addEventListener("close", () => {
+    if (hiddenTimeout) {
+      clearTimeout(hiddenTimeout);
+    }
+    commentsModalContent.classList.add("hidden");
+  });
 
   window.addEventListener("hashchange", onHashChange);
   onHashChange();
@@ -150,10 +188,6 @@ function setupCommentsInput() {
   const input = document.querySelector("#story-comment-input");
 
   adjustTextAreaHeight(input);
-
-  window.addEventListener("hashchange", () => {
-    updateTextAreaHeight(input);
-  });
 }
 
 function setupCommentsActions() {
@@ -164,9 +198,15 @@ function setupCommentsActions() {
     cancelButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const input = cancelButton
-        .closest(".comments-input-wrapper")
-        .querySelector("textarea");
+      const inputWrapper = cancelButton.closest(".comments-input-wrapper");
+      const input = inputWrapper.querySelector("textarea");
+
+      if (input.classList.contains("grow-textarea")) {
+        const hiddenGrower = inputWrapper.querySelector(".grow-hidden");
+        if (hiddenGrower) {
+          hiddenGrower.innerText = "";
+        }
+      }
 
       input.value = "";
     });
@@ -185,9 +225,6 @@ function setupCommentsActions() {
       return;
     }
 
-    const commentId = commentEl.dataset.commentId;
-    const likeId = likeButton.dataset.likeId;
-
     let isFetching = false;
 
     likeButton.addEventListener("click", async (event) => {
@@ -196,6 +233,9 @@ function setupCommentsActions() {
       if (isFetching) {
         return;
       }
+
+      const commentId = commentEl.dataset.commentId;
+      const likeId = likeButton.dataset.likeId;
 
       isFetching = true;
       try {
@@ -211,8 +251,12 @@ function setupCommentsActions() {
 
         if (resData && !resData.errors) {
           if (res.status === 200) {
+            delete likeButton.dataset.liked;
+            delete likeButton.dataset.likeId;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) - 1;
           } else if (res.status === 201) {
+            likeButton.dataset.liked = true;
+            likeButton.dataset.likeId = resData.id;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) + 1;
           }
         }
