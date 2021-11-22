@@ -9,6 +9,12 @@ Website: [https://codexappaa.herokuapp.com/](https://codexappaa.herokuapp.com/)
 - PUG
 - CSS
 
+## What is Codex?
+Codex is a project that is based off of the website Medium.
+It is where you can connect with others in the Tech industry by
+writing and reading interesting articles about software engineering,
+computer science, data science, machine learning, and more.
+
 ## Features
 
 - Website home page with stories
@@ -21,6 +27,10 @@ Website: [https://codexappaa.herokuapp.com/](https://codexappaa.herokuapp.com/)
 - A story creation page allowing authenciated users to post new stories
   - Supports markdown in the body of the story
 
+##ToDo/future features
+- write an algorithm (BFS) to get recommended follows
+  based on people you follow.
+-
 ## Contributors
 
 - [Justin Russo](https://github.com/justinrusso)
