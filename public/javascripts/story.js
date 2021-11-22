@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCloseComments();
   setupDeleteComments();
   setupSidebarObserver();
-  
 });
 
 function setupFollowButton() {
@@ -322,11 +321,13 @@ function setupDeleteComments() {
 }
 
 function setupSidebarObserver() {
-  const storyHeader = document.querySelector(".topbar.sans-serif");
+  const storyHeader = document.querySelector("main h1.title");
   const postSidebar = document.querySelector(".post-sidebar");
 
-  
-  postSidebar.classList.add("hidden");
+  if (!storyHeader || !postSidebar) {
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -335,7 +336,7 @@ function setupSidebarObserver() {
         postSidebar.classList.remove("hidden");
       }
     });
-  },{threshold:0.01});
+  });
 
   observer.observe(storyHeader);
 }
