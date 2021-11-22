@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".reco-content").style.display = "block";
     document.querySelector(".follow-content").style.display = "none";
   });
-  if (document.querySelector(".follow-content").children.length === 2) {
+  if (document.querySelector(".following-posts-container").children.length === 0) {
     document.querySelector(".empty-follow").style.display = "block";
   } else {
     document.querySelector(".empty-follow").style.display = "none";
