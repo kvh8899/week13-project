@@ -2,7 +2,7 @@
 const express = require('express');
 const {Post,User,Follow,PostLike} = require('../../db/models');
 const {getRandomInt,asyncHandler} = require('../utils.js')
-const {restoreUser,requireAuthApi} = require('../../auth.js');
+const {requireAuthApi} = require('../../auth.js');
 const limit = 6;
 const { Op } = require("sequelize");
 const createError = require("http-errors");
@@ -20,7 +20,7 @@ router.get('/',asyncHandler(async (req,res,next) => {
 }));
 
 
-router.get('/following',restoreUser, asyncHandler(async(req,res,next) => {
+router.get('/following',requireAuthApi, asyncHandler(async(req,res,next) => {
     
     const getFollowing = await User.findOne({
         where:{
