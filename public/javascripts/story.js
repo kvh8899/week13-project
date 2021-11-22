@@ -9,15 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCommentsActions();
   setupCloseComments();
   setupDeleteComments();
+  setupSidebarObserver();
 });
 
 function setupFollowButton() {
   const followButtons = document.querySelectorAll(".follow-button");
   const followCounts = document.querySelectorAll(".followers-count");
 
-  followButtons.forEach((followButton) => {
-    let isFetching = false;
+  let isFetching = false;
 
+  followButtons.forEach((followButton) => {
     followButton.addEventListener("click", async (event) => {
       event.preventDefault();
 
@@ -71,70 +72,78 @@ function setupFollowButton() {
 }
 
 function setupLikePostButton() {
-  const likeButton = document.querySelector("#like-post");
+  const likeButtons = document.querySelectorAll(".like-post");
   const likeCounts = document.querySelectorAll(".post-likes-count");
 
   let isFetching = false;
 
-  likeButton.addEventListener("click", async (event) => {
-    event.preventDefault();
+  likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener("click", async (event) => {
+      event.preventDefault();
 
-    if (isFetching) {
-      return;
-    }
-
-    const likeId = likeButton.dataset.likeId;
-    const storyId = likeButton.dataset.storyId;
-
-    isFetching = true;
-    try {
-      const url = likeId
-        ? `/api/stories/likes/${likeId}`
-        : `/api/stories/${storyId}/likes`;
-
-      const res = await fetch(url, {
-        method: likeId ? "DELETE" : "POST",
-      });
-
-      const resData = await res.json();
-
-      if (resData && !resData.errors) {
-        if (res.status === 200) {
-          delete likeButton.dataset.liked;
-          delete likeButton.dataset.likeId;
-          likeCounts.forEach((el) => {
-            el.innerText = parseInt(el.innerText, 10) - 1;
-          });
-        } else if (res.status === 201) {
-          likeButton.dataset.liked = true;
-          likeButton.dataset.likeId = resData.id;
-          likeCounts.forEach((el) => {
-            el.innerText = parseInt(el.innerText, 10) + 1;
-          });
-        } else if (res.status === 401) {
-          window.location = "/login";
-        }
+      if (isFetching) {
+        return;
       }
-    } catch (error) {
-      // TODO: How should errors be handled?
-    } finally {
-      isFetching = false;
-    }
+
+      const likeId = likeButton.dataset.likeId;
+      const storyId = likeButton.dataset.storyId;
+
+      isFetching = true;
+      try {
+        const url = likeId
+          ? `/api/stories/likes/${likeId}`
+          : `/api/stories/${storyId}/likes`;
+
+        const res = await fetch(url, {
+          method: likeId ? "DELETE" : "POST",
+        });
+
+        const resData = await res.json();
+
+        if (resData && !resData.errors) {
+          if (res.status === 200) {
+            likeButtons.forEach((el) => {
+              delete el.dataset.liked;
+              delete el.dataset.likeId;
+            });
+            likeCounts.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) - 1;
+            });
+          } else if (res.status === 201) {
+            likeButtons.forEach((el) => {
+              el.dataset.liked = true;
+              el.dataset.likeId = resData.id;
+            });
+            likeCounts.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) + 1;
+            });
+          } else if (res.status === 401) {
+            window.location = "/login";
+          }
+        }
+      } catch (error) {
+        // TODO: How should errors be handled?
+      } finally {
+        isFetching = false;
+      }
+    });
   });
 }
 
 function setupShowCommentsButton() {
-  const button = document.querySelector("#show-comments");
+  const buttons = document.querySelectorAll(".show-comments");
 
   const commentsModal = document.querySelector(".modal-root.comments");
   const commentsModalContent = document.querySelector(
     ".modal-root.comments .modal-content"
   );
 
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
 
-    location.hash = "comments";
+      location.hash = "comments";
+    });
   });
 
   let hiddenTimeout;
@@ -280,15 +289,36 @@ function setupDeleteComments() {
 
         await fetch(url, { method: "DELETE" });
 
-        document.querySelector("a#show-comments span").innerText--;
+        document.querySelector("a.show-comments span").innerText--;
         document.querySelector(
           ".comments-heading h2"
         ).innerText = `Responses (${
-          document.querySelector("a#show-comments span").innerText
+          document.querySelector("a.show-comments span").innerText
         })`;
       } catch (e) {
         return;
       }
     });
   });
+}
+
+function setupSidebarObserver() {
+  const storyHeader = document.querySelector("main h1.title");
+  const postSidebar = document.querySelector(".post-sidebar");
+
+  if (!storyHeader || !postSidebar) {
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        postSidebar.classList.add("hidden");
+      } else {
+        postSidebar.classList.remove("hidden");
+      }
+    });
+  });
+
+  observer.observe(storyHeader);
 }
