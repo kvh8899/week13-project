@@ -280,7 +280,7 @@ function setupDeleteComments() {
   let url;
   deleteBtns.forEach((deleteBtn) => {
     deleteBtn.addEventListener("click", async (e) => {
-      url = "/comments/" + e.currentTarget.dataset.commentId + "/delete";
+      url = `/api/comments/${e.currentTarget.dataset.commentId}`;
       try {
         const comm = document.querySelector(
           `[data-comment-id='${e.currentTarget.dataset.commentId}']`
