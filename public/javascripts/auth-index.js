@@ -76,7 +76,7 @@ function setupInfiniteScroll() {
         constructPost(getPosts, ".recommended-posts-container");
         anim[0].classList.add("hidden");
         offsetR += 6;
-      } else if (entry.isIntersecting && foll.style.display === "block") {
+      }else if (entry.isIntersecting && foll.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
         if(!getPosts.length){
           deleteAnim(".follBott");
@@ -85,11 +85,11 @@ function setupInfiniteScroll() {
         constructPost(getPosts, ".following-posts-container");
         anim[1].classList.add("hidden");
         offsetF += 6;
-      }else{
+      }else if(anim[0]){
         anim[0].classList.remove("hidden");
+      }else if(anim[1]){
         anim[1].classList.remove("hidden");
       }
-      
     },{threshold:0.05});
   });
 
