@@ -34,7 +34,7 @@ router.get('/following',requireAuthApi, asyncHandler(async(req,res,next) => {
     const following = getFollowing.Following.map(e => {
         return e.id;
     });
-    let getPosts
+  let getPosts;
   if(following.length){
      getPosts = await Post.findAll({
       where: {
@@ -46,6 +46,7 @@ router.get('/following',requireAuthApi, asyncHandler(async(req,res,next) => {
           model:User
       },
       limit:6,
+      offset: req.query.offset,
       order:[['createdAt','DESC']]
   });
   }else{

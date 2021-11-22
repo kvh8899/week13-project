@@ -41,6 +41,7 @@ router.get('/',restoreUser,async function(req, res, next) {
           model:User
       },
       limit:6,
+      offset: req.query.offset,
       order:[['createdAt','DESC']]
   });
   }else{
