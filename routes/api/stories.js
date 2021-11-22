@@ -9,7 +9,7 @@ const createError = require("http-errors");
 
 const router = express.Router();
 
-router.get('/stories',asyncHandler(async (req,res,next) => { 
+router.get('/',asyncHandler(async (req,res,next) => { 
     const getStories = await Post.findAll({
         include: User,
         limit,
@@ -20,7 +20,7 @@ router.get('/stories',asyncHandler(async (req,res,next) => {
 }));
 
 
-router.get('/stories/following',restoreUser, asyncHandler(async(req,res,next) => {
+router.get('/following',restoreUser, asyncHandler(async(req,res,next) => {
     
     const getFollowing = await User.findOne({
         where:{
