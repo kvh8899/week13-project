@@ -67,8 +67,9 @@ block content
           .sidebar-author
             .story-author=story.user.username
             .author-actions
-              button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
-                | #{userFollow.id ? "Unfollow" : "Follow"}
+              if !locals.authenticated || story.user.id !== locals.user.id
+                button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+                  | #{userFollow.id ? "Unfollow" : "Follow"}
           .post-actions
             div.likes
               a.like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
