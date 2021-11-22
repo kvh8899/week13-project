@@ -335,7 +335,7 @@ function setupSidebarObserver() {
         postSidebar.classList.remove("hidden");
       }
     });
-  },{threshold:0.01});
+  },{threshold:0.02});
 
   observer.observe(storyHeader);
 }
