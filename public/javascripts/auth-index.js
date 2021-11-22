@@ -1,4 +1,4 @@
-import { constructPost } from "./utils.js";
+import { constructPost ,deleteAnim} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   /*
@@ -66,16 +66,31 @@ function setupInfiniteScroll() {
     }
 
     entries.forEach(async (entry) => {
+      const anim = document.querySelectorAll('.anim')
       if (entry.isIntersecting && reco.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
+        if(!getPosts.length){
+          deleteAnim(".recBott");
+          return;
+        }
         constructPost(getPosts, ".recommended-posts-container");
+        anim[0].classList.add("hidden");
         offsetR += 6;
-      } else if (entry.isIntersecting && foll.style.display === "block") {
+      }else if (entry.isIntersecting && foll.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
+        if(!getPosts.length){
+          deleteAnim(".follBott");
+          return;
+        }
         constructPost(getPosts, ".following-posts-container");
+        anim[1].classList.add("hidden");
         offsetF += 6;
+      }else if(anim[0]){
+        anim[0].classList.remove("hidden");
+      }else if(anim[1]){
+        anim[1].classList.remove("hidden");
       }
-    });
+    },{threshold:0.05});
   });
 
   /*

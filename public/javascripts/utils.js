@@ -97,3 +97,14 @@ export function constructPost(getPosts, containerClass) {
     postDiv.appendChild(storyGridStory);
   });
 }
+
+export function deleteAnim (c){
+  const anim = document.querySelectorAll(`${c}`)
+  anim.forEach(e => {
+    e.innerHTML = '';
+    e.innerHTML = "No more stories to load :(";
+  });
+}
+
+
+
