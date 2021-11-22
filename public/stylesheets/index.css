@@ -77,7 +77,7 @@ nav .login.button {
   background-color:#fff;
 }
   .background{
-      background-color:#c2c0c0;
+      background-color:#5f2e2e;
       border-bottom: 1px solid black;
       padding-top:70px;
       position:absolute;
@@ -227,8 +227,8 @@ nav .login.button {
   margin-left:20px;
 }
 
-.end-content .inner-story {
-  margin-right: 20px;
+.story-grid-story > a {
+  margin-left: 20px;
 }
 
 .headings-wrapper h2,
@@ -320,14 +320,14 @@ nav .login.button {
       color:black;
       border-bottom:3px solid black;
       text-align:left;
-      width:100%;
+      width:725px;
   }
   .snbOff{
     font-size:15px;
     color:grey;
     border-bottom:3px solid grey;
     text-align:left;
-    width:100%;
+    width:725px;
 }
 .reco-content{
     display:none;
@@ -346,4 +346,12 @@ nav .login.button {
     background-color:rgb(51, 179, 51);
     justify-content:center;
     width:250px;
+}
+.bott{
+  width:50px;
+  height:50px;
+  margin:auto;
+}
+.pContainer{
+  max-width:725px;
 }

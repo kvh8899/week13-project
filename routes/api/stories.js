@@ -1,11 +1,54 @@
-const createError = require("http-errors");
-const express = require("express");
 
-const { asyncHandler } = require("../utils");
-const { PostLike } = require("../../db/models");
-const { requireAuthApi } = require("../../auth");
+const express = require('express');
+const {Post,User,PostLike} = require('../../db/models');
+const {asyncHandler} = require('../utils.js')
+const {requireAuthApi} = require('../../auth.js');
+const limit = 6;
+const { Op } = require("sequelize");
+const createError = require("http-errors");
 
 const router = express.Router();
+
+router.get('/',asyncHandler(async (req,res,next) => { 
+    const getStories = await Post.findAll({
+        include: User,
+        limit,
+        order:[['createdAt','DESC']],
+        offset:req.query.offset,
+    });
+    res.json(getStories);
+}));
+
+
+router.get('/following',requireAuthApi, asyncHandler(async(req,res,next) => {
+    
+    const getFollowing = await User.findOne({
+        where:{
+            id:res.locals.user.id
+        },
+        include:{
+            model:User,
+            as: 'Following'
+        }
+    })
+    const following = getFollowing.Following.map(e => {
+        return e.id;
+    });
+    const getPosts = await Post.findAll({
+        where: {
+            userId: {
+                [Op.or]: following
+            }
+        },
+        include: {
+            model:User
+        },
+        limit:6,
+        order:[['createdAt','DESC']],
+        offset: req.query.offset
+    });
+    res.json(getPosts);
+}))
 
 /* Like a story */
 router.post(
@@ -56,3 +99,4 @@ router.delete(
 );
 
 module.exports = router;
+

@@ -14,12 +14,9 @@ const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api')
 const { sessionSecret } = require('./config');
 const commRouter = require('./routes/comments');
-
 const app = express();
-
 // view engine setup
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,7 +45,6 @@ app.use('/api', apiRouter);
 app.use('/comments',commRouter);
 
 app.use(usersRouter);
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

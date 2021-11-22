@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var {User, Post,Follow} = require('../db/models');
 const { loginUser, restoreUser } = require("../auth");
+const { Op } = require("sequelize");
 /* GET home page. */
-router.get('/', restoreUser,async function(req, res, next) {
-  
+
+router.get('/',restoreUser,async function(req, res, next) {
   const sixUsers = await Post.findAll({
     include: User,
-    limit:6
+    limit:6,
+    order:[['createdAt','DESC']]
   });
   if(!res.locals.authenticated){
     res.render('index', { 
@@ -15,32 +17,37 @@ router.get('/', restoreUser,async function(req, res, next) {
       post:sixUsers
     });
   }else{
-    const getUsers = await User.findAll({
-        where:{
+    const getFollowing = await User.findOne({
+      where:{
           id:res.locals.user.id
-        },
-        include:{
-          model: User,
-          as: 'Following',
-          include:Post
-        }
-        
-    });
-    let followingArr = [];
-    getUsers[0].Following.forEach(e => {
-      e.Posts.forEach(ex => {
-        ex.User = e;
-      })
-      followingArr = followingArr.concat(e.Posts);
-    });
+      },
+      include:{
+          model:User,
+          as: 'Following'
+      }
+  })
+  const following = getFollowing.Following.map(e => {
+      return e.id;
+  });
+  const getPosts = await Post.findAll({
+      where: {
+          userId: {
+              [Op.or]: following
+          }
+      },
+      include: {
+          model:User
+      },
+      limit:6,
+      order:[['createdAt','DESC']]
+  });
     res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
-      following:followingArr
+      following:getPosts
     });
   }
-
-  
 });
 
 module.exports = router;
+
