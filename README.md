@@ -36,13 +36,13 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 
 ![Home Page - User Authenticated](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage-user_auth.png)
 
-The feed features stories from users that you follow, and recommended stories.
+*The feed features stories from users that you follow, and recommended stories.*
 	
 ### User Registration and Login
 
 ![Login](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/login.png)
 
-Demo account also available
+*Demo account also available*
 
 ### Story Page
 
@@ -59,8 +59,7 @@ Demo account also available
 
 ![Story Creation](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit_with_markdown.png)
 
-- Authenciated users can post new stories
-- Body text input supports Markdown
+*Authenciated users can post new stories. Body text input supports Markdown*
 
 ![Story Edit](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit.png)
 
