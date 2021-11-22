@@ -36,9 +36,11 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 
 ![Home Page - User Authenticated](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage-user_auth.png)
 
-With stories from users that you follow and recommended stories.
+The feed features stories from users that you follow, and recommended stories.
 	
 ### User Registration and Login
+
+![Login](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/login.png)
 
 Demo account also available
 
