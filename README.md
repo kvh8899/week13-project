@@ -90,6 +90,8 @@ let offset = 6;
 ```
 *Quite cool, isn't it?*
 
+- Markdown support for story pages
+
 ### Upcoming Features
 
 - Category tags
