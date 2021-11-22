@@ -289,6 +289,10 @@ function setupDeleteComments() {
     deleteBtn.addEventListener("click", async (event) => {
       event.preventDefault();
 
+      if (isFetching) {
+        return;
+      }
+
       const url = `/api/comments/${deleteBtn.dataset.commentId}`;
 
       try {
