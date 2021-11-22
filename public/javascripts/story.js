@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupFollowButton() {
   const followButtons = document.querySelectorAll(".follow-button");
+  const followCounts = document.querySelectorAll(".followers-count");
 
   followButtons.forEach((followButton) => {
     let isFetching = false;
@@ -40,12 +41,26 @@ function setupFollowButton() {
         const resData = await res.json();
 
         if (resData && !resData.errors) {
-          // Success!
-          return;
+          if (res.status === 200) {
+            followButtons.forEach((el) => {
+              el.innerText = "Follow";
+              delete el.dataset.followId;
+            });
+            followCounts.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) - 1;
+            });
+          } else if (res.status === 201) {
+            followButtons.forEach((el) => {
+              el.innerText = "Unfollow";
+              el.dataset.followId = resData.id;
+            });
+            followCounts.forEach((el) => {
+              el.innerText = parseInt(el.innerText, 10) + 1;
+            });
+          }
         }
-
-        // TODO: How should errors be handled?
       } catch (error) {
+        // TODO: How should errors be handled?
       } finally {
         isFetching = false;
       }
@@ -55,6 +70,7 @@ function setupFollowButton() {
 
 function setupLikePostButton() {
   const likeButton = document.querySelector("#like-post");
+  const likeCounts = document.querySelectorAll(".post-likes-count");
 
   let isFetching = false;
 
@@ -81,12 +97,22 @@ function setupLikePostButton() {
       const resData = await res.json();
 
       if (resData && !resData.errors) {
-        // Success!
-        return;
+        if (res.status === 200) {
+          delete likeButton.dataset.liked;
+          delete likeButton.dataset.likeId;
+          likeCounts.forEach((el) => {
+            el.innerText = parseInt(el.innerText, 10) - 1;
+          });
+        } else if (res.status === 201) {
+          likeButton.dataset.liked = true;
+          likeButton.dataset.likeId = resData.id;
+          likeCounts.forEach((el) => {
+            el.innerText = parseInt(el.innerText, 10) + 1;
+          });
+        }
       }
-
-      // TODO: How should errors be handled?
     } catch (error) {
+      // TODO: How should errors be handled?
     } finally {
       isFetching = false;
     }
@@ -153,10 +179,6 @@ function setupCommentsInput() {
   const input = document.querySelector("#story-comment-input");
 
   adjustTextAreaHeight(input);
-
-  window.addEventListener("hashchange", () => {
-    updateTextAreaHeight(input);
-  });
 }
 
 function setupCommentsActions() {
@@ -167,9 +189,15 @@ function setupCommentsActions() {
     cancelButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const input = cancelButton
-        .closest(".comments-input-wrapper")
-        .querySelector("textarea");
+      const inputWrapper = cancelButton.closest(".comments-input-wrapper");
+      const input = inputWrapper.querySelector("textarea");
+
+      if (input.classList.contains("grow-textarea")) {
+        const hiddenGrower = inputWrapper.querySelector(".grow-hidden");
+        if (hiddenGrower) {
+          hiddenGrower.innerText = "";
+        }
+      }
 
       input.value = "";
     });
@@ -183,8 +211,10 @@ function setupCommentsActions() {
     if (!commentEl) {
       return;
     }
-    const commentId = commentEl.dataset.commentId;
-    const likeId = likeButton.dataset.likeId;
+    const commentLikeEl = commentEl.querySelector(".comment-like-count");
+    if (!commentLikeEl) {
+      return;
+    }
 
     let isFetching = false;
 
@@ -194,6 +224,9 @@ function setupCommentsActions() {
       if (isFetching) {
         return;
       }
+
+      const commentId = commentEl.dataset.commentId;
+      const likeId = likeButton.dataset.likeId;
 
       isFetching = true;
       try {
@@ -208,12 +241,18 @@ function setupCommentsActions() {
         const resData = await res.json();
 
         if (resData && !resData.errors) {
-          // Success!
-          return;
+          if (res.status === 200) {
+            delete likeButton.dataset.liked;
+            delete likeButton.dataset.likeId;
+            commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) - 1;
+          } else if (res.status === 201) {
+            likeButton.dataset.liked = true;
+            likeButton.dataset.likeId = resData.id;
+            commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) + 1;
+          }
         }
-
-        // TODO: How should errors be handled?
       } catch (error) {
+        // TODO: How should errors be handled?
       } finally {
         isFetching = false;
       }
@@ -221,24 +260,29 @@ function setupCommentsActions() {
   });
 }
 
-function setupDeleteComments(){
-  const deleteBtns = document.querySelectorAll('button.delete-comment');
+function setupDeleteComments() {
+  const deleteBtns = document.querySelectorAll("button.delete-comment");
   let url;
-  deleteBtns.forEach(deleteBtn => {
-    deleteBtn.addEventListener('click', async(e) => {
-      url = '/comments/'+ e.currentTarget.dataset.commentId + '/delete';
-      try{
-        const comm = document.querySelector(`[data-comment-id='${e.currentTarget.dataset.commentId}']`);
-        document.querySelector('.comments-container').removeChild(comm);
+  deleteBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", async (e) => {
+      url = "/comments/" + e.currentTarget.dataset.commentId + "/delete";
+      try {
+        const comm = document.querySelector(
+          `[data-comment-id='${e.currentTarget.dataset.commentId}']`
+        );
+        document.querySelector(".comments-container").removeChild(comm);
 
-        await fetch(url,{method: 'DELETE'});
+        await fetch(url, { method: "DELETE" });
 
-        document.querySelector('a#show-comments span').innerText--;
-        document.querySelector('.comments-heading h2').innerText = 
-        `Responses (${document.querySelector('a#show-comments span').innerText})`;
-      }catch(e){
+        document.querySelector("a#show-comments span").innerText--;
+        document.querySelector(
+          ".comments-heading h2"
+        ).innerText = `Responses (${
+          document.querySelector("a#show-comments span").innerText
+        })`;
+      } catch (e) {
         return;
       }
     });
-  })
+  });
 }

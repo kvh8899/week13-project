@@ -255,6 +255,30 @@ h6,
 }
 
 /*
+  Autoresize Textarea
+*/
+.grow-wrapper {
+  display: grid;
+}
+
+.grow-textarea {
+  overflow: hidden;
+}
+
+.grow-hidden {
+  overflow-wrap: break-word;
+  pointer-events: none;
+  visibility: hidden;
+  white-space: pre-wrap;
+  z-index: -1;
+}
+
+.grow-hidden,
+.grow-textarea {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+/*
   Util Classes
 */
 
