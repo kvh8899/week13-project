@@ -224,7 +224,7 @@ nav .login.button {
   height:145px;
 }
 .e-c-2{
-  margin-left:20px;
+  width:100%;
   border-left:1px solid lightgray;
 }
 
@@ -354,8 +354,8 @@ nav .login.button {
     width:250px;
 }
 .bott{
-  width:200px;
-  margin-left:370px;
+  width:140px;
+  margin-left:340px;
 }
 .pContainer{
   max-width:725px;
