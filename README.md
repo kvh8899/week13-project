@@ -68,7 +68,7 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 ### Bonus Features
 
 - Infinite scroll
-```
+```js
 let offset = 6;
     //Infinite scroll
     const bottomObserver = new IntersectionObserver( async (entries,observer) => {
