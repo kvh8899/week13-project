@@ -4,14 +4,12 @@ Website: [https://codexappaa.herokuapp.com/](https://codexappaa.herokuapp.com/)
 
 ## What is CodeX?
 
-CodeX is an online publishing platform for members of the tech industry.
-On it, you can write, read, and connect with others, on such topics as:
+CodeX is an online publishing platform, inspired by Medium.com, for members of the tech industry. On it, you can write, read, and connect with others, on such topics as:
 - software engineering
 - computer science
 - data science
 - machine learning
 - and more
-It is inspired by Medium.com.
 
 ### Did You Know?
 
