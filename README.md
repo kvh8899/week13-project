@@ -27,10 +27,21 @@ computer science, data science, machine learning, and more.
 - A story creation page allowing authenciated users to post new stories
   - Supports markdown in the body of the story
 
-##ToDo/future features
+## ToDo/future features
 - write an algorithm (BFS) to get recommended follows
   based on people you follow.
--
+- render trending stories on the page based on recency 
+  and amount of follows, likes
+- implement infinite scroll for comments
+
+## Codex in Action
+## Technical implementation details
+
+## How to build/run the project
+- to install necessary packages for node.js
+  - npm install
+- to run seed data
+
 ## Contributors
 
 - [Justin Russo](https://github.com/justinrusso)
