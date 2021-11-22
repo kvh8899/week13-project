@@ -66,16 +66,22 @@ function setupInfiniteScroll() {
     }
 
     entries.forEach(async (entry) => {
+      const anim = document.querySelectorAll('.anim')
       if (entry.isIntersecting && reco.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
         constructPost(getPosts, ".recommended-posts-container");
+        anim[0].classList.add("hidden");
         offsetR += 6;
       } else if (entry.isIntersecting && foll.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
         constructPost(getPosts, ".following-posts-container");
+        anim[1].classList.add("hidden");
         offsetF += 6;
+      }else{
+        anim[0].classList.remove("hidden");
+        anim[1].classList.remove("hidden");
       }
-    });
+    },{threshold:0.05});
   });
 
   /*
