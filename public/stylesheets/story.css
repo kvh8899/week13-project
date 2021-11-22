@@ -344,6 +344,7 @@ footer nav > a:last-of-type {
 
 .post-sidebar.hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 .post-sidebar-content-wrapper {

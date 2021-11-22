@@ -331,7 +331,7 @@ function setupSidebarObserver() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         postSidebar.classList.add("hidden");
-      } else {
+      } else if (storyHeader.getBoundingClientRect().top < 0) {
         postSidebar.classList.remove("hidden");
       }
     });
