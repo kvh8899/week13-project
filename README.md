@@ -28,21 +28,28 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 
 ## Features
 
-- Home page with stories
-- User-authenticated home page with
-	- stories from users you follow, and
-	- recommended stories
-- User registration and login (with demo account available)
-- Story page
-  - Comments section - authenticated users can add comments to a story
-  - Follow / unfollow a user
-  - Like / unlike
-  	- Authenticated users can like or remove their like on the story
-  	- Authenticated users can like or remove their like on comments
-  - Live updates for comments, follows, and likes.
-- Story creation page
-  - Authenciated users can post new stories
-  - Body text input supports Markdown
+### Home page with stories
+### User-authenticated home page
+
+With stories from users that you follow and recommended stories.
+	
+### User registration and login
+
+Demo account also available
+
+### Story page
+
+- Comments section - authenticated users can add comments to a story
+- Follow / unfollow a user
+- Like / unlike
+	- Authenticated users can like or remove their like on the story
+	- Authenticated users can like or remove their like on comments
+- Live updates for comments, follows, and likes.
+
+### Story creation page
+
+- Authenciated users can post new stories
+- Body text input supports Markdown
 
 ### Bonus Features
 
