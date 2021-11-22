@@ -286,6 +286,10 @@ h6,
   display: none;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .pointer {
   cursor: pointer;
 }

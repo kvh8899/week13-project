@@ -353,5 +353,5 @@ nav .login.button {
   margin:auto;
 }
 .pContainer{
-  min-width:725px;
+  max-width:725px;
 }
