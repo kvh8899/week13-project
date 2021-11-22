@@ -29,7 +29,12 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 ## Features
 
 ### Home Page with Stories
+
+![Home Page](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage.png)
+
 ### User-Authenticated Home Page
+
+![Home Page - User Authenticated](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage-user_auth.png)
 
 With stories from users that you follow and recommended stories.
 	
@@ -38,6 +43,8 @@ With stories from users that you follow and recommended stories.
 Demo account also available
 
 ### Story Page
+
+![Story - comments popover](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-comments_and_likes.png)
 
 - Comments section - authenticated users can add comments to a story
 - Follow / unfollow a user
@@ -48,8 +55,14 @@ Demo account also available
 
 ### Story Creation Page
 
+![Story Creation](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-create.png)
+
 - Authenciated users can post new stories
 - Body text input supports Markdown
+
+![Story Edit](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit.png)
+
+The authenticated user can also edit stories
 
 ### Bonus Features
 
