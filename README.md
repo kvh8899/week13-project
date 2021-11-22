@@ -13,7 +13,7 @@ CodeX is an online publishing platform, for members of the tech industry, inspir
 
 ### Did You Know?
 
-The codex is the historical ancestor of the modern book, a bound collection of handwritten contents on non-paper materials. It also, conveniently, for our purposes, implies exchange of information, and computer code, a prominent feature of innovation and technology.
+The codex, a bound collection of handwritten contents on non-paper materials, is the historical ancestor of the modern book. Conveniently, for our purposes, its pronunciation and spelling imply exchange of information (code**x**), and echo computer code (**code**x), a prominent feature of innovation and technology.
 
 ## Technologies Used
 
