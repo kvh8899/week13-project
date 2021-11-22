@@ -41,7 +41,7 @@ router.get('/', restoreUser, (req, res) => {
       ]
     },
     {
-      name: "Ricky Thang",
+      name: "Ricky Tang",
       socials: [
         {
           iconName: "github",
