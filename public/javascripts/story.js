@@ -287,14 +287,16 @@ function setupDeleteComments() {
         );
         document.querySelector(".comments-container").removeChild(comm);
 
-        await fetch(url, { method: "DELETE" });
+        const res = await fetch(url, { method: "DELETE" });
 
-        document.querySelector("a.show-comments span").innerText--;
-        document.querySelector(
-          ".comments-heading h2"
-        ).innerText = `Responses (${
-          document.querySelector("a.show-comments span").innerText
-        })`;
+        if (res.status === 200) {
+          document.querySelector("a.show-comments span").innerText--;
+          document.querySelector(
+            ".comments-heading h2"
+          ).innerText = `Responses (${
+            document.querySelector("a.show-comments span").innerText
+          })`;
+        }
       } catch (e) {
         return;
       }
