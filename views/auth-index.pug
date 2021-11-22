@@ -21,7 +21,8 @@ block content
             .recommended-posts-container.full-width
               each posts in post
                 +detailedStoryGridItem(posts)
-            .bott
+            .bott.recBott
+              i.anim.fas.fa-cog.fa-spin
           .follow-content.full-width
             .following-posts-container.full-width
               each posts in following
@@ -29,7 +30,8 @@ block content
               div(class='empty-follow')
                   p Stories from people you follow will appear here!
                   button.button.contained.rounded.login.browse Browse Recommended Stories
-            .bott
+            .bott.follBott
+              i.anim.fas.fa-cog.fa-spin
         div(class='e-c-2')
             div(id='eop-div')
             include includes/fixed-footer.pug

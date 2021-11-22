@@ -12,8 +12,9 @@ block navbar
     .followers
       span.followers-count #{story.user.Followers.length}
       |  Followers
-    button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
-      | #{userFollow.id ? "Unfollow" : "Follow"}
+    if !locals.authenticated || story.user.id !== locals.user.id
+      button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
+        | #{userFollow.id ? "Unfollow" : "Follow"}
   nav.navbar-right
     if locals.authenticated
       include includes/nav-user-dropdown.pug
