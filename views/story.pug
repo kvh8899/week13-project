@@ -46,7 +46,7 @@ block content
             div.comments
               a.show-comments
                 i.fa-solid.fa-comment
-                span #{comments.length}
+                span.post-comments-count #{comments.length}
           div.right
             if locals.user && story.user.id === locals.user.id
               a.button.icon-button.rounded(href=`/stories/${story.id}/edit`)
@@ -76,7 +76,7 @@ block content
             div.comments
               a.show-comments
                 i.fa-solid.fa-comment
-                span #{comments.length}
+                span.post-comments-count #{comments.length}
 
   //- Comments Modal
   .modal-root.comments.hidden
@@ -84,7 +84,9 @@ block content
     .modal-container
       .modal-content.hidden
         .comments-heading
-          h2 Responses (#{comments.length})
+          h2 Responses (
+            span.post-comments-count #{comments.length}
+            | )
           div
             i.fa-solid.fa-xmark.modal-close
         if locals.authenticated
