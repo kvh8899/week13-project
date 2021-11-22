@@ -63,8 +63,12 @@ The codex is the historical ancestor of the modern book, a bound collection of h
 
 ## Installation
 
-- Install necessary packages for node.js: ```npm install```
-- Create the database
+### Install necessary packages for node.js 
+
+```npm install```
+
+### Create the database
+
   1. Install postgres
   2. Create a database called ```codex_app```
   3. Set password as 'password' or any password. *Note: make sure it is the same password as the one in the .env file variables*
