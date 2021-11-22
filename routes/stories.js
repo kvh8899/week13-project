@@ -107,6 +107,8 @@ router.get(
           userId: story.User.id,
           followerId: res.locals.user.id,
         },
+        // For whatever reason, the id is not included in the result by default
+        attributes: ["id"],
       });
     }
 
