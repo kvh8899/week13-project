@@ -32,10 +32,13 @@ document.addEventListener("DOMContentLoaded",() => {
             if(entry.isIntersecting ){
                 let getPosts =  await fetch(url).then(res => res.json());
                 offset += 6;
+                document.querySelector('.anim').classList.add("hidden");
                 constructPost(getPosts,'.pContainer');
+            }else{
+                document.querySelector('.anim').classList.remove("hidden");
             }
         })
-    },{threshold:1})
+    },{threshold:0.05})
     /*
         makes sure the element being observed exists
     */

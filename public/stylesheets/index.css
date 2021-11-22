@@ -355,8 +355,14 @@ nav .login.button {
 }
 .bott{
   width:50px;
-  margin:auto;
+  margin-left:370px;
 }
 .pContainer{
   max-width:725px;
+}
+.anim{
+  font-size:50px;
+}
+.hidden{
+  opacity:0;
 }
