@@ -68,6 +68,27 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 ### Bonus Features
 
 - Infinite scroll
+```
+let offset = 6;
+    //Infinite scroll
+    const bottomObserver = new IntersectionObserver( async (entries,observer) => {
+        
+        entries.forEach(async(entry) => {
+            let url = '/api/stories?offset=' + offset;
+            if(entry.isIntersecting ){
+                let getPosts =  await fetch(url).then(res => res.json());
+                offset += 6;
+                constructPost(getPosts,'.pContainer');
+            }
+        })
+    },{threshold:1})
+    /*
+        makes sure the element being observed exists
+    */
+    if(background) observer.observe(background);
+    if(bottom) bottomObserver.observe(bottom);
+    ```
+*Quite cool, isn't it?*
 
 ### Upcoming Features
 
