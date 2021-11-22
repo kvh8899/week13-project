@@ -35,13 +35,22 @@ computer science, data science, machine learning, and more.
 - implement infinite scroll for comments
 
 ## Codex in Action
+
 ## Technical implementation details
 
 ## How to build/run the project
 - to install necessary packages for node.js
   - npm install
-- to run seed data
-
+- creating the database
+  1. install postgres
+  2. create a database called codex_app
+  3. set password as 'password' or to any password(this must be        consistent in the env file variables)
+  4. create a new env file (use .env.example as a reference)
+  5. to run migrations:
+      - npx dotenv sequelize db:migrate
+  6. to run seed data for testing:
+      - npx dotenv sequelize db:seed:all
+  7. to start the server run "npm start"
 ## Contributors
 
 - [Justin Russo](https://github.com/justinrusso)
