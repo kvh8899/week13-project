@@ -30,23 +30,23 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 
 ### Home Page with Stories
 
-![Home Page](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage.png)
+![Home Page](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/homepage.png)
 
 ### User-Authenticated Home Page
 
-![Home Page - User Authenticated](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/homepage-user_auth.png)
+![Home Page - User Authenticated](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/homepage-user_auth.png)
 
 *The feed features stories from users that you follow, and recommended stories.*
 	
 ### User Registration and Login
 
-![Login](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/login.png)
+![Login](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/login.png)
 
 *Demo account also available*
 
 ### Story Page
 
-![Story - comments popover](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-comments_and_likes.png)
+![Story - comments popover](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/story-comments_and_likes.png)
 
 - Comments section - authenticated users can add comments to a story
 - Follow / unfollow a user
@@ -57,11 +57,11 @@ The codex, a bound collection of handwritten contents on non-paper materials, is
 
 ### Story Creation Page
 
-![Story Creation](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit_with_markdown.png)
+![Story Creation](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/story-edit_with_markdown.png)
 
 *Authenciated users can post new stories. Body text input supports Markdown*
 
-![Story Edit](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit.png)
+![Story Edit](https://github.com/kvh8899/week13-project/blob/main/docs/images/screens-readme/story-edit.png)
 
 *The authenticated user can also edit stories*
 
