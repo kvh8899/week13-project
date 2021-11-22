@@ -282,14 +282,15 @@ function setupDeleteComments() {
     deleteBtn.addEventListener("click", async (e) => {
       url = `/api/comments/${e.currentTarget.dataset.commentId}`;
       try {
-        const comm = document.querySelector(
-          `[data-comment-id='${e.currentTarget.dataset.commentId}']`
-        );
-        document.querySelector(".comments-container").removeChild(comm);
-
         const res = await fetch(url, { method: "DELETE" });
 
         if (res.status === 200) {
+          const comm = document.querySelector(
+            `[data-comment-id='${e.currentTarget.dataset.commentId}']`
+          );
+          document.querySelector(".comments-container").removeChild(comm);
+
+          // Reduce count
           document.querySelector("a.show-comments span").innerText--;
           document.querySelector(
             ".comments-heading h2"
