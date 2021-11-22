@@ -117,9 +117,18 @@ let offset = 6;
   6. Run seed data for testing: ```npx dotenv sequelize db:seed:all ```
   7. Start the server: ```npm start```
 
+## Documentation Links
+- [Documentation Home Page](https://github.com/kvh8899/week13-project/wiki)
+- [Feature List](https://github.com/kvh8899/week13-project/wiki/Feature-List)
+- [User Stories and Acceptance Criteria](https://github.com/kvh8899/week13-project/wiki/User-Stories)
+- [Database Schema](https://github.com/kvh8899/week13-project/wiki/Database-Schema)
+- [API Documentation](https://github.com/kvh8899/week13-project/wiki/API-Documentation)
+- [Frontend Routes](https://github.com/kvh8899/week13-project/wiki/Frontend-Routes)
+
 ## Contributors
 
 - [Justin Russo](https://github.com/justinrusso)
 - [Ken Julian](https://github.com/kenjulian)
 - [Kyle Huang](https://github.com/kvh8899)
 - [Ricky Thang](https://github.com/rickythewriter)
+
