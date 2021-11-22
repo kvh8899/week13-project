@@ -64,7 +64,7 @@ Demo account also available
 
 ![Story Edit](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit.png)
 
-The authenticated user can also edit stories
+*The authenticated user can also edit stories*
 
 ### Bonus Features
 
