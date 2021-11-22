@@ -322,17 +322,16 @@ function setupDeleteComments() {
 }
 
 function setupSidebarObserver() {
-  const storyHeader = document.querySelector(".topbar.sans-serif");
+  const storyHeader = document.querySelector("main h1");
   const postSidebar = document.querySelector(".post-sidebar");
 
   
   postSidebar.classList.add("hidden");
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        postSidebar.classList.add("hidden");
-      } else {
-        postSidebar.classList.remove("hidden");
+
+      if (storyHeader.getBoundingClientRect().top < 0) {
+        postSidebar.classList.toggle("hidden");
       }
     });
   },{threshold:0.01});
