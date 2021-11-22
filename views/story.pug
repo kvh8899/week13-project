@@ -9,7 +9,9 @@ append head
 block navbar
   div.navbar-left
     .name #{story.user.username}
-    .followers #{story.user.Followers.length} Followers
+    .followers
+      span.followers-count #{story.user.Followers.length}
+      |  Followers
     if locals.authenticated && story.user.id !== locals.user.id
       button.button.contained.rounded.follow-button(data-author-id=story.user.id data-follow-id=userFollow.id)
         | #{userFollow.id ? "Unfollow" : "Follow"}
@@ -41,11 +43,15 @@ block content
             div.likes
               a#like-post(data-like-id=userLike.id data-liked=!!userLike.id data-story-id=story.id)
                 i.fa-solid.fa-hands-clapping
-              a#view-likes #{likes.length}
+              span#view-likes.post-likes-count #{likes.length}
             div.comments
               a#show-comments
                 i.fa-solid.fa-comment
                 span #{comments.length}
+          div.right
+            if locals.user && story.user.id === locals.user.id
+              a.button.icon-button.rounded(href=`/stories/${story.id}/edit`)
+                i.fa-solid.fa-pen-to-square
     footer
       .wide-container
         .content-wrapper
@@ -59,25 +65,23 @@ block content
   .modal-root.comments.hidden
     .modal-backdrop(aria-hidden="true")
     .modal-container
-      .modal-content
+      .modal-content.hidden
         .comments-heading
           h2 Responses (#{comments.length})
           div
             i.fa-solid.fa-xmark.modal-close
-        form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
-          input(type="hidden" name="_csrf" value=csrfToken)
-          textarea#story-comment-input.comments-input(name='commentBox' placeholder="What are your thoughts?")
-          div.comment-input-actions
-            div
-              button.button.text.comment-cancel Cancel
-              button.button.contained.rounded.comment-respond(form='commForm') Respond
+        if locals.authenticated
+          +commentForm(csrfToken, story)
+        else
+          a(href="/signup")
+            +commentForm(csrfToken, story)
         .divider
         .comments-container
           each comment in comments
             .comment(data-comment-id=comment.id)
               .comment-top
                 .comment-details-wrapper
-                  img.comment-user-img(src="../images/defaultavatar.jpeg")
+                  img.comment-user-img(src="/images/defaultavatar.jpeg")
                   .comment-details
                     .comment-user=comment.User.username
                     .comment-time=formatTimeSince(comment.createdAt)
@@ -90,4 +94,15 @@ block content
                   - const userCommentLike = locals.user ? comment.CommentLikes.find(like => like.userId === locals.user.id) || {} : {};
                   a.like-comment(data-like-id=userCommentLike.id data-liked=!!userCommentLike.id)
                     i.fa-solid.fa-hands-clapping
-                  a #{comment.CommentLikes.length}
+                  span.comment-like-count #{comment.CommentLikes.length}
+
+mixin commentForm(csrfToken, story)
+  form.comments-input-wrapper(action=`/stories/${story.id}/comment` method="POST" id='commForm')
+    input(type="hidden" name="_csrf" value=csrfToken)
+    .grow-wrapper
+      textarea#story-comment-input.grow-textarea.comments-input.sans-serif(name='commentBox' placeholder="What are your thoughts?" class=`${locals.authenticated ? "" : "pointer"}` rows="1")
+      .grow-hidden.sans-serif
+      div.comment-input-actions
+        div
+          button.button.text.comment-cancel Cancel
+          button.button.contained.rounded.comment-respond(form='commForm') Respond

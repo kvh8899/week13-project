@@ -12,8 +12,13 @@ block navbar
   a(href="/" alt="CodeX Home")
     img.logo(src="/images/codexLogo.png" alt="CodeX Logo" )
   nav
-    form(method='post' action='/stories/new')
-      input(type="hidden" name="_csrf" value=csrfToken)
+    if editing
+      form(method='post' action=`/stories/${story.id}/delete`)
+        input(type="hidden" name="_csrf" value=csrfToken)
+        button.button.text.black Delete
+      a.button.contained.black.rounded(href=`/stories/${story.id}`) Cancel
+      button.button.contained.rounded(form="storyForm") Update
+    else
       button.button.contained.rounded(form="storyForm") Create Story
     include includes/nav-user-dropdown.pug
 
@@ -21,7 +26,8 @@ block content
   div(class='write-Content')
     +validationErrorSummary(locals.errors)
     div(id="form" class="form")
-      form(method="post" action="/stories/new" id='storyForm')
+      - const formAction = editing ? `/stories/${story.id}/edit` : "/stories/new"
+      form(method="post" action=formAction id='storyForm')
         input(type="hidden" name="_csrf" value=csrfToken)
 
         +field("Title", "heading", story.heading, "text", true, "Title", "h1")
@@ -29,8 +35,10 @@ block content
         +field("Story Image Url", "headerImage", story.headerImage, "text", false, "Image URL", "serif")
         div.main-text-input-wrapper
           label(for="mainText") Story Body
-          textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts...")=story.mainText
-          p.sans-serif.input-helper.display-after-loaded This input supports 
-            a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
-            | .
+          .grow-wrapper
+            textarea.grow-textarea.serif(id="mainText", name="mainText" required placeholder="Render your thoughts..." rows="1")=story.mainText
+            .grow-hidden(aria-hidden="true")
+            p.sans-serif.input-helper.display-after-loaded This input supports 
+              a(href="https://www.markdownguide.org/cheat-sheet/" target="_blank") Markdown
+              | .
       
