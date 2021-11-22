@@ -17,7 +17,6 @@ const commRouter = require('./routes/comments');
 const app = express();
 // view engine setup
 app.set('view engine', 'pug');
-app.use(cookieParser());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
