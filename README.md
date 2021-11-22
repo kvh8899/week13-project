@@ -13,6 +13,10 @@ On it, you can write, read, and connect with others, on such topics as:
 - and more
 It is inspired by Medium.com.
 
+### Did You Know?
+
+The codex is the historical ancestor of the modern book, a bound collection of handwritten contents on non-paper materials. It also, conveniently, for our purposes, implies exchange of information, and computer code, a prominent feature of innovation and technology.
+
 ## Technologies Used
 
 - JavaScript
@@ -23,10 +27,6 @@ It is inspired by Medium.com.
 - Heroku
 - Sequelize
 - PostgreSQL
-
-## Did You Know?
-
-The codex is the historical ancestor of the modern book, a bound collection of handwritten contents on non-paper materials. It also, conveniently, for our purposes, implies exchange of information, and computer code, a prominent feature of innovation and technology.
 
 ## Features
 
@@ -63,19 +63,15 @@ The codex is the historical ancestor of the modern book, a bound collection of h
 
 ## Installation
 
-- Install necessary packages for node.js
-  - ```npm install```
+- Install necessary packages for node.js: ```npm install```
 - Create the database
   1. Install postgres
   2. Create a database called ```codex_app```
   3. Set password as 'password' or any password. *Note: make sure it is the same password as the one in the .env file variables*
   4. Create a new env file. Use .env.example as a reference.
-  5. Run migrations:
-      - ``` npx dotenv sequelize db:migrate ```
-  6. Run seed data for testing:
-      - ```npx dotenv sequelize db:seed:all ```
-  7. Start the server:
-      - ```npm start```
+  5. Run migrations: ``` npx dotenv sequelize db:migrate ```
+  6. Run seed data for testing: ```npx dotenv sequelize db:seed:all ```
+  7. Start the server: ```npm start```
 
 ## Contributors
 
