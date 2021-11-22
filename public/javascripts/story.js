@@ -322,9 +322,12 @@ function setupDeleteComments() {
 }
 
 function setupSidebarObserver() {
-  const storyHeader = document.querySelector(".topbar.sans-serif");
+  const storyHeader = document.querySelector("main h1.title");
   const postSidebar = document.querySelector(".post-sidebar");
 
+  if (!storyHeader || !postSidebar) {
+    return;
+  }
   
   postSidebar.classList.add("hidden");
   const observer = new IntersectionObserver((entries) => {
