@@ -1,4 +1,4 @@
-import {constructPost} from './utils.js'
+import {constructPost,deleteAnim} from './utils.js'
 //do things after DOM has been loaded
 document.addEventListener("DOMContentLoaded",() => {
     const background = document.querySelector('.startWriting');
@@ -31,12 +31,17 @@ document.addEventListener("DOMContentLoaded",() => {
             let url = '/api/stories?offset=' + offset;
             if(entry.isIntersecting ){
                 let getPosts =  await fetch(url).then(res => res.json());
+                if(!getPosts.length){
+                    deleteAnim(".bott");
+                    return;
+                }
                 offset += 6;
                 document.querySelector('.anim').classList.add("hidden");
                 constructPost(getPosts,'.pContainer');
             }else{
                 document.querySelector('.anim').classList.remove("hidden");
             }
+            
         })
     },{threshold:0.05})
     /*
