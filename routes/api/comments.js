@@ -15,23 +15,17 @@ router.delete(
       where: {
         id: req.params.id,
       },
-      include: [User, CommentLike],
     });
-    /* 
-      check if logged in
-          if not logged in, redirect to login page
-      otherwise check if user is owner of comment
-          if not owner, then deny authorization to delete
-    */
 
-    if (res.locals.user.id !== comment.User.id) {
+    /* 
+      check if user is owner of comment
+      if not owner, then deny authorization to delete*/
+    if (res.locals.user.id !== comment.userId) {
       return next(createError(401));
-    } else {
-      comment.CommentLikes.forEach((e) => {
-        e.destroy();
-      });
-      comment.destroy();
     }
+
+    await comment.destroy();
+
     res.json({ message: "deleted" });
   })
 );
