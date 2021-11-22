@@ -34,19 +34,23 @@ router.get('/following',requireAuthApi, asyncHandler(async(req,res,next) => {
     const following = getFollowing.Following.map(e => {
         return e.id;
     });
-    const getPosts = await Post.findAll({
-        where: {
-            userId: {
-                [Op.or]: following
-            }
-        },
-        include: {
-            model:User
-        },
-        limit:6,
-        order:[['createdAt','DESC']],
-        offset: req.query.offset
-    });
+    let getPosts
+  if(following.length){
+     getPosts = await Post.findAll({
+      where: {
+          userId: {
+              [Op.or]: following
+          }
+      },
+      include: {
+          model:User
+      },
+      limit:6,
+      order:[['createdAt','DESC']]
+  });
+  }else{
+    getPosts = [];
+  }
     res.json(getPosts);
 }))
 
