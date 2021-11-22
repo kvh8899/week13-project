@@ -1,7 +1,7 @@
 
 const express = require('express');
-const {Post,User,Follow,PostLike} = require('../../db/models');
-const {getRandomInt,asyncHandler} = require('../utils.js')
+const {Post,User,PostLike} = require('../../db/models');
+const {asyncHandler} = require('../utils.js')
 const {requireAuthApi} = require('../../auth.js');
 const limit = 6;
 const { Op } = require("sequelize");
