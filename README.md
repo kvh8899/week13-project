@@ -112,7 +112,7 @@ let offset = 6;
   1. Install postgres
   2. Create a database called `codex_app`
   3. Set password as 'password' or any password. *Note: make sure it is the same password as the one in the .env file variables*
-  4. Create a new env file. Use .env.example as a reference.
+  4. Create a new env file. Use `.env.example` as a reference.
   5. Run migrations: ` npx dotenv sequelize db:migrate `
   6. Run seed data for testing: `npx dotenv sequelize db:seed:all `
   7. Start the server: `npm start`
