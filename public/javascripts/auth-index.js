@@ -1,6 +1,6 @@
 import { constructPost } from "./utils.js";
 
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", () => {
   /*
     navigation for following and recommended stories
   */
@@ -42,37 +42,46 @@ document.addEventListener("DOMContentLoaded", (e) => {
   } else {
     document.querySelector(".empty-follow").style.display = "none";
   }
+
+  setupInfiniteScroll();
 });
 
-//Infinite scroll
-const reco = document.querySelector(".reco-content");
-const foll = document.querySelector(".follow-content");
-const bottom = document.querySelector(".bott");
-let offsetF = 6;
-let offsetR = 6;
-const bottomObserver = new IntersectionObserver(async (entries, observer) => {
-  let url;
-  let getPosts;
-  //prevent fetch unless tab is open
-  if (reco.style.display === "block") {
-    url = "/api/stories?offset=" + offsetR;
-  } else if (foll.style.display === "block") {
-    url = "/api/stories/following?offset=" + offsetF;
-  }
+function setupInfiniteScroll() {
+  const reco = document.querySelector(".reco-content");
+  const foll = document.querySelector(".follow-content");
+  const bottoms = document.querySelectorAll(".bott");
 
-  entries.forEach(async (entry) => {
-    if (entry.isIntersecting && reco.style.display === "block") {
-      getPosts = await fetch(url).then((res) => res.json());
-      constructPost(getPosts, ".pContainer");
-      offsetR += 6;
-    } else if (entry.isIntersecting && foll.style.display === "block") {
-      getPosts = await fetch(url).then((res) => res.json());
-      constructPost(getPosts, ".follow-content");
-      offsetF += 6;
+  let offsetF = 6;
+  let offsetR = 6;
+
+  const bottomObserver = new IntersectionObserver(async (entries, observer) => {
+    let url;
+    let getPosts;
+
+    // prevent fetch unless tab is open
+    if (reco.style.display === "block") {
+      url = "/api/stories?offset=" + offsetR;
+    } else if (foll.style.display === "block") {
+      url = "/api/stories/following?offset=" + offsetF;
     }
+
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting && reco.style.display === "block") {
+        getPosts = await fetch(url).then((res) => res.json());
+        constructPost(getPosts, ".recommended-posts-container");
+        offsetR += 6;
+      } else if (entry.isIntersecting && foll.style.display === "block") {
+        getPosts = await fetch(url).then((res) => res.json());
+        constructPost(getPosts, ".following-posts-container");
+        offsetF += 6;
+      }
+    });
   });
-});
-/*
-  makes sure the element being observed exists
-*/
-if (bottom) bottomObserver.observe(bottom);
+
+  /*
+    makes sure the element being observed exists
+  */
+  bottoms.forEach((bottomEl) => {
+    bottomObserver.observe(bottomEl);
+  });
+}
