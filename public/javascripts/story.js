@@ -57,8 +57,8 @@ function setupFollowButton() {
             followCounts.forEach((el) => {
               el.innerText = parseInt(el.innerText, 10) + 1;
             });
-          }else if(res.status === 401){
-            window.location = '/login';
+          } else if (res.status === 401) {
+            window.location = "/login";
           }
         }
       } catch (error) {
@@ -111,8 +111,8 @@ function setupLikePostButton() {
           likeCounts.forEach((el) => {
             el.innerText = parseInt(el.innerText, 10) + 1;
           });
-        }else if(res.status === 401){
-          window.location = '/login';
+        } else if (res.status === 401) {
+          window.location = "/login";
         }
       }
     } catch (error) {
@@ -253,8 +253,8 @@ function setupCommentsActions() {
             likeButton.dataset.liked = true;
             likeButton.dataset.likeId = resData.id;
             commentLikeEl.innerText = parseInt(commentLikeEl.innerText, 10) + 1;
-          }else if(res.status === 401){
-            window.location = '/login';
+          } else if (res.status === 401) {
+            window.location = "/login";
           }
         }
       } catch (error) {
