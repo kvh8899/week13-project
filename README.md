@@ -57,7 +57,7 @@ Demo account also available
 
 ### Story Creation Page
 
-![Story Creation](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-create.png)
+![Story Creation](https://github.com/kvh8899/week13-project/blob/readme/public/images/screens-readme/story-edit_with_markdown.png)
 
 - Authenciated users can post new stories
 - Body text input supports Markdown
