@@ -87,7 +87,7 @@ let offset = 6;
     */
     if(background) observer.observe(background);
     if(bottom) bottomObserver.observe(bottom);
-    ```
+```
 *Quite cool, isn't it?*
 
 ### Upcoming Features
