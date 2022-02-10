@@ -98,11 +98,11 @@ export function constructPost(getPosts, containerClass) {
   });
 }
 
-export function deleteAnim (c){
+export function deleteAnim (c,n){
   const anim = document.querySelectorAll(`${c}`)
   anim.forEach(e => {
     e.innerHTML = '';
-    e.innerHTML = "No more stories to load :(";
+    if(n) e.innerHTML = "No more stories to load :(";
   });
 }
 

@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".follow-content").style.display = "none";
   });
 
-  if (document.querySelector(".follow-content").children.length === 1) {
+  if (document.querySelector(".following-posts-container").children.length === 1) {
     document.querySelector(".empty-follow").style.display = "block";
   } else {
     document.querySelector(".empty-follow").style.display = "none";
@@ -70,7 +70,7 @@ function setupInfiniteScroll() {
       if (entry.isIntersecting && reco.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
         if(!getPosts.length){
-          deleteAnim(".recBott");
+          deleteAnim(".recBott",getPosts.length);
           return;
         }
         constructPost(getPosts, ".recommended-posts-container");
@@ -79,7 +79,7 @@ function setupInfiniteScroll() {
       }else if (entry.isIntersecting && foll.style.display === "block") {
         getPosts = await fetch(url).then((res) => res.json());
         if(!getPosts.length){
-          deleteAnim(".follBott");
+          deleteAnim(".follBott",getPosts.length);
           return;
         }
         constructPost(getPosts, ".following-posts-container");

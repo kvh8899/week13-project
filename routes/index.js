@@ -29,7 +29,9 @@ router.get('/',restoreUser,async function(req, res, next) {
   const following = getFollowing.Following.map(e => {
       return e.id;
   });
-  const getPosts = await Post.findAll({
+  let getPosts
+  if(following.length){
+     getPosts = await Post.findAll({
       where: {
           userId: {
               [Op.or]: following
@@ -39,8 +41,12 @@ router.get('/',restoreUser,async function(req, res, next) {
           model:User
       },
       limit:6,
+      offset: req.query.offset,
       order:[['createdAt','DESC']]
   });
+  }else{
+    getPosts = [];
+  }
     res.render('auth-index', { 
       title: 'CodeX is a place to write, read, and connect',
       post:sixUsers,
